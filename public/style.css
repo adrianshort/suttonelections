@@ -1,4 +1,14 @@
 body
 {
   background-color: beige;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 760px;
+  margin: 40px auto;
+  
+}
+
+input
+{
+  font-size: 150%;
+  text-transform: uppercase;
 }
