@@ -27,6 +27,7 @@ __END__
 %html
   %head
     %title Find My Candidates
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'style.css' }
     %body
       #main
         %h1 Find My Candidates
