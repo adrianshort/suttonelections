@@ -5,11 +5,11 @@
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'style.css' }
     %body
       #header
-        %h1 Find My Candidates
+        %h1
+          %a{ :href => '/' } Find My Candidates
       #main
         = yield
       #footer
-        %hr
         %p
-          Made by 
+          Design 
           %a{ :href => "http://adrianshort.co.uk/" } Adrian Short
