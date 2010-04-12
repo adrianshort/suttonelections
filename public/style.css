@@ -12,3 +12,8 @@ input
   font-size: 150%;
   text-transform: uppercase;
 }
+
+.highlight
+{
+  background-color: yellow;
+}

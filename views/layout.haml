@@ -1,0 +1,15 @@
+!!! Strict
+%html
+  %head
+    %title Find My Candidates
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'style.css' }
+    %body
+      #header
+        %h1 Find My Candidates
+      #main
+        = yield
+      #footer
+        %hr
+        %p
+          Made by 
+          %a{ :href => "http://adrianshort.co.uk/" } Adrian Short
