@@ -38,28 +38,29 @@ __END__
         %p
           Made by 
           %a{ :href => "http://adrianshort.co.uk/" } Adrian Short
-          with
-          %a{ :href => "http://www.ordnancesurvey.co.uk/oswebsite/products/code-point-open/" } Ordnance Survey
-          and
-          %a{ :href => "http://www.sutton.gov.uk/" } Sutton Council 
-          data,
-          %a{ :href => "http://uk-postcodes.com" } UK Postcodes API
-          and
-          %a{ :href => "http://sinatrarb.com" } Sinatra.
-        %p
-          Hosted by 
-          %a{ :href => "http://heroku.com" } Heroku.
-          Source at 
-          %a{ :href => "http://github.com/adrianshort" } Github.
-
+          -#
+            with
+            %a{ :href => "http://www.ordnancesurvey.co.uk/oswebsite/products/code-point-open/" } Ordnance Survey
+            and
+            %a{ :href => "http://www.sutton.gov.uk/" } Sutton Council 
+            data,
+            %a{ :href => "http://uk-postcodes.com" } UK Postcodes API
+            and
+            %a{ :href => "http://sinatrarb.com" } Sinatra.
+            %p
+              Hosted by 
+              %a{ :href => "http://heroku.com" } Heroku.
+              Source at 
+              %a{ :href => "http://github.com/adrianshort" } Github.
         
 @@home
 %form{ :method => 'get', :action => '/wards' }
   %label{ :for => "postcode" } Postcode
   %input{ :type => 'text', :name => 'postcode', :size => 8, :maxlength => 8 }
   %input{ :type => 'submit', :value => "Find" }
-- for ward in @wards
-  %p= ward  
+-#
+  - for ward in @wards
+    %p= ward  
   
   
 @@wards
