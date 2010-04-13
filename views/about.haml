@@ -1,65 +1,22 @@
-%h1 How the council election works
-
-%p On 6 May 2010 you get to choose your local councillors and to decide who runs Sutton Council for the next four years.
-
-%p The borough is divided into 18 areas called wards.
-
-%p Each ward has three councillors. That makes 54 councillors for the whole borough.
-
-%p You get three votes to choose three councillors for your ward from the list of candidates.
-
-%p The three people with the most votes in each ward become the councillors for that ward.
-
-%p If a political party gets 28 or more councillors they get to run the council and decide its policies and services until the next election in four years time.
-
-
-%h2 Registering to vote
+%h1 About this website
 
 %p
-  If you're not already registered to vote you must do so by 
-  %strong 20 April 
-  otherwise you won't be able to take part.
+  This website was designed by 
+  %a{ :href => 'http://adrianshort.co.uk' } Adrian Short
+  
+%p It is independent of Sutton Council, all political parties and candidates.
 
+%p The code for this website is open source and managed on Github. It is hosted by Heroku.
 %p
-  You can get a registration form at the 
-  %a{ :href => "http://www.aboutmyvote.co.uk/" } About My Vote 
-  website or by phoning Sutton Council on 
-  %span{ :class => 'phone' } 020 8770 4888.
+  The candidates' data comes from Sutton Council. 
+  
+%p The postcode lookup is done by UK Postcodes using open data from Ordnance Survey Code-Point Open enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
 
+%p This site is written in Ruby using the Sinatra framework. The HTML templates use Haml. The database is sqlite for development and postgresql for production, abstracted through DataMapper. Source control and deployment is done with Git.
 
-%h2 Voting
-
-%h3 Voting at your polling station
-
-%p Most people vote at their local polling station. This is usually in a school, hall or community centre near you.
-
-%p
-  The council will send you a 
-  %strong poll card 
-  showing you where to vote.
-
-%p If you lose your poll card, don't worry. You can still vote as long as you are registered.
-
-%p
-  You can vote at your polling station 
-  %strong between 7am and 10pm on 6 May.
-
-%p If you don't want to vote at a polling station or are unable to get there you can:
+%h2 #followfooter
 
 %ul
-  %li vote by post
-  %li ask someone to vote for you
-
-%h3 Voting by post
-
-%p Anyone can apply to vote by post.
-
-%p If you are registered to vote by post you won't be allowed to vote at a polling station.
-
-%h3 Asking someone to vote for you
-
-%p
-  You can choose to have someone vote for you at the polling station. This is called a 
-  %strong proxy vote.
-
-%p If you want to vote by post or have someone vote for you and haven't already told Sutton Council about this, do it straight away.
+  - for account in @accounts
+    %li
+      %a{ :href => "http://twitter.com/#{account}" }@#{account}

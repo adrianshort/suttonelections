@@ -1,16 +1,10 @@
+%h2 One day. Two elections in Sutton.
+
 %h2
   Who are my local candidates in the Sutton Council elections on 6 May?
 
 %form{ :method => 'get', :action => '/wards' }
   %label{ :for => "postcode" } My postcode is 
   %input{ :type => 'text', :name => 'postcode', :value => 'SM1 1EA', :size => 8, :maxlength => 8 }
-  %input{ :type => 'submit', :value => "Find" }
-  
-  %p
-    %a{ :href => '/about' } How the council election works
-  
--#
-  - for ward in @wards
-    %p= ward  
-    
+  %input{ :type => 'submit', :value => "Find it" }
   

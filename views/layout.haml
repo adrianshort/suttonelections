@@ -1,15 +1,21 @@
 !!! Strict
 %html
   %head
-    %title Sutton Council Elections
+    %title Sutton Council Elections 2010
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'style.css' }
     %body
       #header
-        %h1
-          %a{ :href => '/' } Sutton Council Elections
+        %a.date{ :href => '/' } 6 May 2010
       #main
         = yield
       #footer
         %p
+          %a{ :href => '/how-the-election-works' } How the council election works
+        -#
+          %p
+            %a{ :href => '/voting' } How to vote
+        %p
+          %a{ :href => '/about' } About this website
+        %p.credit
           Design 
           %a{ :href => "http://adrianshort.co.uk/" } Adrian Short
