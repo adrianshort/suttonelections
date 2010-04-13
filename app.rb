@@ -25,6 +25,8 @@ get '/wards' do
   result = Pat.get(@postcode)
   @district_name = result['administrative']['district']['title']
   @ward_name = result['administrative']['ward']['title']
+  @ward = Ward.first( :name => @ward_name )
+  @candidates = Councilcandidate.all( :ward_id => @ward.id )
   haml :wards
 end
 

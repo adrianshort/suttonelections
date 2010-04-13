@@ -39,7 +39,7 @@ class Councilcandidate
   property :party_id,       Integer, :required => true
   property :forenames,      String
   property :surname,        String
-  property :address,        String
+  property :address,        String, :length => 200
   property :postcode,       String
 
   belongs_to :party

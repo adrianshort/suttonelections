@@ -2,19 +2,24 @@
   = @ward.name
   Ward
 
-%h2
-  = @postcode
-  is in 
-  %span.highlight
-    = @ward_name 
-    Ward
-  in 
-  = @district_name
+- if @postcode
+  %h2
+    = @postcode
+    is in 
+    %span.highlight
+      = @ward_name 
+      Ward
+    in 
+    = @district_name
   
-%h2 Council Candidates
+%h2
+  Council candidates in 
+  = @ward.name
+  
 - for candidate in @candidates
   %p
-    = candidate.forenames
-    = candidate.surname
+    %span.candidate_name
+      = candidate.forenames
+      = candidate.surname
     %br
     = candidate.party.name

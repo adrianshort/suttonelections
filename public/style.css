@@ -65,7 +65,7 @@ form
 
 a.date
 {
-  font-size: 620%;
+  font-size: 600%;
   font-weight: bold;
   padding: 30px 30px;
 }
@@ -78,4 +78,9 @@ a.date
 h1
 {
   margin-top: 50px;
+}
+
+.candidate_name
+{
+  font-size: 150%;
 }
