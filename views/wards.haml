@@ -1,3 +1,7 @@
+%h1
+  = @ward.name
+  Ward
+
 %h2
   = @postcode
   is in 
@@ -6,3 +10,11 @@
     Ward
   in 
   = @district_name
+  
+%h2 Council Candidates
+- for candidate in @candidates
+  %p
+    = candidate.forenames
+    = candidate.surname
+    %br
+    = candidate.party.name
