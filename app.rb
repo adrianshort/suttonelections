@@ -19,4 +19,7 @@ get '/wards' do
   @ward_name = result_ary['administrative']['ward']['title']
   haml :wards
 end
-  
+
+get '/about' do
+  haml :about
+end

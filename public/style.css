@@ -1,9 +1,10 @@
 body
 {
-  background-color: #eee;
+  background-color: #fffeda;
   font-family: Helvetica, Arial, sans-serif;
-  width: 450px;
+  width: 600px;
   margin: 60px auto;
+  line-height: 1.5em;
   
 }
 
@@ -43,3 +44,7 @@ a:hover
   color: #333;
 }
 
+h2
+{
+  margin-top: 50px;
+}
