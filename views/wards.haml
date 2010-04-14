@@ -1,16 +1,5 @@
-- if @postcode
-  %h1
-    = @postcode
-    is in 
-    = @ward_name 
-    Ward
--else
-  %h1
-    = @ward.name
-    Ward
-
-%h2
-  Your candidates for 
+%h1
+  Candidates for 
   = @ward.constituency.name 
   member of parliament
   
@@ -19,7 +8,14 @@
   %strong
     ONE 
   of these people to become your next MP.
-  
+
+- for candidate in @parly_candidates
+  %p
+    %span.candidate_name
+      = candidate.forenames
+      = candidate.surname
+    %br
+    = candidate.party.name  
   
 %p.highlight
   This list of candidates may be incomplete as people have until 
@@ -29,8 +25,8 @@
   = @ward.constituency.name 
   MP.
   
-%h2
-  Your council candidates in 
+%h1
+  Council candidates in 
   = @ward.name
   Ward
 
@@ -44,7 +40,7 @@
   Find out more about
   %a{ :href => '/how-the-council-election-works' } how the council election works.
   
-- for candidate in @candidates
+- for candidate in @council_candidates
   %p
     %span.candidate_name
       = candidate.forenames

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'haml'
 require 'pat'
 require 'dm-core'
 require 'dm-validations'
@@ -13,7 +14,8 @@ end
 
 get '/wards/:id' do
   @ward = Ward.get(params[:id])
-  @candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname' )
+  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname' )
+   @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => 'surname')
   haml :wards
 end
 
@@ -22,8 +24,9 @@ get '/wards' do
   result = Pat.get(@postcode)
   @district_name = result['administrative']['district']['title']
   @ward_name = result['administrative']['ward']['title']
-  @ward = Ward.first( :name => @ward_name )
-  @candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname')
+  @ward = Ward.first( { :name => @ward_name } )
+  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname')
+  @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => 'surname')
   haml :wards
 end
 

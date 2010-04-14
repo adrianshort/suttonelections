@@ -56,6 +56,7 @@ a:hover
 h2
 {
   margin-top: 50px;
+  line-height: 1.5em;
 }
 
 form
@@ -78,6 +79,7 @@ a.date
 h1
 {
   margin-top: 50px;
+  line-height: 1.5em;
 }
 
 .candidate_name

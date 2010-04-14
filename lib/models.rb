@@ -31,6 +31,7 @@ class Party
   property :name,           String,   :required => true
   
   has n, :councilcandidates
+  has n, :parliamentcandidates
 end
 
 class Councilcandidate
@@ -48,6 +49,21 @@ class Councilcandidate
   belongs_to :ward
 end
 
+class Parliamentcandidate
+  include DataMapper::Resource
+  
+  property :id,               Serial
+  property :constituency_id,  Integer,  :required => true
+  property :party_id,         Integer,  :required => true
+  property :forenames,        String,   :required => true
+  property :surname,          String,   :required => true
+  property :address,          String,   :length => 200
+  property :postcode,         String
+
+  belongs_to :party
+  belongs_to :constituency
+end
+
 class Constituency
   include DataMapper::Resource
   
@@ -55,6 +71,7 @@ class Constituency
   property :name,           String,   :required => true
   
   has n, :wards
+  has n, :parliamentcandidates
 end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlite3")
