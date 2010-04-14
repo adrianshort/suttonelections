@@ -14,8 +14,8 @@ end
 
 get '/wards/:id' do
   @ward = Ward.get(params[:id])
-  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname' )
-   @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => 'surname')
+  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => [ 'surname' ] )
+   @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => [ 'surname' ])
   haml :wards
 end
 
@@ -25,8 +25,8 @@ get '/wards' do
   @district_name = result['administrative']['district']['title']
   @ward_name = result['administrative']['ward']['title']
   @ward = Ward.first( { :name => @ward_name } )
-  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname')
-  @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => 'surname')
+  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => [ 'surname' ])
+  @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => [ 'surname' ])
   haml :wards
 end
 
