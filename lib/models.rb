@@ -18,8 +18,10 @@ class Ward
   property :id,             Serial
   property :ons_id,         String,   :required => true
   property :name,           String,   :required => true
-  
+  property :constituency_id, Integer, :required => true
+    
   has n, :councilcandidates
+  belongs_to :constituency
 end
 
 class Party
@@ -44,4 +46,13 @@ class Councilcandidate
 
   belongs_to :party
   belongs_to :ward
+end
+
+class Constituency
+  include DataMapper::Resource
+  
+  property :id,             Serial
+  property :name,           String,   :required => true
+  
+  has n, :wards
 end
