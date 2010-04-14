@@ -26,6 +26,11 @@ input.postcode
   text-transform: uppercase;
 }
 
+#header
+{
+    margin-bottom: 0px;
+}
+
 #main
 {
   margin: 30px 0;
@@ -48,7 +53,7 @@ input.postcode
 
 a, a:visited
 {
-  background-color: #e0ffd4;
+  background-color: #d9ec96;
   padding: 2px 5px;
   color: #111;
   text-decoration: none;
@@ -57,20 +62,7 @@ a, a:visited
 a:hover
 {
   background-color: #4f4f4f;
-  color: #e0ffd4;
-}
-
-h2
-{
-  margin-top: 50px;
-  line-height: 1.5em;
-  font-weight: bold;
-  color: #000;
-}
-
-form
-{
-  font-size: 150%;
+  color:  #86a11d;
 }
 
 a.date
@@ -87,17 +79,25 @@ a.date
   -moz-transform: rotate(-90deg);
 }
 
-#header
-{
-    margin-bottom: 0px;
-}
-
 h1
 {
   margin-top: 20px;
   line-height: 1.5em;
   font-weight: bold;
-  color: #000;
+  color: #86a11d;
+}
+
+h2
+{
+  margin-top: 50px;
+  line-height: 1.5em;
+  font-weight: bold;
+  color: #86a11d;
+}
+
+form
+{
+  font-size: 150%;
 }
 
 .candidate_name
