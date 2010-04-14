@@ -10,18 +10,44 @@
     Ward
 
 %h2
+  Your candidates for 
   = @ward.constituency.name 
-  Constituency
+  member of parliament
+  
+%p
+  You can vote for
+  %strong
+    ONE 
+  of these people to become your next MP.
+  
+  
+%p.highlight
+  This list of candidates may be incomplete as people have until 
+  %strong
+    20 April 
+  to decide whether they want to stand for election as the 
+  = @ward.constituency.name 
+  MP.
+  
+%h2
+  Your council candidates in 
+  = @ward.name
+  Ward
 
-#candidates  
-  %h2
-    Council candidates in 
-    = @ward.name
-    
-  - for candidate in @candidates
-    %p
-      %span.candidate_name
-        = candidate.forenames
-        = candidate.surname
-      %br
-      = candidate.party.name
+%p
+  You can vote for 
+  %strong
+    THREE 
+  of these people to become your local councillors.
+  
+%p
+  Find out more about
+  %a{ :href => '/how-the-council-election-works' } how the council election works.
+  
+- for candidate in @candidates
+  %p
+    %span.candidate_name
+      = candidate.forenames
+      = candidate.surname
+    %br
+    = candidate.party.name

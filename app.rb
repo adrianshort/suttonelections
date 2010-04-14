@@ -6,11 +6,8 @@ require 'dm-validations'
 require 'dm-timestamps'
 require 'lib/models'
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlite3")
-DataMapper.auto_upgrade!
-
 get '/' do
-  @wards = Ward.all( :order => ['name'] )
+#   @wards = Ward.all( :order =>  ['name' ] )
   haml :home
 end
 
@@ -30,7 +27,7 @@ get '/wards' do
   haml :wards
 end
 
-get '/how-the-election-works' do
+get '/how-the-council-election-works' do
   haml :election
 end
 
@@ -41,16 +38,18 @@ end
 get '/about' do
   @accounts = %w{
     adrianshort
+    stef
+    pezholio
+    countculture
+    understood
     mashthestate
     openlylocal
     openelection
     lbsuttonnews
-    stef
+    suttongisteam
     stonecothill
     sutmoblib
     mysociety
-    pezholio
-    stonecotparking
   }
   haml :about
 end

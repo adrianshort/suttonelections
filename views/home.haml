@@ -1,6 +1,18 @@
--# %h2 One day. Two elections in Sutton.
+%h1 One day. Two elections in Sutton.
 
-%h2 Who are my local candidates in the Sutton Council elections on 6 May?
+%p
+  On 6 May you can vote to 
+  %strong
+    choose your local MP
+  and help to decide the next government of the country.
+
+%p
+  And you can also
+  %strong
+    elect your local councillors 
+  and help to decide who runs Sutton Council.
+
+%p Who you can vote for depends on where you live. You can find your local candidates and get more information on how the elections work here.
 
 %form{ :method => 'get', :action => '/wards' }
   %label{ :for => "postcode" } My postcode is 
@@ -8,7 +20,6 @@
   %input{ :type => 'submit', :value => "Find it" }
 
 -#
-
   %h2 Council Wards
 
   - for ward in @wards

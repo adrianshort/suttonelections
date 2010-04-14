@@ -56,3 +56,6 @@ class Constituency
   
   has n, :wards
 end
+
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlite3")
+DataMapper.auto_upgrade!

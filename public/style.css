@@ -84,3 +84,8 @@ h1
 {
   font-size: 150%;
 }
+
+.highlight
+{
+  background-color: yellow;
+}
