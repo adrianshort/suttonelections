@@ -10,7 +10,7 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlit
 DataMapper.auto_upgrade!
 
 get '/' do
-  @wards = Ward.all( :order => 'name' )
+  @wards = Ward.all( :order => ['name'] )
   haml :home
 end
 
