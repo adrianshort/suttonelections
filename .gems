@@ -1,2 +1,3 @@
 pat --source gemcutter.org
+sbfaulkner-sinatra-helpers -s http://gems.github.com
 

@@ -41,7 +41,7 @@ input.postcode
   font-size: 100%;
   background-color: #fff;
   text-align: left;
-  margin: 40px 0;
+  margin: 40px 0 0 0;
 }
 
 .credit
@@ -54,7 +54,7 @@ input.postcode
 a, a:visited
 {
   background-color: #d9ec96;
-  padding: 2px 5px;
+  padding: 1px 4px;
   color: #111;
   text-decoration: none;
 }
@@ -62,7 +62,7 @@ a, a:visited
 a:hover
 {
   background-color: #4f4f4f;
-  color:  #86a11d;
+  color:  #fff;
 }
 
 a.date
@@ -82,7 +82,7 @@ a.date
 h1
 {
   margin-top: 20px;
-  line-height: 1.5em;
+  line-height: 1.4em;
   font-weight: bold;
   color: #86a11d;
 }

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'sinatra-helpers/haml/partials'
 require 'haml'
 require 'pat'
 require 'dm-core'
@@ -37,6 +38,10 @@ end
 
 get '/how-the-council-election-works' do
   haml :election
+end
+
+get '/how-the-parliament-election-works' do
+  haml :parliament
 end
 
 # get '/voting' do
