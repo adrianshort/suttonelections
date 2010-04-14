@@ -8,7 +8,6 @@ require 'dm-timestamps'
 require 'lib/models'
 
 get '/' do
-#   @wards = Ward.all( :order =>  ['name' ] )
   haml :home
 end
 
@@ -21,7 +20,13 @@ end
 
 get '/wards' do
   @postcode = params[:postcode].strip.upcase
-  result = Pat.get(@postcode)
+  
+  # Postcode not found/invalid
+  # Postcode valid but not in LB Sutton
+ 
+  unless result = Pat.get(@postcode)
+    redirect '/error'
+  end
   @district_name = result['administrative']['district']['title']
   @ward_name = result['administrative']['ward']['title']
   @ward = Ward.first( { :name => @ward_name } )
@@ -37,6 +42,10 @@ end
 # get '/voting' do
 #   haml :voting
 # end
+
+get '/error' do
+  haml :error
+end
 
 get '/about' do
   @accounts = %w{

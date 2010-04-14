@@ -1,3 +1,9 @@
+-#
+  - if @postcode
+    %h2
+      If you live in 
+      = @postcode
+
 %h1
   Candidates for 
   = @ward.constituency.name 
@@ -15,7 +21,8 @@
       = candidate.forenames
       = candidate.surname
     %br
-    = candidate.party.name  
+    %span.candidate_party
+      = candidate.party.name  
   
 %p.highlight
   This list of candidates may be incomplete as people have until 
@@ -46,4 +53,5 @@
       = candidate.forenames
       = candidate.surname
     %br
-    = candidate.party.name
+    %span.candidate_party
+      = candidate.party.name
