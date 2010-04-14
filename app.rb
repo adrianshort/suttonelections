@@ -10,13 +10,13 @@ DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlit
 DataMapper.auto_upgrade!
 
 get '/' do
-  @wards = Ward.all
+  @wards = Ward.all( :order => 'name' )
   haml :home
 end
 
 get '/wards/:id' do
   @ward = Ward.get(params[:id])
-  @candidates = Councilcandidate.all( :ward_id => @ward.id )
+  @candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname' )
   haml :wards
 end
 
@@ -26,7 +26,7 @@ get '/wards' do
   @district_name = result['administrative']['district']['title']
   @ward_name = result['administrative']['ward']['title']
   @ward = Ward.first( :name => @ward_name )
-  @candidates = Councilcandidate.all( :ward_id => @ward.id )
+  @candidates = Councilcandidate.all( :ward_id => @ward.id, :order => 'surname')
   haml :wards
 end
 
