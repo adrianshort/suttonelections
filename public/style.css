@@ -3,10 +3,16 @@ body
   background-color: #fff;
   color: #555;
   font-family: Helvetica, Arial, sans-serif;
+  font-size: 100%;
   width: 760px;
-  margin: 20px auto;
+  margin: 60px auto;
   line-height: 1.5em;
   
+}
+
+p
+{
+  font-size: 110%;
 }
 
 input
@@ -29,13 +35,15 @@ input.postcode
 {
   font-size: 100%;
   background-color: #fff;
-  text-align: right;
+  text-align: left;
+  margin: 40px 0;
 }
 
 .credit
 {
-  text-align: right;
+  text-align: left;
   font-size: 80%;
+  display: none;
 }
 
 a, a:visited
@@ -81,7 +89,7 @@ a.date
 
 #header
 {
-    margin-bottom: 60px;
+    margin-bottom: 0px;
 }
 
 h1
@@ -112,9 +120,4 @@ h1
 strong
 {
   color: #000;
-}
-
-.border_right
-{
-  border-right: 0px solid #ccc;
 }

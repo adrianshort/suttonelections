@@ -11,18 +11,24 @@
     %a{ :href => "http://twitter.com/adrianshort" }<follow me on Twitter
     \.
     
-  %p.highlight This site is independent of Sutton Council, all political parties and candidates. It exists only to provide information about the voting system and local candidates.
+  %p.highlight This site is independent of Sutton Council, all political parties and candidates.
   
   %p
     The council candidates' data comes from Sutton Council who also provided information on council wards and parliamentary constituencies. 
+  
+  %p
+    This site is written in Ruby using the Sinatra framework.
+    
   %p
     The code for this website is open source and managed on Github. It is hosted by Heroku.
     
   %p
-    The postcode lookup is done by UK Postcodes using open data from Ordnance Survey Code-Point Open enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
-  
+    The postcode lookup is done by UK Postcodes using open data from Ordnance Survey enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
+    
   %p
-    This site is written in Ruby using the Sinatra framework. The HTML templates use Haml. The database is SQLite for development and PostgreSQL for production, abstracted through DataMapper. Source control and deployment is done with Git.
+    The HTML templates use Haml. The database is SQLite for development and PostgreSQL for production, abstracted through DataMapper.
+  %p  
+    Source control and deployment is done with Git.
   
   -#
     

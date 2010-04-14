@@ -4,7 +4,7 @@
       If you live in 
       = @postcode
 
-.grid_6.border_right
+.grid_6
   %h1
     = @ward.constituency.name 
     member of parliament
@@ -42,7 +42,7 @@
   - for candidate in @parly_candidates
     %p
       %span.candidate_name
-        = candidate.forenames
+        = candidate.forenames.split(' ')[0]
         = candidate.surname
       %br
       %span.candidate_party
@@ -60,7 +60,7 @@
   - for candidate in @council_candidates
     %p
       %span.candidate_name
-        = candidate.forenames
+        = candidate.forenames.split(' ')[0]
         = candidate.surname
       %br
       %span.candidate_party
