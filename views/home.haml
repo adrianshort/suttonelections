@@ -1,23 +1,24 @@
-%h1
-  Vote for your MP and councillors
-  %br
-  in Sutton on 6 May
-
-%p
-  On 6 May you can vote to 
-  %strong
-    choose your local MP
-  and help to decide the next government of the country.
-
-%p
-  And you can also
-  %strong
-    elect your local councillors 
-  and help to decide who runs Sutton Council.
-
-%p Who you can vote for depends on where you live. You can find your local candidates and get more information on how the elections work here.
-
-%form{ :method => 'get', :action => '/wards' }
-  %label{ :for => "postcode" } My postcode is 
-  %input{ :type => 'text', :name => 'postcode', :value => 'SM1 1EA', :size => 8, :maxlength => 8 }
-  %input{ :type => 'submit', :value => "Find it" }
+.grid_9
+  %h1
+    Vote for your MP and councillors
+    %br
+    in Sutton on 6 May
+  
+  %p
+    On 6 May 2010 you can vote to 
+    %strong
+      choose your local MP
+    and help to decide the next government of the country.
+  
+  %p
+    You can also
+    %strong
+      elect your local councillors 
+    and help to decide who runs Sutton Council.
+  
+  %p Who you can vote for depends on where you live. You can find your local candidates and get more information on how the elections work here.
+  
+  %form{ :method => 'get', :action => '/wards' }
+    %label{ :for => "postcode" } My postcode is 
+    %input{ :type => 'text', :name => 'postcode', :value => 'SM1 1EA', :size => 8, :maxlength => 8 }
+    %input{ :type => 'submit', :value => "Find it" }

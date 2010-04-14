@@ -1,33 +1,34 @@
-%h1 About this website
-
-%p
-  This website was designed and written by 
-  %a{ :href => 'http://adrianshort.co.uk' }> Adrian Short
-  \.
-  You can contact me by email at 
-  %a{ :href => "mailto:adrian.short@gmail.com" }< adrian.short@gmail.com
-  and 
-  %a{ :href => "http://twitter.com/adrianshort" }<follow me on Twitter
-  \.
+.grid_9
+  %h1 About this website
   
-%p This site is independent of Sutton Council, all political parties and candidates. It exists only to provide information about the voting system and local candidates.
-
-%p
-  The council candidates' data comes from Sutton Council who also provided information on council wards and parliamentary constituencies. 
-%p
-  The code for this website is open source and managed on Github. It is hosted by Heroku.
+  %p
+    This website was designed and written by 
+    %a{ :href => 'http://adrianshort.co.uk' }> Adrian Short
+    \.
+    You can contact me by email at 
+    %a{ :href => "mailto:adrian.short@gmail.com" }< adrian.short@gmail.com
+    and 
+    %a{ :href => "http://twitter.com/adrianshort" }<follow me on Twitter
+    \.
+    
+  %p.highlight This site is independent of Sutton Council, all political parties and candidates. It exists only to provide information about the voting system and local candidates.
   
-%p
-  The postcode lookup is done by UK Postcodes using open data from Ordnance Survey Code-Point Open enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
-
-%p
-  This site is written in Ruby using the Sinatra framework. The HTML templates use Haml. The database is sqlite for development and postgresql for production, abstracted through DataMapper. Source control and deployment is done with Git.
-
--#
+  %p
+    The council candidates' data comes from Sutton Council who also provided information on council wards and parliamentary constituencies. 
+  %p
+    The code for this website is open source and managed on Github. It is hosted by Heroku.
+    
+  %p
+    The postcode lookup is done by UK Postcodes using open data from Ordnance Survey Code-Point Open enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
   
-  %h2 #followfooter
+  %p
+    This site is written in Ruby using the Sinatra framework. The HTML templates use Haml. The database is SQLite for development and PostgreSQL for production, abstracted through DataMapper. Source control and deployment is done with Git.
   
-  %ul
-    - for account in @accounts
-      %li
-        %a{ :href => "http://twitter.com/#{account}" }@#{account}
+  -#
+    
+    %h2 #followfooter
+    
+    %ul
+      - for account in @accounts
+        %li
+          %a{ :href => "http://twitter.com/#{account}" }@#{account}

@@ -3,15 +3,15 @@ body
   background-color: #fff;
   color: #555;
   font-family: Helvetica, Arial, sans-serif;
-  width: 600px;
-  margin: 70px auto;
+  width: 760px;
+  margin: 20px auto;
   line-height: 1.5em;
   
 }
 
 input
 {
-  font-size: 150%;
+  font-size: 130%;
   background-color: #fff;
 }
 
@@ -20,20 +20,16 @@ input.postcode
   text-transform: uppercase;
 }
 
-.highlight
-{
-  background-color: yellow;
-}
-
 #main
 {
-  margin: 60px 0;
+  margin: 30px 0;
 }
 
 #footer
 {
   font-size: 100%;
   background-color: #fff;
+  text-align: right;
 }
 
 .credit
@@ -90,7 +86,7 @@ a.date
 
 h1
 {
-  margin-top: 50px;
+  margin-top: 20px;
   line-height: 1.5em;
   font-weight: bold;
   color: #000;
@@ -109,11 +105,16 @@ h1
 
 .highlight
 {
-  background-color: yellow;
+  background-color: #fff7c0;
   padding: 5px;
 }
 
 strong
 {
   color: #000;
+}
+
+.border_right
+{
+  border-right: 0px solid #ccc;
 }

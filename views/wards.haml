@@ -4,54 +4,64 @@
       If you live in 
       = @postcode
 
-%h1
-  Candidates for 
-  = @ward.constituency.name 
-  member of parliament
-  
-%p
-  You can vote for
-  %strong
-    ONE 
-  of these people to become your next MP.
+.grid_6.border_right
+  %h1
+    = @ward.constituency.name 
+    member of parliament
 
-- for candidate in @parly_candidates
+.grid_6  
+  %h1
+    = @ward.name
+    ward council candidates
+   
+.clear
+  
+.grid_6  
   %p
-    %span.candidate_name
-      = candidate.forenames
-      = candidate.surname
-    %br
-    %span.candidate_party
-      = candidate.party.name  
-  
-%p.highlight
-  This list of candidates may be incomplete as people have until 
-  %strong
-    20 April 
-  to decide whether they want to stand for election as the 
-  = @ward.constituency.name 
-  MP.
-  
-%h1
-  Council candidates in 
-  = @ward.name
-  Ward
+    You can vote for
+    %strong
+      ONE 
+    of these people to become your next MP.
+  %p
+    Find out more about
+    %a{ :href => '/how-the-parliament-election-works' } how the parliament election works.
 
-%p
-  You can vote for 
-  %strong
-    THREE 
-  of these people to become your local councillors.
-  
-%p
-  Find out more about
-  %a{ :href => '/how-the-council-election-works' } how the council election works.
-  
-- for candidate in @council_candidates
+.grid_6
   %p
-    %span.candidate_name
-      = candidate.forenames
-      = candidate.surname
-    %br
-    %span.candidate_party
-      = candidate.party.name
+    You can vote for 
+    %strong
+      THREE 
+    of these people to become your local councillors.
+  %p
+    Find out more about
+    %a{ :href => '/how-the-council-election-works' } how the council election works.
+
+.clear
+
+.grid_6  
+  - for candidate in @parly_candidates
+    %p
+      %span.candidate_name
+        = candidate.forenames
+        = candidate.surname
+      %br
+      %span.candidate_party
+        = candidate.party.name  
+    
+  %p.highlight
+    This list of candidates may be incomplete as people have until 
+    %strong
+      20 April 
+    to decide whether they want to stand for election as the 
+    = @ward.constituency.name 
+    MP.
+
+.grid_6  
+  - for candidate in @council_candidates
+    %p
+      %span.candidate_name
+        = candidate.forenames
+        = candidate.surname
+      %br
+      %span.candidate_party
+        = candidate.party.name
