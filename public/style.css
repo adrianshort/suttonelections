@@ -41,14 +41,7 @@ input.postcode
   font-size: 100%;
   background-color: #fff;
   text-align: left;
-  margin: 40px 0 0 0;
-}
-
-.credit
-{
-  text-align: left;
-  font-size: 80%;
-  display: none;
+  margin: 40px 0 40px 0;
 }
 
 a, a:visited
