@@ -13,6 +13,8 @@
     
   %p.highlight This site is independent of Sutton Council, all political parties and candidates.
   
+  %p Every page on this website prints beautifully.
+  
   %p
     The council candidates' data comes from Sutton Council who also provided information on council wards and parliamentary constituencies. 
   
@@ -26,15 +28,8 @@
     The postcode lookup is done by UK Postcodes using open data from Ordnance Survey enhanced by MySociety. I use the Ruby Pat gem to access the postcodes API.
     
   %p
-    The HTML templates use Haml. The database is SQLite for development and PostgreSQL for production, abstracted through DataMapper.
+    The page templates use Haml and SprySoft's Variable Grid System. The database is SQLite for development and PostgreSQL for production, abstracted through DataMapper.
   %p  
     Source control and deployment is done with Git.
-  
-  -#
     
-    %h2 #followfooter
-    
-    %ul
-      - for account in @accounts
-        %li
-          %a{ :href => "http://twitter.com/#{account}" }@#{account}
+  %p The font is Museo Slab served by Typekit.

@@ -53,20 +53,5 @@ get '/error' do
 end
 
 get '/about' do
-  @accounts = %w{
-    adrianshort
-    stef
-    pezholio
-    countculture
-    understood
-    mashthestate
-    openlylocal
-    openelection
-    lbsuttonnews
-    suttongisteam
-    stonecothill
-    sutmoblib
-    mysociety
-  }
   haml :about
 end
