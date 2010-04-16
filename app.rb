@@ -25,10 +25,18 @@ get '/wards' do
   # Postcode not found/invalid
   # Postcode valid but not in LB Sutton
  
-  unless result = Pat.get(@postcode)
+  result = Pat.get(@postcode)
+
+  if result.code == 404
     redirect '/error'
   end
+
   @district_name = result['administrative']['district']['title']
+  
+  if @district_name != "Sutton London Borough Council"
+    redirect '/aliens'
+  end
+  
   @ward_name = result['administrative']['ward']['title']
   @ward = Ward.first( { :name => @ward_name } )
   @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => [ 'surname' ])
@@ -54,4 +62,8 @@ end
 
 get '/about' do
   haml :about
+end
+
+get '/aliens' do
+  haml :aliens
 end
