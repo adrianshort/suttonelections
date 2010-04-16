@@ -44,7 +44,7 @@
 .clear
 
 .grid_6  
-  - for candidate in @parly_candidates
+  - for candidate in @ward.constituency.parliamentcandidates
     %p.vcard
       %span.candidate_name.fn
         = candidate.forenames.split(' ')[0]
@@ -61,7 +61,7 @@
     MP.
 
 .grid_6  
-  - for candidate in @council_candidates
+  - for candidate in @ward.councilcandidates
     %p.vcard
       %span.candidate_name.fn
         = candidate.forenames.split(' ')[0]

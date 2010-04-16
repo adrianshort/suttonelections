@@ -1,3 +1,7 @@
+require 'dm-core'
+require 'dm-validations'
+require 'dm-timestamps'
+
 class Postcode
   include DataMapper::Resource
 
@@ -19,9 +23,14 @@ class Ward
   property :ons_id,         String,   :required => true
   property :name,           String,   :required => true
   property :constituency_id, Integer, :required => true
-    
-  has n, :councilcandidates
+     
+  has n, :councilcandidates, :order => 'surname'
   belongs_to :constituency
+  
+  def self.slugify(name)
+    name.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-').downcase
+  end
+  
 end
 
 class Party
@@ -30,8 +39,8 @@ class Party
   property :id,             Serial
   property :name,           String,   :required => true
   
-  has n, :councilcandidates
-  has n, :parliamentcandidates
+  has n, :councilcandidates, :order => 'surname'
+  has n, :parliamentcandidates, :order => 'surname'
 end
 
 class Councilcandidate
@@ -70,8 +79,8 @@ class Constituency
   property :id,             Serial
   property :name,           String,   :required => true
   
-  has n, :wards
-  has n, :parliamentcandidates
+  has n, :wards, :order => 'name'
+  has n, :parliamentcandidates, :order => 'surname'
 end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db.sqlite3")

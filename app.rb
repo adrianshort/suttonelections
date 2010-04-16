@@ -3,9 +3,6 @@ require 'sinatra'
 require 'sinatra-helpers/haml/partials'
 require 'haml'
 require 'pat'
-require 'dm-core'
-require 'dm-validations'
-require 'dm-timestamps'
 require 'lib/models'
 
 get '/' do
@@ -14,33 +11,26 @@ end
 
 get '/wards/:id' do
   @ward = Ward.get(params[:id])
-  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => [ 'surname' ] )
-   @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => [ 'surname' ])
   haml :wards
 end
 
 get '/wards' do
   @postcode = params[:postcode].strip.upcase
-  
-  # Postcode not found/invalid
-  # Postcode valid but not in LB Sutton
- 
   result = Pat.get(@postcode)
 
+  # Invalid postcode
   if result.code == 404
     redirect '/error'
   end
 
-  @district_name = result['administrative']['district']['title']
-  
-  if @district_name != "Sutton London Borough Council"
+  # Postcode valid but not in LB Sutton
+  if result['administrative']['district']['title'] != "Sutton London Borough Council"
     redirect '/aliens'
   end
   
-  @ward_name = result['administrative']['ward']['title']
-  @ward = Ward.first( { :name => @ward_name } )
-  @council_candidates = Councilcandidate.all( :ward_id => @ward.id, :order => [ 'surname' ])
-  @parly_candidates = Parliamentcandidate.all( :constituency_id => @ward.constituency.id, :order => [ 'surname' ])
+  # Postcode in LB Sutton
+  @ward = Ward.first( :name => result['administrative']['ward']['title'] )
+  
   haml :wards
 end
 
