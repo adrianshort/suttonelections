@@ -9,14 +9,17 @@
 .clear
 
 .grid_6
-  %h1
-    = @ward.constituency.name 
+  %h1.adr
+    %span.locality
+      = @ward.constituency.name 
     MP candidates
 
 .grid_6  
-  %h1
-    = @ward.name
-    ward council candidates
+  %h1.adr
+    %span.locality
+      = @ward.name
+      ward
+    council candidates
    
 .clear
   
@@ -66,3 +69,4 @@
       %br
       %span.candidate_party.org
         = candidate.party.name
+        
