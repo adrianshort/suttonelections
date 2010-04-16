@@ -42,12 +42,12 @@
 
 .grid_6  
   - for candidate in @parly_candidates
-    %p
-      %span.candidate_name
+    %p.vcard
+      %span.candidate_name.fn
         = candidate.forenames.split(' ')[0]
         = candidate.surname
       %br
-      %span.candidate_party
+      %span.candidate_party.org
         = candidate.party.name  
     
   %p.highlight
@@ -59,10 +59,10 @@
 
 .grid_6  
   - for candidate in @council_candidates
-    %p
-      %span.candidate_name
+    %p.vcard
+      %span.candidate_name.fn
         = candidate.forenames.split(' ')[0]
         = candidate.surname
       %br
-      %span.candidate_party
+      %span.candidate_party.org
         = candidate.party.name
