@@ -25,11 +25,6 @@ input.postcode
   text-transform: uppercase;
 }
 
-#header
-{
-    margin-bottom: 0px;
-}
-
 #main
 {
   margin: 30px 0;
@@ -43,9 +38,9 @@ input.postcode
   margin: 40px 0 40px 0;
 }
 
-a, a:visited
+a
 {
-  background-color: #d9ec96;
+  background-color: #dce9b0;
   padding: 1px 4px;
   color: #111;
   text-decoration: none;
@@ -63,20 +58,6 @@ a:hover
 {
   background-color: #4f4f4f;
   color:  #fff;
-}
-
-a.date
-{
-  font-size: 610%;
-  font-weight: bold;
-  padding: 30px 30px;
-  background-color: red;
-  display: none;
-  position: absolute;
-  left: 0;
-  top: 1000;
-  -webkit-transform: rotate(-90deg); 
-  -moz-transform: rotate(-90deg);
 }
 
 h1

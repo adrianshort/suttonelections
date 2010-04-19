@@ -1,19 +1,52 @@
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
+require 'pat'
 
 class Postcode
   include DataMapper::Resource
 
-  property :id,             Serial
-  property :postcode,       String,   :required => true
-  property :created_at,     DateTime, :required => true
+  # Postcode natural key, uppercase with space, eg. "SM1 1EA"
+  property :postcode,       String,   :key => true
+  property :created_at,     DateTime
+  property :updated_at,     DateTime
   property :lat,            Float,    :required => true
   property :lng,            Float,    :required => true
   property :district_name,  String,   :required => true
   property :district_code,  String,   :required => true
   property :ward_name,      String,   :required => true
   property :ward_code,      String,   :required => true
+  
+  def postcode=(postcode)
+    attribute_set(:postcode, postcode.strip.upcase)
+  end
+  
+  def self.finder(postcode)
+    postcode = postcode.strip.upcase
+    
+    if o = self.get(postcode)
+      return o
+    end
+
+    result = Pat.get(postcode)
+
+    unless result.code == 404
+      # cache API result
+      return self.create(
+        :postcode => postcode,
+        :lat => result['geo']['lat'],
+        :lng => result['geo']['lng'],
+        :district_name => result['administrative']['district']['title'],
+        :district_code => result['administrative']['district']['uri'].match(/.+\/(.+)$/)[1],
+        :ward_name => result['administrative']['ward']['title'],
+        :ward_code => result['administrative']['ward']['uri'].match(/.+\/(.+)$/)[1]
+      )
+    else
+      # invalid postcode
+      nil
+    end
+    
+  end
 end
 
 class Ward

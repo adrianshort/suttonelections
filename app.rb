@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sinatra-helpers/haml/partials'
 require 'haml'
-require 'pat'
+# require 'pat'
 require 'lib/models'
 
 get '/' do
@@ -16,20 +16,19 @@ end
 
 get '/wards' do
   @postcode = params[:postcode].strip.upcase
-  result = Pat.get(@postcode)
-
-  # Invalid postcode
-  if result.code == 404
+  
+  unless result = Postcode.finder(@postcode)
+    # Invalid postcode
     redirect '/error'
   end
 
   # Postcode valid but not in LB Sutton
-  if result['administrative']['district']['title'] != "Sutton London Borough Council"
+  if result.district_code != "00BF"
     redirect '/aliens'
   end
   
   # Postcode in LB Sutton
-  @ward = Ward.first( :name => result['administrative']['ward']['title'] )
+  @ward = Ward.first( :ons_id => result.ward_code )
   
   haml :wards
 end
