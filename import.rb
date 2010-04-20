@@ -5,16 +5,6 @@ require 'dm-validations'
 require 'dm-timestamps'
 require 'lib/models'
 
-# Import wards
-# 
-# CSV::Reader.parse(File.open('wards.csv', 'rb')) do |row|
-#     p row
-#     Ward.create(
-#       'ons_id'  => row[0],
-#       'name'    => row[1]
-#     )
-# end
-# 
 # Define parties
 
 # parties = [

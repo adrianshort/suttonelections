@@ -1,0 +1,8 @@
+.grid_9
+  %h1 Sutton Council Wards
+  
+  - for ward in @wards
+    %p.adr
+      %a{ :href => "/wards/#{ward.slug}" }
+        %span.locality
+          = ward.name

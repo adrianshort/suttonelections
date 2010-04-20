@@ -16,7 +16,7 @@
   
   %p Who you can vote for depends on where you live. You can find your local candidates and get more information on how the elections work here.
   
-  %form{ :method => 'get', :action => '/wards' }
+  %form{ :method => 'get', :action => '/' }
     %label{ :for => "postcode" } My postcode is 
     %input{ :type => 'text', :name => 'postcode', :value => 'SM1 1EA', :size => 8, :maxlength => 8 }
     %input{ :type => 'submit', :value => "Find it" }

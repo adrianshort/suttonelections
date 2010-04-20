@@ -17,10 +17,6 @@ class Postcode
   property :ward_name,      String,   :required => true
   property :ward_code,      String,   :required => true
   
-  def postcode=(postcode)
-    attribute_set(:postcode, postcode.strip.upcase)
-  end
-  
   def self.finder(postcode)
     postcode = postcode.strip.upcase
     
@@ -32,7 +28,7 @@ class Postcode
 
     unless result.code == 404
       # cache API result
-      return self.create(
+      self.create(
         :postcode => postcode,
         :lat => result['geo']['lat'],
         :lng => result['geo']['lng'],
@@ -53,6 +49,7 @@ class Ward
   include DataMapper::Resource
   
   property :id,               Serial
+  property :slug,             String,   :required => true
   property :ons_id,           String,   :required => true
   property :name,             String,   :required => true
   property :constituency_id,  Integer,  :required => true
