@@ -65,3 +65,7 @@ end
 get '/aliens' do
   haml :aliens
 end
+
+not_found do
+  haml :not_found
+end
