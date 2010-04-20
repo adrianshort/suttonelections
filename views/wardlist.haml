@@ -1,6 +1,16 @@
-.grid_9
+.grid_6
   %h1 Sutton Council Wards
   
+  %p The London Borough of Sutton is divided into 18 areas called wards. Each ward elects three councillors.
+  
+  %p You can use this page to see the council candidates in each ward.
+  
+  %p
+    If you don't know which ward you live in, go to the
+    %a{ :href => '/' }home page
+    and use your postcode to find out.
+
+.grid_6  
   - for ward in @wards
     %p.adr
       %a{ :href => "/wards/#{ward.slug}" }
