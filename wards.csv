@@ -1,18 +1,18 @@
-00BFGC,Beddington North
-00BFGD,Beddington South
-00BFGE,Belmont
-00BFGF,Carshalton Central
-00BFGG,Carshalton South and Clockhouse
-00BFGH,Cheam
-00BFGJ,Nonsuch
-00BFGK,St Helier
-00BFGL,Stonecot
-00BFGM,Sutton Central
-00BFGN,Sutton North
-00BFGP,Sutton South
-00BFGQ,Sutton West
-00BFGR,The Wrythe
-00BFGS,Wallington North
-00BFGT,Wallington South
-00BFGU,Wandle Valley
-00BFGW,Worcester Park
+00BFGC,Beddington North,Carshalton and Wallington
+00BFGD,Beddington South,Carshalton and Wallington
+00BFGE,Belmont,Sutton and Cheam
+00BFGF,Carshalton Central,Carshalton and Wallington
+00BFGG,Carshalton South and Clockhouse,Carshalton and Wallington
+00BFGH,Cheam,Sutton and Cheam
+00BFGJ,Nonsuch,Sutton and Cheam
+00BFGK,St Helier,Carshalton and Wallington
+00BFGL,Stonecot,Sutton and Cheam
+00BFGM,Sutton Central,Sutton and Cheam
+00BFGN,Sutton North,Sutton and Cheam
+00BFGP,Sutton South,Sutton and Cheam
+00BFGQ,Sutton West,Sutton and Cheam
+00BFGR,The Wrythe,Carshalton and Wallington
+00BFGS,Wallington North,Carshalton and Wallington
+00BFGT,Wallington South,Carshalton and Wallington
+00BFGU,Wandle Valley,Carshalton and Wallington
+00BFGW,Worcester Park,Sutton and Cheam
