@@ -52,13 +52,6 @@
       %br
       %span.candidate_party.org
         = candidate.party.name  
-    
-  %p.highlight
-    This list of candidates may be incomplete as people have until 
-    %strong 20 April 
-    to decide whether they want to stand for election as the 
-    = @ward.constituency.name 
-    MP.
 
 .grid_6  
   - for candidate in @ward.councilcandidates
