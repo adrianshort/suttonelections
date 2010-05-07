@@ -8,21 +8,21 @@
   %p
     %a{ :href => '/results/uk-parliament/2010-05-06/sutton-and-cheam' } Sutton and Cheam Constituency
     
-  %h2 Sutton Council Election Results
+  %h2 Sutton Council Election Results Summary
   
   %table
     %tr
       %th
-      %th Votes
-      %th % Votes
+      %th
       %th Seats
       %th % Seats
+      %th Votes
+      %th % Votes
 
     - for result in @results
       %tr
+        %td{ :style => "background-color: #{result[2]}" } &nbsp;
         %td= result[0]
-        %td.right= result[1]
-        %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
         -# Some pretty serious cheating going on here!
         %td.right
           - if result[0] == 'Conservative Party'
@@ -38,13 +38,15 @@
             80%
           - else
             0%
+        %td.right= result[1]
+        %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
             
         
   %p
     Total votes:
     = @total_votes
   
-  %h2 Sutton Council ward results
+  %h2 Sutton Council Results by Ward
   
   - for ward in @wards
     %p

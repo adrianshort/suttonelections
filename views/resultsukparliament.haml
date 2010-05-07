@@ -12,13 +12,17 @@
     %tr
       %th
       %th
+      %th
       %th.right Votes
       %th.right %
       %th.right Change
+      %th
     - for candidate in @candidates
       - count += 1
       %tr.vcard
         %td= count
+        
+        %td{ :style => "background-color: #{candidate.party.colour}" } &nbsp;
         
         %td
           %span.candidate_name.fn
@@ -41,7 +45,7 @@
         
         %td
           - if count == 1
-            %strong ELECTED
+            .elected ELECTED
                    
   %p
     Total votes:

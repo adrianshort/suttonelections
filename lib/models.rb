@@ -69,6 +69,7 @@ class Party
   
   property :id,             Serial
   property :name,           String,   :required => true
+  property :colour,         String
   
   has n, :councilcandidates, :order => ['surname']
   has n, :parliamentcandidates, :order => ['surname']

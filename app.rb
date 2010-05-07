@@ -27,7 +27,8 @@ get '/' do
   
   @results = repository(:default).adapter.query("
     SELECT  p.name,
-            sum(c.votes_2010) AS votes 
+            sum(c.votes_2010) AS votes,
+            p.colour 
             
     FROM    parties p,
             councilcandidates c 

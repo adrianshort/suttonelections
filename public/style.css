@@ -103,12 +103,30 @@ strong
   color: #000;
 }
 
+table
+{
+  border-collapse: collapse;
+}
+
 td, th
 {
-  padding: 0 15px 15px 0;
+  padding: 6px;
+}
+
+tr
+{
+  border-bottom: 1px solid #eee;
 }
 
 .right
 {
   text-align: right;
+}
+
+.elected
+{
+  background-color: #777;
+  color: white;
+  padding: 2px 2px;
+  font-weight: normal;
 }
