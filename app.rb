@@ -23,6 +23,8 @@ get '/' do
     redirect "/wards/#{@ward.slug}/postcode/#{@postcode}"
   end
   
+  @wards = Ward.all
+  
   haml :home
 end
 

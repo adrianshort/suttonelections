@@ -10,9 +10,14 @@
     
   %h2 Sutton Council Election Results
   
-  %p
-    Votes for the Sutton Council election will be counted during the day on Friday 7 May. Results will appear here as soon as they are available.
-    
+  %p Results for Worcester Park Ward are still awaited.
+  
+  - for ward in @wards
+    - if ward.id != 18
+      %p
+        %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
+          = ward.name
+          Ward
 -#
   %h1
     Vote for your MP and
