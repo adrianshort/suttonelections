@@ -35,7 +35,7 @@ get '/' do
             
     WHERE   p.id = c.party_id
     
-    GROUP BY p.name
+    GROUP BY p.name, p.colour
     
     ORDER BY votes desc
   ;")
