@@ -39,9 +39,9 @@ get '/' do
     ORDER BY votes desc
   ;")
 
-select p.name, count(c.*) AS seats
-FROM parties p, councilcandidates c
-GROUP BY p.id
+# select p.name, count(c.*) AS seats
+# FROM parties p, councilcandidates c
+# GROUP BY p.id
 
     
   @total_votes = Councilcandidate.sum(:votes_2010)
