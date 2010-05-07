@@ -10,14 +10,13 @@
     
   %h2 Sutton Council Election Results
   
-  %p Results for Worcester Park Ward are still awaited.
+  %p All ward results are now available below.
   
   - for ward in @wards
-    - if ward.id != 18
-      %p
-        %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
-          = ward.name
-          Ward
+    %p
+      %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
+        = ward.name
+        Ward
 -#
   %h1
     Vote for your MP and
