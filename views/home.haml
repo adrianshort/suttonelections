@@ -40,11 +40,14 @@
             0%
         %td.right= result[1]
         %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
-            
-        
-  %p
-    Total votes:
-    = @total_votes
+    
+    %tr.noborder
+      %td
+      %td
+      %td.right 54
+      %td
+      %td.right.strong= @total_votes  
+      %td  
   
   %h2 Sutton Council Results by Ward
   

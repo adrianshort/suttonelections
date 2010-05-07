@@ -130,3 +130,8 @@ tr
   padding: 2px 2px;
   font-weight: normal;
 }
+
+.noborder
+{
+  border: 0;
+}
