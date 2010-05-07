@@ -1,6 +1,7 @@
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
+require 'dm-aggregates'
 require 'pat'
 
 class Postcode
@@ -91,13 +92,17 @@ end
 class Parliamentcandidate
   include DataMapper::Resource
   
-  property :id,               Serial
-  property :constituency_id,  Integer,  :required => true
-  property :party_id,         Integer,  :required => true
-  property :forenames,        String,   :required => true
-  property :surname,          String,   :required => true
-  property :address,          String,   :length => 200
-  property :postcode,         String
+  property :id,                 Serial
+  property :constituency_id,    Integer,  :required => true
+  property :party_id,           Integer,  :required => true
+  property :forenames,          String,   :required => true
+  property :surname,            String,   :required => true
+  property :address,            String,   :length => 200
+  property :postcode,           String
+  property :votes_2010,         Integer
+  property :votes_2005,         Integer
+  property :percent_2005,       Float
+  
 
   belongs_to :party
   belongs_to :constituency

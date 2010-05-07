@@ -42,6 +42,18 @@ get '/wards/?' do
   haml :wardlist
 end
 
+get '/results/uk-parliament/2010-05-06/:constituency' do
+  if params[:constituency] == 'carshalton-and-wallington'
+    const = 1
+  else
+    const = 2
+  end
+    @constituency = Constituency.get(const)
+    @candidates = Parliamentcandidate.all(:constituency_id => const, :order => [ :votes_2010.desc ])
+    @total_2010 = Parliamentcandidate.sum(:votes_2010, :constituency_id => const)
+  haml :resultsukparliament
+end
+
 get '/how-the-council-election-works' do
   haml :election
 end

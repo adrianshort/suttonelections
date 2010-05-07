@@ -102,3 +102,13 @@ strong
 {
   color: #000;
 }
+
+td, th
+{
+  padding: 0 15px 15px 0;
+}
+
+.right
+{
+  text-align: right;
+}
