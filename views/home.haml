@@ -22,7 +22,7 @@
       %tr
         %td= result[0]
         %td.right= result[1]
-        %td.right= sprintf("%0.1f", result[1].to_f / @total_votes * 100)
+        %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
         %td.right
           - if result[0] == 'Conservative Party'
             11
