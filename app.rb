@@ -48,9 +48,9 @@ get '/results/uk-parliament/2010-05-06/:constituency' do
   else
     const = 2
   end
-    @constituency = Constituency.get(const)
-    @candidates = Parliamentcandidate.all(:constituency_id => const, :order => [ :votes_2010.desc ])
-    @total_2010 = Parliamentcandidate.sum(:votes_2010, :constituency_id => const)
+  @constituency = Constituency.get(const)
+  @candidates = Parliamentcandidate.all(:constituency_id => const, :order => [ :votes_2010.desc ])
+  @total_2010 = Parliamentcandidate.sum(:votes_2010, :constituency_id => const)
   haml :resultsukparliament
 end
 
