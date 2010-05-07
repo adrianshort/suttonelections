@@ -17,12 +17,13 @@
       %th % Votes
       %th Seats
       %th % Seats
-    
+
     - for result in @results
       %tr
         %td= result[0]
         %td.right= result[1]
         %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
+        -# Some pretty serious cheating going on here!
         %td.right
           - if result[0] == 'Conservative Party'
             11
@@ -43,13 +44,12 @@
     Total votes:
     = @total_votes
   
-  %p All ward results are now available below.
+  %h2 Sutton Council ward results
   
   - for ward in @wards
     %p
       %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
         = ward.name
-        Ward
 -#
   %h1
     Vote for your MP and
