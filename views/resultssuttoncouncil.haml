@@ -1,0 +1,49 @@
+.grid_12
+
+  %p Sutton Council Election 6 May 2010 Results
+  
+  %h1= @ward.name + " Ward"
+  
+  - @page_title = @ward.name + " Ward Results, Sutton Council Election 6 May 2010"
+  
+  - count = 0
+  
+  %table
+    %tr
+      %th
+      %th
+      %th.right Votes
+      -#
+        %th.right %
+        %th.right Change
+    - for candidate in @candidates
+      - count += 1
+      %tr.vcard
+        %td= count
+        
+        %td
+          %span.candidate_name.fn
+            = candidate.forenames.split(' ')[0]
+            = candidate.surname
+          %br
+          %span.candidate_party.org
+            = candidate.party.name
+        
+        %td.right= candidate.votes_2010
+        
+        %td.right
+          - pc_2010 = candidate.votes_2010.to_f / @total_2010 * 100
+          = sprintf("%0.1f%%", pc_2010)
+        -#        
+          %td.right
+            - unless candidate.percent_2005.nil?
+              - change_2010 = pc_2010 - candidate.percent_2005
+              = sprintf("%+0.1f%%", change_2010)
+          
+        %td
+          - if count < 4
+            %strong ELECTED
+                   
+  %p
+    Total votes:
+    = @total_2010

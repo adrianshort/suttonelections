@@ -54,6 +54,13 @@ get '/results/uk-parliament/2010-05-06/:constituency' do
   haml :resultsukparliament
 end
 
+get '/results/sutton-council/2010-05-06/:slug' do
+  @ward = Ward.first(:slug => params[:slug])
+  @candidates = Councilcandidate.all(:ward => @ward, :order => [ :votes_2010.desc ])
+  @total_2010 = Councilcandidate.sum(:votes_2010, :ward_id => @ward.id)
+  haml :resultssuttoncouncil
+end
+
 get '/how-the-council-election-works' do
   haml :election
 end

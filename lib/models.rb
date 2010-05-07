@@ -84,7 +84,8 @@ class Councilcandidate
   property :surname,        String,   :required => true
   property :address,        String,   :length => 200
   property :postcode,       String,   :required => true
-
+  property :votes_2010,     Integer
+  
   belongs_to :party
   belongs_to :ward
 end
