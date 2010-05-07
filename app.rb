@@ -25,6 +25,22 @@ get '/' do
   
   @wards = Ward.all
   
+  @results = repository(:default).adapter.query("
+    SELECT  p.name,
+            sum(c.votes_2010) AS votes 
+            
+    FROM    parties p,
+            councilcandidates c 
+            
+    WHERE   p.id = c.party_id
+    
+    GROUP BY p.id
+    
+    ORDER BY votes desc
+  ;")
+    
+  @total_votes = Councilcandidate.sum(:votes_2010)
+  
   haml :home
 end
 

@@ -10,6 +10,39 @@
     
   %h2 Sutton Council Election Results
   
+  %table
+    %tr
+      %th
+      %th Votes
+      %th % Votes
+      %th Seats
+      %th % Seats
+    
+    - for result in @results
+      %tr
+        %td= result[0]
+        %td.right= result[1]
+        %td.right= sprintf("%0.1f", result[1].to_f / @total_votes * 100)
+        %td.right
+          - if result[0] == 'Conservative Party'
+            11
+          - elsif result[0] == 'Liberal Democrats'
+            43
+          - else
+            0
+        %td.right
+          - if result[0] == 'Conservative Party'
+            20%
+          - elsif result[0] == 'Liberal Democrats'
+            80%
+          - else
+            0%
+            
+        
+  %p
+    Total votes:
+    = @total_votes
+  
   %p All ward results are now available below.
   
   - for ward in @wards
