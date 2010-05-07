@@ -56,7 +56,7 @@ end
 
 get '/results/sutton-council/2010-05-06/:slug' do
   @ward = Ward.first(:slug => params[:slug])
-  @candidates = Councilcandidate.all(:ward => @ward, :order => [ :votes_2010.desc ])
+  @candidates = Councilcandidate.all(:ward_id => @ward.id, :order => [ :votes_2010.desc ])
   @total_2010 = Councilcandidate.sum(:votes_2010, :ward_id => @ward.id)
   haml :resultssuttoncouncil
 end
