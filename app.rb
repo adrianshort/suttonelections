@@ -23,8 +23,6 @@ get '/' do
     redirect "/wards/#{@ward.slug}/postcode/#{@postcode}"
   end
   
-  @wards = Ward.all
-  
   @results = repository(:default).adapter.query("
     SELECT  p.name,
             sum(c.votes_2010) AS votes,
@@ -85,6 +83,14 @@ get '/results/sutton-council/2010-05-06/:slug' do
   haml :resultssuttoncouncil
 end
 
+get '/results/sutton-council/2010-05-06.csv' do
+  @ward = Ward.first(:slug => params[:slug])
+  @candidates = Councilcandidate.all(:ward_id => @ward.id, :order => [ :votes_2010.desc ])
+  @total_2010 = Councilcandidate.sum(:votes_2010, :ward_id => @ward.id)
+  haml :resultssuttoncouncil
+end
+
+
 get '/how-the-council-election-works' do
   haml :election
 end
@@ -107,6 +113,10 @@ end
 
 get '/aliens' do
   haml :aliens
+end
+
+get '/wardmap' do
+  haml :wardmap
 end
 
 not_found do

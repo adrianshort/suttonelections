@@ -50,7 +50,65 @@
       %td  
   
   %h2 Sutton Council Results by Ward
-  
+
+  %table.wardmap
+    %tr
+      %td.blank
+      %td.blank
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/st-helier' } St Helier
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/wandle-valley' } Wandle Valley
+      %td.blank
+      %td.blank
+    %tr
+      %td.ld2
+        %a{ :href => 'results/sutton-council/2010-05-06/worcester-park' } Worcester Park
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/stonecot' } Stonecot
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/sutton-north' } Sutton North
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/the-wrythe' } The Wrythe
+      %td.blank
+      %td.blank
+    %tr
+      %td.ld2
+        %a{ :href => 'results/sutton-council/2010-05-06/nonsuch' } Nonsuch
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/sutton-west' } Sutton West
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/sutton-central' } Sutton Central
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/carshalton-central' } Carshalton Central
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/wallington-north' } Wallington North
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/beddington-north' } Beddington North
+    %tr
+      %td.blank
+      %td.ld1
+        %a{ :href => 'results/sutton-council/2010-05-06/cheam' } Cheam
+      %td.ld2
+        %a{ :href => 'results/sutton-council/2010-05-06/sutton-south' } Sutton South
+      %td.ld1
+        %a{ :href => 'results/sutton-council/2010-05-06/carshalton-south-and-clockhouse' } Carshalton South &amp; Clockhouse
+      %td.ld3
+        %a{ :href => 'results/sutton-council/2010-05-06/wallington-south' } Wallington South
+      %td.ld2
+        %a{ :href => 'results/sutton-council/2010-05-06/beddington-south' } Beddington South
+    %tr
+      %td.blank
+      %td.blank
+      %td.con3
+        %a{ :href => 'results/sutton-council/2010-05-06/belmont' } Belmont
+      %td.blank
+      %td.blank
+      %td.blank
+      
+      
+
+-#  
   - for ward in @wards
     %p
       %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
