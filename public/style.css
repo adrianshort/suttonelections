@@ -145,22 +145,32 @@ tr
 
 .wardmap td
 {
-  border: 3px solid #fff;
-  width: 10%;
+  border: 1px solid #fff;
+  width: 16%;
   height: 80px;
   padding: 10px;
   text-align: center;
   font-size: 90%;
 }
 
-.wardmap a, .wardmap a:visited
+.ld3 a, .ld3 a:visited, .ld2 a, .ld2 a:visited
 {
-  background-color: white;
-  color: black;
+  background-color: orange;
+  color: white;
   padding: 3px;
   line-height: 1.5em;
   width: 70%;
 }
+
+.ld1 a, .ld1 a:visited, .con3 a, .con3 a:visited
+{
+  background-color: blue;
+  color: white;
+  padding: 3px;
+  line-height: 1.5em;
+  width: 70%;
+}
+
 
 .wardmap a:hover
 {
