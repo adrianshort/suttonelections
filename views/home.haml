@@ -50,6 +50,8 @@
       %td  
   
   %h2 Sutton Council Results by Ward
+  
+  %p Click on the ward names to see the full results for that ward.
 
   %table.wardmap
     %tr
@@ -106,7 +108,10 @@
       %td.blank
       %td.blank
       
-      
+  #map
+    %p
+      %img{ :src => 'sutton-council-elections-2010-ward-map.png', :width => 850, :height => 576 }
+    %p Geographical results by ward map by Marshall Keene at Sutton Council GIS Team
 
 -#  
   - for ward in @wards
