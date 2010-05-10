@@ -107,14 +107,13 @@
       %td.blank
       %td.blank
       %td.blank
-      
-  #map
-    %p
-      %img{ :src => 'sutton-council-elections-2010-ward-map.png', :width =>940, :height => 1013 }
-    %p
-      Geographical results by ward map by Marshall Keene and Claire Rollo at 
-      %a{ :href => 'http://www.sutton.gov.uk/' } Sutton Council
-      GIS Team
+
+  %p
+    %img{ :src => 'sutton-council-elections-2010-ward-map.png', :width => 740, :height => 797 }
+  %p
+    Geographical results by ward map by Marshall Keene and Claire Rollo at 
+    %a{ :href => 'http://www.sutton.gov.uk/' } Sutton Council
+    GIS Team.
 
 -#  
   - for ward in @wards
@@ -143,5 +142,4 @@
     %label{ :for => "postcode" } My postcode is 
     %input{ :type => 'text', :name => 'postcode', :value => 'SM1 1EA', :size => 8, :maxlength => 8 }
     %input{ :type => 'submit', :value => "Find it" }
-  
-.grid_3   
+     
