@@ -1,0 +1,39 @@
+.nav
+  %a{ :href => "/candidates" }
+    &laquo; All candidates
+
+%h1= @page_title = @candidate.name
+
+%h2 Elections contested
+
+%table
+  %tr
+    %th
+    %th date
+    %th party
+    %th body
+    %th district
+    %th votes
+    %th position
+    %th
+    
+  - @candidate.candidacies.each do |ccy|
+    %tr
+      %td{ :style => "background-color: #{ccy.party.colour}" } &nbsp;
+      %td
+        %a{ :href => "/bodies/#{ccy.election.body.slug}/elections/#{ccy.election.d}" }
+          = long_date(ccy.election.d)
+      %td= ccy.party.name
+      %td
+        %a{ :href => "/bodies/#{ccy.election.body.slug}" }
+          = ccy.election.body.name
+      %td
+        %a{ :href => "/bodies/#{ccy.election.body.slug}/elections/#{ccy.election.d}/#{ccy.district.body.districts_name}/#{ccy.district.slug}" }
+          = ccy.district.name
+          = ccy.district.body.district_name
+      %td.right= commify(ccy.votes)
+      %td.right= to_ordinal(ccy.position)
+      %td= ccy.elected? ? "Elected" : "Not elected"
+      
+.warning
+  This might not be the complete electoral history for this candidate. They might have stood in elections outside Sutton and / or in Sutton elections for which we don't have data.

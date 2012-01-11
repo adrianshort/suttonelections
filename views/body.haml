@@ -1,0 +1,24 @@
+.nav
+  %a{ :href => "/bodies" }
+    &laquo; Government bodies
+
+%h1= @page_title = @body.name
+  
+%h2 Elections
+
+%table
+  - @body.elections.each do |election|
+    %tr
+      %td
+        %a{ :href => "/bodies/#{@body.slug}/elections/#{election.d}" }<
+          = long_date(election.d)
+      %td
+        = election.kind
+      
+%h2
+  = @body.districts_name.capitalize
+  
+- @body.districts.each do |district|
+  %p
+    %a{ :href => "/bodies/#{@body.slug}/#{@body.districts_name}/#{district.slug}" }
+      = district.name

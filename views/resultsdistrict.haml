@@ -1,0 +1,74 @@
+- @page_title = "#{@district.name} #{@district.body.district_name} results, #{@body.name} election #{short_date(@election.d)}"
+
+%p
+  %a{ :href => "/bodies/#{@district.body.slug}/elections/#{@election.d}" }<
+    = @body.name
+    election
+    = long_date(@election.d)
+    
+    
+.nav
+  - if @districts_in_this_election.size > 1
+    - @district_index = @districts_in_this_election.index(@district)
+    
+    - unless @district_index == 0
+      - @previous_district = @districts_in_this_election[@district_index - 1]
+      %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@previous_district.slug}" }<
+        &laquo;&nbsp;
+        = @previous_district.name
+      &nbsp;&nbsp;&nbsp;
+  
+    - unless @district_index == @districts_in_this_election.size - 1
+      - @next_district = @districts_in_this_election[@district_index + 1]
+      %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@next_district.slug}" }<
+        = @next_district.name 
+        &raquo;
+
+  %p
+    %a{ :href => "/bodies/#{@district.body.slug}/#{@district.body.district_name.pluralize(2)}/#{@district.slug}" }
+      All elections in
+      = @district.name
+      &raquo;
+
+%h1= @district.name + " " + @district.body.district_name
+
+- count = 0
+  
+%table
+  %tr.header
+    %th
+    %th
+    %th
+    %th.right votes
+    %th.right % votes
+    %th
+
+  - for candidacy in @candidacies
+    - count += 1
+    %tr.vcard
+      %td= count
+      %td{ :style => "background-color: #{candidacy.party.colour}" } &nbsp;
+      %td
+        %span.candidate_name.fn
+          %a{ :href => "/candidates/#{candidacy.candidate.id}" }
+            = candidacy.candidate.short_name
+        %br
+        %span.candidate_party.org
+          = candidacy.party.name
+      
+      %td.right= commify(candidacy.votes)
+      
+      %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
+        
+      %td
+        - if candidacy.seats == 1
+          .elected ELECTED
+
+  %tr.footer
+    %td
+    %td
+    %td
+    %td= commify(@total_votes)
+    %td
+    %td
+    %td

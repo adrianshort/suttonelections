@@ -1,0 +1,23 @@
+%h1= @page_title = "Candidates"
+
+- @first_letter = ''
+
+%table
+  - @candidates.each do |c|
+    - if c.surname[0] != @first_letter
+      - @first_letter = c.surname[0]
+      %tr.noborder
+        %td &nbsp;
+        %td 
+      %tr.noborder
+        %td.strong{ :style => "font-size: 300%;" }= @first_letter.upcase
+        %td 
+      %tr
+        %td
+        %td 
+    %tr
+      %td
+        %a{ :href => "/candidates/#{c.id}" }
+          = c.surname
+      %td= c.forenames
+                

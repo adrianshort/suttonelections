@@ -1,0 +1,40 @@
+- @page_title = "#{@district.name} #{@district.body.district_name}, #{@district.body.name}"
+
+.nav
+  %p
+    %a{ :href => "/bodies/#{@district.body.slug}" }
+      &laquo;&nbsp;
+      = @district.body.name
+
+%h1= "#{@district.name} #{@district.body.district_name}"
+
+-# TODO % turnout plotted over time
+-# TODO map of district shown within Sutton boundary
+
+%h2 Candidates elected
+
+- Election.all(:body => @district.body, :order => [:d.desc]).each do |election|
+  - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :elected => true, :order => [:votes.desc])
+  
+  - unless ccys == []  
+    %h3
+      %a{ :href => "/bodies/#{@district.body.slug}/elections/#{election.d}/#{election.body.districts_name}/#{@district.slug}"}
+        = long_date election.d
+        = election.kind
+  
+    %table
+      %tr
+        %th
+        %th
+        %th
+        %th
+  
+      - ccys.each do |ccy|
+        %tr
+          %td= ccy.position
+          %td{ :style => "background-color: #{ccy.party.colour}" } &nbsp;
+          %td
+            %a{ :href => "/candidates/#{ccy.candidate.id}" }
+              = ccy.candidate.short_name
+          %td= ccy.party.name
+          

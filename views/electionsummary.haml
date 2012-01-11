@@ -1,0 +1,94 @@
+- @page_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
+
+%h1
+  = @election.body.name
+  = @election.kind
+  %br
+  = long_date(@election.d)
+  
+%p= @election.reason
+
+- if @election.candidacies.count > 0
+  
+  %p
+    = @election.candidacies.count
+    = "candidate".pluralize(@election.candidacies.count)
+    contested
+    = @total_seats
+    = "seat".pluralize(@total_seats)
+    in
+    = @total_districts
+    = @election.body.district_name.pluralize(@total_districts)
+    in Sutton.
+  
+  %h2 Seats, votes and candidates by party
+  
+  %table
+    %tr.header
+      %th
+      %th
+      %th.highlight seats won
+      %th votes
+      %th % seats
+      %th % votes
+      %th votes per seat
+      %th candidates
+      %th votes per candidate
+      -#
+        %th relative popularity
+        - @max_votes_per_candidate = @results_by_party.first.votez.to_f / @results_by_party.first.cands.to_f # We really need to scan the array for the max value
+    - @results_by_party.each do |row|
+      %tr
+        %td{ :style => "background-color: #{row.colour}" } &nbsp;
+        %td.data_party= row.name
+        %td.data_seats.right.highlight= row.seatz
+        %td.data_votes.right= commify(row.votez)
+        %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
+        %td.right= format_percent(row.votez.to_f / @total_votes * 100)
+        %td.data_votes_per_seat.right
+          - if row.seatz > 0
+            = commify(row.votez / row.seatz)
+          - else
+            &mdash;
+        %td.data_candidates.right= row.cands
+        %td.right= commify(row.votez / row.cands)
+        -#
+          %td.right= format_percent( ( row.votez.to_f / row.cands.to_f ) / @max_votes_per_candidate * 100)
+  
+  
+    %tr.footer
+      %td 
+      %td 
+      %td.right.highlight= @total_seats
+      %td.right= commify(@total_votes)
+      %td
+      %td
+      %td
+      %td
+      %td
+      -#
+        %td
+        
+  %h2
+    Results by
+    = @election.body.district_name
+  
+  %table
+    %tr.header
+      %th
+      %th seats
+      %th votes
+    - @results_by_district.each do |row|
+      %tr
+        %td
+          %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{row.district_slug}"}
+            = row.name
+        %td.right= row.seats
+        %td.right= commify(row.votez)
+    %tr.footer
+      %td
+      %td.right= @total_seats
+      %td.right= commify(@total_votes)
+- else
+  %p Full details and results will be available on this page.
+  
