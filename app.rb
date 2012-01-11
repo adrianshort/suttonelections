@@ -106,7 +106,7 @@ get '/bodies/:body/elections/:date' do
 
     WHERE c.election_id = #{@election.id}
 
-    GROUP BY c.party_id
+    GROUP BY c.party_id, p.colour, p.name
 
     ORDER BY seatz DESC, votez DESC
   ")
@@ -124,7 +124,7 @@ get '/bodies/:body/elections/:date' do
       c.district_id = d.id
       AND c.election_id = #{@election.id}
 
-    GROUP BY c.district_id
+    GROUP BY c.district_id, d.name, d.slug
 
     ORDER BY d.name
   ")
