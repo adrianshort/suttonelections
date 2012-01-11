@@ -1,4 +1,4 @@
 # For deploying on Heroku
 
-require 'app'
+require './app'
 run Sinatra::Application
