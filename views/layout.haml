@@ -1,36 +1,40 @@
-!!! XML
-!!!
+!!!5
 %html
   %head
-    %title= @page_title ? @page_title + " - Sutton Elections" : "Sutton Parliament and Council Elections 6 May 2010"
+    %title= @page_title ? @page_title + " - Sutton Elections" : "Sutton Elections - Your guide to voting and elections in the London Borough of Sutton"
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/print.css', :media => 'print' }
-    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/grid.css' }
     <script type="text/javascript" src="http://use.typekit.com/wfg6cvc.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   %body
-    .container_12
+    #main
       = yield
-      .clear  
-      #footer
-        .grid_12
-          %p
-            %a{ :href => '/' } Home
-          %p
-            %a{ :href => '/how-the-parliament-election-works' } How the parliament election works
-          %p
-            %a{ :href => '/how-the-council-election-works' } How the council election works
-          -#
-            %p
-              %a{ :href => '/wards' } Sutton Council wards
-          %p
-            %a{ :href => '/about' } About this website
-    <script type="text/javascript">
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-    try {
-    var pageTracker = _gat._getTracker("UA-3042981-17");
-    pageTracker._trackPageview();
-    } catch(err) {}</script>
+    #footer
+      #footer_inner
+        %h1 Sutton Elections
+        %p
+          %a{ :href => '/' } Home
+        %p
+          %a{ :href => '/how-the-parliament-election-works' } How parliament elections work
+        %p
+          %a{ :href => '/how-the-council-election-works' } How council elections work
+        %p
+          %a{ :href => '/about' } About this website
+        %p
+          %br
+          An independent website designed by
+          %a{ :href => "http://about.adrianshort.co.uk/" }<
+            Adrian Short
+          with data from 
+          %a{ :href => "http://www.sutton.gov.uk/" }<
+            Sutton Council
+          
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-3042981-17");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>

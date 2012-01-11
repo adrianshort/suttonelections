@@ -4,9 +4,16 @@ body
   color: #555;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 100%;
-  width: 760px;
-  margin: 60px auto;
-  line-height: 1.5em;  
+  width: 100%;
+  line-height: 1.5em;
+  margin: 0;
+  padding: 0;
+}
+
+.warning {
+  padding: 10px 15px;
+  background-color: beige;
+  margin: 25px 0;
 }
 
 p
@@ -27,15 +34,39 @@ input.postcode
 
 #main
 {
-  margin: 30px 0;
+  width: 920px;
+  margin: 50px auto;
 }
+
+tr.footer {
+  border-top: 2px solid #777;
+  border-bottom: 0px solid black;
+}
+
+tr.header {
+  border-bottom: 2px solid #777;
+}
+
 
 #footer
 {
   font-size: 100%;
-  background-color: #fff;
+  background-color: #555;
+  color: #fff;
   text-align: left;
-  margin: 40px 0 40px 0;
+  margin: 40px 0 0 0;
+  height: 100%;
+}
+
+#footer_inner {
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 930px;
+}
+
+#footer h1 {
+  font-size: 180%;
+  color: #fff;
 }
 
 a
@@ -70,11 +101,20 @@ h1
 
 h2
 {
-  margin-top: 50px;
+  margin-top: 40px;
   line-height: 1.5em;
   font-weight: bold;
   color: #86a11d;
 }
+
+h3
+{
+  margin: 30px 0 10px 0;
+  line-height: 1.5em;
+  font-weight: bold;
+  color: #86a11d;
+}
+
 
 form
 {
@@ -95,7 +135,6 @@ form
 .highlight
 {
   background-color: #fff7c0;
-  padding: 5px;
 }
 
 strong
@@ -113,6 +152,10 @@ td, th
   padding: 6px;
 }
 
+th {
+  font-weight: normal;
+}
+
 tr
 {
   border-bottom: 1px solid #eee;
@@ -127,7 +170,7 @@ tr
 {
   background-color: #777;
   color: white;
-  padding: 2px 2px;
+  padding: 2px 5px;
   font-weight: normal;
 }
 
