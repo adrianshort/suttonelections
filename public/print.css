@@ -1,4 +1,4 @@
-.noprint, #footer
+.noprint, #footer, .nav
 {
   display: none;
 }
@@ -6,4 +6,8 @@
 body
 {
   margin: 0 auto;
+}
+
+a, a:visited {
+  background-color: #fff;
 }
