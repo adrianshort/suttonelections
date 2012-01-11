@@ -1,54 +1,37 @@
-.grid_12
-  %h1 Sutton Elections 6 May 2010
-  
-  %h2 UK Parliament Election Results
+%h1 Sutton Elections
 
-  %p
-    %a{ :href => '/results/uk-parliament/2010-05-06/carshalton-and-wallington' } Carshalton and Wallington Constituency
-  %p
-    %a{ :href => '/results/uk-parliament/2010-05-06/sutton-and-cheam' } Sutton and Cheam Constituency
-    
-  %h2 Sutton Council Election Results Summary
+- if @future_elections
+
+  %h2 Forthcoming elections
   
   %table
-    %tr
-      %th
-      %th
-      %th Seats
-      %th % Seats
-      %th Votes
-      %th % Votes
-
-    - for result in @results
+    - @future_elections.each do |election|
       %tr
-        %td{ :style => "background-color: #{result[2]}" } &nbsp;
-        %td= result[0]
-        -# Some pretty serious cheating going on here!
-        %td.right
-          - if result[0] == 'Conservative Party'
-            11
-          - elsif result[0] == 'Liberal Democrats'
-            43
-          - else
-            0
-        %td.right
-          - if result[0] == 'Conservative Party'
-            20%
-          - elsif result[0] == 'Liberal Democrats'
-            80%
-          - else
-            0%
-        %td.right= result[1]
-        %td.right= sprintf("%0.1f%%", result[1].to_f / @total_votes * 100)
-    
-    %tr.noborder
-      %td
-      %td
-      %td.right 54
-      %td
-      %td.right.strong= @total_votes  
-      %td  
+        %td
+          %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }
+            = short_date(election.d)
+        %td
+          %a{ :href => "/bodies/#{election.body.slug}" }
+            = election.body.name
+        %td= election.kind
+
+
+- if @past_elections
+
+  %h2 Past elections
   
+  %table
+    - @past_elections.each do |election|
+      %tr
+        %td
+          %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }
+            = short_date(election.d)
+        %td
+          %a{ :href => "/bodies/#{election.body.slug}" }
+            = election.body.name
+        %td= election.kind
+
+-#
   %h2 Sutton Council Results by Ward
   
   %p Click on the ward names to see the full results for that ward.
@@ -108,18 +91,6 @@
       %td.blank
       %td.blank
 
-  %p
-    %img{ :src => 'sutton-council-elections-2010-ward-map.png', :width => 740, :height => 797 }
-  %p
-    Geographical results by ward map by Marshall Keene and Claire Rollo at 
-    %a{ :href => 'http://www.sutton.gov.uk/' } Sutton Council
-    GIS Team.
-
--#  
-  - for ward in @wards
-    %p
-      %a{ :href=> "/results/sutton-council/2010-05-06/#{ward.slug}" }
-        = ward.name
 -#
   %h1
     Vote for your MP and
