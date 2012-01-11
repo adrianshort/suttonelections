@@ -143,6 +143,8 @@ end
 
 get '/bodies/:body/?' do
   @body = Body.first(:slug => params[:body])
+  @elections = Election.all(:body => @body, :order => [:d.desc])
+  @districts = District.all(:body => @body, :order => [:name])
   haml :body
 end
 

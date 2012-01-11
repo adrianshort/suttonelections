@@ -7,7 +7,7 @@
 %h2 Elections
 
 %table
-  - @body.elections.each do |election|
+  - @elections.each do |election|
     %tr
       %td
         %a{ :href => "/bodies/#{@body.slug}/elections/#{election.d}" }<
@@ -18,7 +18,7 @@
 %h2
   = @body.districts_name.capitalize
   
-- @body.districts.each do |district|
+- @districts.each do |district|
   %p
     %a{ :href => "/bodies/#{@body.slug}/#{@body.districts_name}/#{district.slug}" }
       = district.name
