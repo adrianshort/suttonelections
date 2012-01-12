@@ -1,5 +1,30 @@
 - @page_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
 
+.nav
+  %p
+    %a{ :href => "/bodies/#{@election.body.slug}" }
+      &laquo; 
+      = @election.body.name
+    
+  - if @elections_for_this_body.size > 1
+    %p
+      - @election_index = @elections_for_this_body.index(@election)
+      
+      - unless @election_index == 0
+        - @previous_election = @elections_for_this_body[@election_index - 1]
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "Previous #{@election.body.name} election" }<
+          &laquo;&nbsp;
+          = @previous_election.kind 
+          = short_date(@previous_election.d)
+        &nbsp;&nbsp;&nbsp;
+    
+      - unless @election_index == @elections_for_this_body.size - 1
+        - @next_election = @elections_for_this_body[@election_index + 1]
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "Next #{@election.body.name} election" }<
+          = @next_election.kind 
+          = short_date(@next_election.d)
+          &raquo;
+
 %h1
   = @election.body.name
   = @election.kind

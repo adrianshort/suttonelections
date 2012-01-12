@@ -79,7 +79,9 @@ get '/' do
 end
 
 get '/bodies/:body/elections/:date' do
-  @election = Election.first(:body => Body.first(:slug => params[:body]), :d => params[:date])
+  @body = Body.first(:slug => params[:body])
+  @election = Election.first(:body => @body, :d => params[:date])
+  @elections_for_this_body = Election.all(:body => @body, :order => [:d])
   @total_seats =  Candidacy.sum(:seats, :election => @election)
   @total_votes = Candidacy.sum(:votes, :election => @election)
 
