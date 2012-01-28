@@ -33,7 +33,7 @@
           = ccy.district.body.district_name
       %td.right= commify(ccy.votes)
       %td.right= to_ordinal(ccy.position)
-      %td= ccy.elected? ? "Elected" : "Not elected"
+      %td= ccy.seats == 1 ? "Elected" : "Not elected"
       
 .warning
   This might not be the complete electoral history for this candidate. They might have stood in elections outside Sutton and / or in Sutton elections for which we don't have data.

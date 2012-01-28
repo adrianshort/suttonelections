@@ -1,4 +1,4 @@
-require './lib/models'
+require_relative '../models'
 require 'pp'
 
 # Set position and elected for each candidacy
@@ -10,10 +10,10 @@ Election.all.each do |election|
     puts
     pos = 1
     cands.each do |cand|
-      pos <= district.seats ? elected = true : elected = false
-      print cand.candidate.surname, ' ', cand.votes, ' ', pos, ' ', elected, "\n"
+      pos <= district.seats ? seats = 1 : seats = 0
+      print cand.candidate.surname, ' ', cand.votes, ' ', pos, ' ', seats, "\n"
       cand.position = pos
-      cand.elected = elected
+      cand.seats = seats
       cand.save
       pos += 1
     end

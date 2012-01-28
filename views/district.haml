@@ -14,7 +14,7 @@
 %h2 Candidates elected
 
 - Election.all(:body => @district.body, :order => [:d.desc]).each do |election|
-  - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :elected => true, :order => [:votes.desc])
+  - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :seats => 1, :order => [:votes.desc])
   
   - unless ccys == []  
     %h3

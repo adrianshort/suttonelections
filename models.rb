@@ -74,7 +74,6 @@ class Candidacy
   property  :address,           String,  :length => 200
   property  :postcode,          String
   property  :position,          Integer
-  property  :elected,           Boolean
   property  :seats,             Integer
 
   belongs_to  :election
@@ -141,10 +140,7 @@ class Party
   property :name,           String,   :required => true
   property :colour,         String
   
-  has n, :candidates, :order => ['surname']
-  
-  has n, :councilcandidates, :order => ['surname']
-  has n, :parliamentcandidates, :order => ['surname']
+  has n, :candidacies
 end
 
 # These models are now redundant
