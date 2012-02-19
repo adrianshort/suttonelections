@@ -4,6 +4,7 @@
   %a{ :href => "/bodies/#{@district.body.slug}/elections/#{@election.d}" }<
     = @body.name
     election
+    &nbsp;
     = long_date(@election.d)
     
     
@@ -11,14 +12,14 @@
   - if @districts_in_this_election.size > 1
     - @district_index = @districts_in_this_election.index(@district)
     
-    - unless @district_index == 0
+    - unless @district_index == 0 # Don't show the previous link if this is the first district for this election
       - @previous_district = @districts_in_this_election[@district_index - 1]
       %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@previous_district.slug}" }<
         &laquo;&nbsp;
         = @previous_district.name
       &nbsp;&nbsp;&nbsp;
   
-    - unless @district_index == @districts_in_this_election.size - 1
+    - unless @district_index == @districts_in_this_election.size - 1 # Don't show the next link if this is the last district for this election
       - @next_district = @districts_in_this_election[@district_index + 1]
       %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@next_district.slug}" }<
         = @next_district.name 
