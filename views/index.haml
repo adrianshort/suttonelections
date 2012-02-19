@@ -1,6 +1,6 @@
 %h1 Sutton Elections
 
-- if @future_elections
+- if @future_elections.size > 0
 
   %h2 Forthcoming elections
   
@@ -16,7 +16,7 @@
         %td= election.kind
 
 
-- if @past_elections
+- if @past_elections.size > 0
 
   %h2 Past elections
   
