@@ -1,6 +1,20 @@
 require 'data_mapper'
 require 'pat'
 
+class Poll
+  include DataMapper::Resource
+
+  property :district_id,          Integer, :key => true
+  property :election_id,          Integer, :key => true
+  property :electorate,           Integer                       # The number of people eligible to vote in this district in this election
+  property :ballot_papers_issued, Integer                       # The number of ballot papers issued (includes spoiled ballots)
+  property :seats,                Integer, :required => true    # The number of seats to be elected in this district in this election
+  
+  def turnout_percent
+    @ballot_papers_issued.to_f / @electorate.to_f * 100.0
+  end
+end
+
 class Postcode
   include DataMapper::Resource
 
