@@ -9,12 +9,10 @@
       %tr
         %td
           %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }
-            = short_date(election.d)
-        %td
-          %a{ :href => "/bodies/#{election.body.slug}" }
             = election.body.name
-        %td= election.kind
-
+            \ - 
+            = election.kind
+            = short_date(election.d)
 
 - if @past_elections.size > 0
 
@@ -25,11 +23,10 @@
       %tr
         %td
           %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }
-            = short_date(election.d)
-        %td
-          %a{ :href => "/bodies/#{election.body.slug}" }
             = election.body.name
-        %td= election.kind
+            \ - 
+            = election.kind
+            = short_date(election.d)
 
 -#
   %h2 Sutton Council Results by Ward
