@@ -41,7 +41,7 @@ helpers do
   end
 
   def format_percent(num)
-    sprintf("%.1f%%", num)
+    sprintf("%.0f%%", num)
   end
 
   def short_date(d)
