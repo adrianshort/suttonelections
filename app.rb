@@ -176,6 +176,27 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
   @candidacies =  Candidacy.all(:district => @district, :election => @election, :order => [:votes.desc])
   @total_votes =  Candidacy.sum(:votes, :district => @district, :election => @election)
   @districts_in_this_election = @election.candidacies.districts
+  
+  @results_by_party = repository(:default).adapter.select("
+    SELECT 
+      p.name AS party_name,
+      p.colour AS party_colour,
+      COUNT(c.id) AS num_candidates,
+      SUM(c.votes) AS total_votes
+
+    FROM candidacies c
+    
+    LEFT JOIN parties p
+    ON c.party_id = p.id
+    
+    WHERE c.district_id = #{@district.id}
+    AND c.election_id = #{@election.id}
+    
+    GROUP BY p.name
+    
+    ORDER BY total_votes DESC
+  ")
+  
   haml :resultsdistrict
 end
 

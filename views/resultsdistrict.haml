@@ -33,7 +33,39 @@
 
 %h1= @district.name + " " + @district.body.district_name
 
-- count = 0
+%h2 Votes by party
+
+%table
+  %tr.header
+    %th
+    %th
+    %th
+    %th candidates
+    %th.right votes
+    %th.right % votes
+    
+    - count = 0
+    
+    - @results_by_party.each do |row|
+      - count += 1
+      %tr
+        %td.right= count
+        %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
+        %td= row['party_name']
+        %td.right= row['num_candidates']
+        %td.right= commify(row['total_votes'])
+        %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+  
+  %tr.footer
+    %td
+    %td
+    %td
+    %td
+    %td.right= commify(@total_votes)
+    %td
+
+
+%h2 Votes by candidate
   
 %table
   %tr.header
@@ -44,6 +76,7 @@
     %th.right % votes
     %th
 
+  - count = 0
   - for candidacy in @candidacies
     - count += 1
     %tr.vcard
@@ -69,7 +102,7 @@
     %td
     %td
     %td
-    %td= commify(@total_votes)
+    %td.right= commify(@total_votes)
     %td
     %td
     %td
