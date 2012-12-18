@@ -40,6 +40,7 @@
     %th
     %th
     %th
+    %th.right.highlight seats won
     %th candidates
     %th.right votes
     %th.right % votes
@@ -52,6 +53,7 @@
         %td.right= count
         %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
         %td= row['party_name']
+        %td.right.highlight= row['num_seats']
         %td.right= row['num_candidates']
         %td.right= commify(row['total_votes'])
         %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
@@ -60,7 +62,8 @@
     %td
     %td
     %td
-    %td
+    %td.right.highlight= @total_seats
+    %td.right= @total_candidates
     %td.right= commify(@total_votes)
     %td
 

@@ -175,13 +175,17 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
   @election =     Election.first(:body => @body, :d => params[:date])
   @candidacies =  Candidacy.all(:district => @district, :election => @election, :order => [:votes.desc])
   @total_votes =  Candidacy.sum(:votes, :district => @district, :election => @election)
+  @total_candidates =  Candidacy.count(:district => @district, :election => @election)
+  @total_seats =  Candidacy.sum(:seats, :district => @district, :election => @election)
   @districts_in_this_election = @election.candidacies.districts
   
+  # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
   @results_by_party = repository(:default).adapter.select("
     SELECT 
       p.name AS party_name,
       p.colour AS party_colour,
       COUNT(c.id) AS num_candidates,
+      SUM(c.seats) AS num_seats,
       SUM(c.votes) AS total_votes
 
     FROM candidacies c
@@ -192,7 +196,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
     WHERE c.district_id = #{@district.id}
     AND c.election_id = #{@election.id}
     
-    GROUP BY p.name
+    GROUP BY p.name, p.colour
     
     ORDER BY total_votes DESC
   ")
