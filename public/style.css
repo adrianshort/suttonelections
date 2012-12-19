@@ -172,6 +172,7 @@ tr
   color: white;
   padding: 2px 5px;
   font-weight: normal;
+  text-transform: uppercase;
 }
 
 .noborder

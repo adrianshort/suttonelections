@@ -37,9 +37,9 @@
 
 %table
   %tr.header
-    %th
-    %th
-    %th
+    %th &nbsp;
+    %th &nbsp;
+    %th &nbsp;
     %th.right.highlight seats won
     %th candidates
     %th.right votes
@@ -59,25 +59,26 @@
         %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
   
   %tr.footer
-    %td
-    %td
-    %td
+    %td &nbsp;
+    %td &nbsp;
+    %td &nbsp;
     %td.right.highlight= @total_seats
     %td.right= @total_candidates
     %td.right= commify(@total_votes)
-    %td
+    %td &nbsp;
 
 
 %h2 Votes by candidate
   
 %table
   %tr.header
-    %th
-    %th
-    %th
+    %th &nbsp;
+    %th &nbsp;
+    %th &nbsp;
+    %th &nbsp;
     %th.right votes
     %th.right % votes
-    %th
+    %th &nbsp;
 
   - count = 0
   - for candidacy in @candidacies
@@ -89,7 +90,7 @@
         %span.candidate_name.fn
           %a{ :href => "/candidates/#{candidacy.candidate.id}" }
             = candidacy.candidate.short_name
-        %br
+      %td
         %span.candidate_party.org
           = candidacy.party.name
       
@@ -97,15 +98,16 @@
       
       %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
         
-      %td
-        - if candidacy.seats == 1
-          .elected ELECTED
+      - if candidacy.seats == 1
+        %td.elected="Elected"
+      - else
+        %td &nbsp;
 
   %tr.footer
-    %td
-    %td
-    %td
+    %td &nbsp;
+    %td &nbsp;
+    %td &nbsp;
+    %td &nbsp;
     %td.right= commify(@total_votes)
-    %td
-    %td
-    %td
+    %td &nbsp;
+    %td &nbsp;
