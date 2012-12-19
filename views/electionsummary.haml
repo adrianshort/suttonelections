@@ -50,8 +50,8 @@
   
   %table
     %tr.header
-      %th
-      %th
+      %th &nbsp;
+      %th &nbsp;
       %th.highlight seats won
       %th votes
       %th % seats
@@ -82,26 +82,25 @@
   
   
     %tr.footer
-      %td 
-      %td 
+      %td &nbsp;
+      %td &nbsp;
       %td.right.highlight= @total_seats
       %td.right= commify(@total_votes)
-      %td
-      %td
-      %td
-      %td
-      %td
-      -#
-        %td
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
         
   %h2
-    Results by
-    = @election.body.district_name
+    = @election.body.district_name.capitalize.pluralize(2)
+    contested in this election
   
   %table
     %tr.header
-      %th
+      %th &nbsp;
       %th seats
+      %th candidates
       %th votes
     - @results_by_district.each do |row|
       %tr
@@ -109,10 +108,12 @@
           %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{row.district_slug}"}
             = row.name
         %td.right= row.seats
+        %td.right= row.num_candidates
         %td.right= commify(row.votez)
     %tr.footer
-      %td
+      %td &nbsp;
       %td.right= @total_seats
+      %td.right= @election.candidacies.count
       %td.right= commify(@total_votes)
 - else
   %p Full details and results will be available on this page.

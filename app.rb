@@ -118,7 +118,8 @@ get '/bodies/:body/elections/:date' do
       d.name,
       d.slug AS district_slug,
       SUM(c.seats) AS seats,
-      SUM(c.votes) AS votez
+      SUM(c.votes) AS votez,
+      COUNT(c.id) AS num_candidates
       
     FROM districts d, candidacies c
 
