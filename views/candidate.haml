@@ -8,14 +8,14 @@
 
 %table
   %tr
-    %th
+    %th &nbsp;
     %th date
     %th party
     %th body
     %th district
     %th votes
     %th position
-    %th
+    %th &nbsp;
     
   - @candidate.candidacies.each do |ccy|
     %tr
@@ -30,7 +30,6 @@
       %td
         %a{ :href => "/bodies/#{ccy.election.body.slug}/elections/#{ccy.election.d}/#{ccy.district.body.districts_name}/#{ccy.district.slug}" }
           = ccy.district.name
-          = ccy.district.body.district_name
       %td.right= commify(ccy.votes)
       %td.right= to_ordinal(ccy.position)
       %td= ccy.seats == 1 ? "Elected" : "Not elected"
