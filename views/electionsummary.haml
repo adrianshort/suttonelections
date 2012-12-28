@@ -13,8 +13,9 @@
       - unless @election_index == 0
         - @previous_election = @elections_for_this_body[@election_index - 1]
         %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "Previous #{@election.body.name} election" }<
-          &laquo;&nbsp;
-          = @previous_election.kind 
+          &laquo;
+          = @previous_election.kind
+          &nbsp;
           = short_date(@previous_election.d)
         &nbsp;&nbsp;&nbsp;
     
@@ -22,6 +23,7 @@
         - @next_election = @elections_for_this_body[@election_index + 1]
         %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "Next #{@election.body.name} election" }<
           = @next_election.kind 
+          &nbsp;
           = short_date(@next_election.d)
           &raquo;
 
