@@ -86,13 +86,11 @@
     %tr.vcard
       %td= count
       %td{ :style => "background-color: #{candidacy.party.colour}" } &nbsp;
-      %td
-        %span.candidate_name.fn
-          %a{ :href => "/candidates/#{candidacy.candidate.id}" }
-            = candidacy.candidate.short_name
-      %td
-        %span.candidate_party.org
-          = candidacy.party.name
+      %td.candidate_name.fn
+        %a{ :href => "/candidates/#{candidacy.candidate.id}" }
+          = candidacy.candidate.short_name
+      %td.org
+        = candidacy.party.name
       
       %td.right= commify(candidacy.votes)
       
