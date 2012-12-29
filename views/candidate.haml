@@ -17,22 +17,22 @@
     %th position
     %th &nbsp;
     
-  - @candidate.candidacies.each do |ccy|
+  - @candidacies.each do |ccy|
     %tr
-      %td{ :style => "background-color: #{ccy.party.colour}" } &nbsp;
+      %td{ :style => "background-color: #{ccy['party_colour']}" } &nbsp;
       %td
-        %a{ :href => "/bodies/#{ccy.election.body.slug}/elections/#{ccy.election.d}" }
-          = long_date(ccy.election.d)
-      %td= ccy.party.name
+        %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}" }
+          = long_date(Date.parse(ccy['d']))
+      %td= ccy['party_name']
       %td
-        %a{ :href => "/bodies/#{ccy.election.body.slug}" }
-          = ccy.election.body.name
+        %a{ :href => "/bodies/#{ccy['body_slug']}" }
+          = ccy['body_name']
       %td
-        %a{ :href => "/bodies/#{ccy.election.body.slug}/elections/#{ccy.election.d}/#{ccy.district.body.districts_name}/#{ccy.district.slug}" }
-          = ccy.district.name
-      %td.right= commify(ccy.votes)
-      %td.right= to_ordinal(ccy.position)
-      %td= ccy.seats == 1 ? "Elected" : "Not elected"
-      
+        %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}/#{ccy['districts_name']}/#{ccy['district_slug']}" }
+          = ccy['district_name']
+      %td.right= commify(ccy['votes'])
+      %td.right= to_ordinal(ccy['position'])
+      %td= ccy['seats'] == 1 ? "Elected" : "Not elected"
+
 .warning
   This might not be the complete electoral history for this candidate. They might have stood in elections outside Sutton and / or in Sutton elections for which we don't have data.
