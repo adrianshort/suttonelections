@@ -1,5 +1,4 @@
 require 'rubygems'
-require 'date'
 require 'sinatra'
 require 'haml'
 require './models'
