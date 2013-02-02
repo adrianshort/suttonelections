@@ -1,7 +1,0 @@
-sinatra
-haml
-data_mapper
-dm-postgres-adapter
-pat --source gemcutter.org
-sbfaulkner-sinatra-helpers -s http://gems.github.com
-
