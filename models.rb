@@ -1,5 +1,4 @@
 require 'data_mapper'
-require 'pat'
 
 class Poll
   include DataMapper::Resource
