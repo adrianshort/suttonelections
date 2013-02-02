@@ -22,7 +22,8 @@
       %td{ :style => "background-color: #{ccy['party_colour']}" } &nbsp;
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}" }
-          = long_date(Date.parse(ccy['d']))
+          - bits = ccy['d'].split("-")
+          = long_date(Time.mktime(bits[0], bits[1], bits[2]))
       %td= ccy['party_name']
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}" }
