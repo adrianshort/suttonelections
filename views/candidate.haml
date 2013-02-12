@@ -22,8 +22,8 @@
       %td{ :style => "background-color: #{ccy['party_colour']}" } &nbsp;
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}" }
-          - bits = ccy['d'].split("-")
-          = long_date(Time.mktime(bits[0], bits[1], bits[2]))
+          -# Postgres returns ccy['d'] as a Date and sqlite returns it as a String
+          = long_date(ccy['d'].to_time)
       %td= ccy['party_name']
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}" }
