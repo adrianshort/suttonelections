@@ -1,5 +1,10 @@
 %h1= @page_title = "Candidates"
 
+%nav.letter_index
+  - ("A".."Z").each do |letter|
+    %a{ :href => "##{letter}" }<
+      = letter
+
 - @first_letter = ''
 
 %table
@@ -9,7 +14,7 @@
       %tr.noborder
         %td &nbsp;
         %td 
-      %tr.noborder
+      %tr.noborder{ :name => @first_letter, :id => @first_letter }
         %td.strong{ :style => "font-size: 300%;" }= @first_letter.upcase
         %td 
       %tr

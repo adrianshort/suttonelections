@@ -252,3 +252,7 @@ tr
   background-color: blue;
   color: white;
 }
+
+.letter_index a {
+  margin: 0 10px 0 0;
+}
