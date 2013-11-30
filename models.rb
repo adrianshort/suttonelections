@@ -221,5 +221,5 @@ class Constituency
   has n, :parliamentcandidates, :order => ['surname']
 end
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/db/suttonelections.db")
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/suttonelections")
 DataMapper.auto_upgrade!
