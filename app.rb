@@ -3,6 +3,8 @@ require 'sinatra'
 require 'haml'
 require './models'
 
+set :root, File.dirname(__FILE__)
+
 class String
   def pluralize(num)
     if num == 1
