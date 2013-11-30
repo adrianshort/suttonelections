@@ -91,10 +91,10 @@ get '/bodies/:body/elections/:date' do
   @total_districts = repository(:default).adapter.select("
     SELECT district_id
     FROM candidacies
-    WHERE election_id = #{@election.id}
+    WHERE election_id = ?
     GROUP BY district_id
     ORDER BY district_id
-  ").count
+  ", @election.id).count
 
   @results_by_party = repository(:default).adapter.select("
     SELECT
@@ -108,12 +108,12 @@ get '/bodies/:body/elections/:date' do
 
     LEFT JOIN parties p ON p.id = c.party_id
 
-    WHERE c.election_id = #{@election.id}
+    WHERE c.election_id = ?
 
     GROUP BY c.party_id, p.colour, p.name
 
     ORDER BY seatz DESC, votez DESC
-  ")
+  ", @election.id)
 
   @results_by_district = repository(:default).adapter.select("
     SELECT
@@ -127,12 +127,12 @@ get '/bodies/:body/elections/:date' do
 
     WHERE
       c.district_id = d.id
-      AND c.election_id = #{@election.id}
+      AND c.election_id = ?
 
     GROUP BY c.district_id, d.name, d.slug
 
     ORDER BY d.name
-  ")
+  ", @election.id)
   
   haml :electionsummary
 end
@@ -187,10 +187,10 @@ get '/candidates/:id/?' do
       INNER JOIN districts d
       ON c.district_id = d.id
       
-      WHERE c.candidate_id = #{@candidate.id}
+      WHERE c.candidate_id = ?
       
       ORDER BY d
-    ")
+    ", @candidate.id)
   
     haml :candidate
   else
@@ -227,13 +227,13 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
     LEFT JOIN parties p
     ON c.party_id = p.id
     
-    WHERE c.district_id = #{@district.id}
-    AND c.election_id = #{@election.id}
+    WHERE c.district_id = ?
+    AND c.election_id = ?
     
     GROUP BY p.name, p.colour
     
     ORDER BY total_votes DESC
-  ")
+  ", @district.id, @election.id)
   
   haml :resultsdistrict
 end
