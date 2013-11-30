@@ -61,7 +61,7 @@ class Candidate
 
   property  :id,              Serial
   property  :forenames,       String,   :required => true
-  property  :surname,         String,   :required => true
+  property  :surname,         String,   :required => true, :index => true
   property  :sex,             String
   
   has n, :candidacies
@@ -100,7 +100,7 @@ class Election
 
   property  :id,                Serial
   property  :body_id,           Integer, :required => true
-  property  :d,                 Date, :required => true
+  property  :d,                 Date, :required => true, :index => true
   property  :reason,            String, :length => 255
   property  :kind,              String, :length => 255
   
