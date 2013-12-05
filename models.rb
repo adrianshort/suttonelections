@@ -86,8 +86,8 @@ class Candidacy
   property  :votes,             Integer
   property  :address,           String,  :length => 200
   property  :postcode,          String
-  property  :position,          Integer
-  property  :seats,             Integer
+  property  :position,          Integer # Position of this candidate in this district. (1..n)
+  property  :seats,             Integer # Number of seats won by this candidacy (0 or 1)
 
   belongs_to  :election
   belongs_to  :candidate
