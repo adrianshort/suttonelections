@@ -1,0 +1,107 @@
+Beddington North             
+Electorate           7473    
+Seats                   3    
+Ballot papers        3049    
+% poll               40.80   
+
+Beddington South             
+Electorate           6959    
+Seats                   3    
+Ballot papers        3128    
+% poll               44.95   
+
+Belmont                      
+Electorate           7235    
+Seats                   3    
+Ballot papers        3477    
+% poll               48.06   
+
+Carshalton Central           
+Electorate           7275    
+Seats                   3    
+Ballot papers        3462    
+% poll               47.59   
+
+Carshalton South and Clockhouse               
+Electorate         7227      
+Seats                 3      
+Ballot papers      3803      
+% poll             52.62     
+
+Cheam                        
+Electorate         7603      
+Seats                 3      
+Ballot papers      3918      
+% poll             51.53     
+                             
+Nonsuch                      
+Electorate         7695      
+Seats                 3      
+Ballot papers      3919      
+% poll             50.93     
+
+St Helier                    
+Electorate         7772      
+Seats                 3      
+Ballot papers      2742      
+% poll             35.28     
+
+Stonecot                     
+Electorate       7671        
+Seats               3        
+Ballot papers    3299        
+% poll           43.01       
+
+Sutton Central               
+Electorate       7102        
+Seats               3        
+Ballot papers    2594        
+% poll           36.52       
+
+Sutton North                 
+Electorate       7284        
+Seats               3        
+Ballot papers    3086        
+% poll           42.37       
+                             
+Sutton South                 
+Electorate       6808        
+Seats               3        
+Ballot papers    3172        
+% poll           46.59       
+                             
+Sutton West                  
+Electorate         7388      
+Seats                 3      
+Ballot papers      3334      
+% poll             45.13     
+
+The Wrythe                   
+Electorate         7637      
+Seats                 3      
+Ballot papers      2792      
+% poll             36.56     
+                             
+Wallington North             
+Electorate         7549      
+Seats                 3      
+Ballot papers      3362      
+% poll             44.54     
+                             
+Wallington South             
+Electorate         7431      
+Seats                 3      
+Ballot papers      3363      
+% poll             45.26     
+
+Wandle Valley                
+Electorate         7531      
+Seats                 3      
+Ballot papers      2466      
+% poll             32.74     
+
+Worcester Park               
+Electorate         7708      
+Seats                 3      
+Ballot papers      3454      
+% poll             44.81     

@@ -1,0 +1,199 @@
+Beddington North
+Keys, John	LD	1,168
+Leach, John W.E.	LD	1,143
+Hartfield, Joan M.	LD	1,116
+Bowles, Howard J.	CON	871
+Franks, Spencer C.	CON	848
+Snowball, Lorraine B.	CON	835
+Collier, Geoffrey W.	LAB	307
+Collier, Margaret P.	LAB	279
+Theobald, Susan D.	LAB	261
+Beddington South
+Ison, Catriona J.	LD	1,343
+Saunders, Colleen	LD	1,300
+Moussa, Ferris K-E.	LD	1,299
+Whitham, Graham G.	CON	1,137
+Butt, Moira J.	CON	1,133
+Requena, Laura M.	CON	1,104
+Bond, Hayley K.	LAB	249
+Smith, Joyce	LAB	219
+Renuka, Marley	LAB	217
+Belmont
+Pickles, David J.	CON	1,708
+Geiringer, Peter H.	CON	1,689
+Picknett, Pamela D.	CON	1,628
+Wallace, Anthony S.	LD	1,312
+Mathys, Wendy G.L.	LD	1,303
+Bhatti, Mahmood A.K.	LD	1,287
+Bassett, Philip J.	LAB	182
+Brennan, Geoffrey	LAB	164
+Blears, Stephen	LAB	159
+Cheam
+Pinfold, Eleanor D.	CON	1,741
+Trevor, Edward G.	CON	1,708
+Zaidi, Syed M.H.	CON	1,634
+Gleeson, Robert P.	LD	1,603
+Hewitt, Philip I.	LD	1,542
+Ruxton, Ian B.	LD	1,490
+Jarman, David	LAB	143
+Jones, Helen	LAB	118
+Ponto, Maria	LAB	108
+Nonsuch
+Bradley, Wendy M.	LD	1,542
+Roberts, Roger D.C.	LD	1,496
+Gleeson, Lynette R.	LD	1,490
+Boyce, John S.	CON	1,188
+Cappiello, Marilyn A.	CON	1,142
+Pendlington, Ian J.	CON	1,129
+Hosking, David N.	LAB	181
+Jarman, Joan S.	LAB	159
+Salmon, Cyril E.	LAB	141
+Carshalton Central
+Baughan, Angela K.	LD	1,502
+Cooper, Michael A.	LD	1,446
+Pollock, Hamish J.	LD	1,391
+Cattermole, Peter K.	CON	903
+Hanson, O wen J.	CON	868
+Petre, Nigel J.	CON	861
+Davis, David G.	LAB	262
+Young, John W.	LAB	246
+Towler, Sam J.	LAB	244
+Riddlestone, Susan E.	GRE	213
+Dixon, Simon N.	GRE	209
+Hornsby, Neil J.	GRE	180
+Carshalton South and Clockhouse
+Reynolds, Jason A.P.	LD	1,498
+Yeo, Derek C.	LD	1,477
+Hussain, Lal	LD	1,476
+Kennedy, John	CON	1,464
+Gill, Robert T.	CON	1,415
+Requena, Francis J.	CON	1,348
+Burbage, Marilynne B.	LABCP	244
+Shearer, Claire	LABCP	244
+Willsher, Kevin J.	LABCP	212
+Greaves, Nicholas J.	GRE	171
+Rudkin, Peter T.	GRE	161
+Stonecot
+Brett Young, Anthony	LD	1,623
+O'Connell, Lesley F.	LD	1,597
+Gallop, Anna-Nicolette	LD	1,579
+Barnett, Christine A.	CON	710
+Furey, Christopher G.	CON	706
+Hicks, Christine M.	CON	689
+Baldry, Dennis	LAB	207
+Fleming, David C.	LAB	184
+Towler, David	LAB	175
+St Helier
+Mansell, Charles J.	LAB	878
+Magee, Joseph P.	LAB	874
+Theobald, Andrew C.	LAB	797
+Hienkens, Paulus C.A.	LD	516
+Pickering, Claire L.	LD	497
+Reed, Barry F.	LD	469
+Keynes, Brian W.M.	CON	390
+Manton, Charles W.E.	CON	388
+Pillinger, Eric S.	CON	381
+Sutton West
+Crowhurst, Joan	LD	1,439
+Wallace, Myfanwy A.	LD	1,379
+Jerome, Gerard	LD	1,344
+Bird, Jeannette	CON	861
+Drummond, Andrew G.	CON	845
+Park, David J.	CON	845
+Banks, Sarah L.	LAB	164
+Williams, Ronald S.	LAB	143
+Hickson, Eric C.	GRE	138
+Buck, Shawn V.	LAB	132
+Hickson, Jose K.	GRE	125
+Hickson, Peter H.	GRE	107
+Sutton Central
+Brennan, John F.	LD	1,010
+Lowne, Janet	LD	983
+Tope, Graham N.	LD	948
+Allen, Kathleen	LAB	751
+Blears, Gale A.L.	LAB	695
+Morgan, John G.	LAB	664
+England, Stewart	CON	477
+Wells, Annabel R.	CON	460
+Isaby, Lynne	CON	450
+Williams, Margaret A.	GRE	192
+Sutton North
+Brims, Donald G.	LD	1,419
+Dombey, Ruth C.	LD	1,416
+Heron, Marlene S.	LD	1,388
+Carter, Clifford C.G.	CON	721
+Hutchinson, John P.	CON	696
+North, Peter H.	CON	694
+Brown, John W.	LAB	239
+Morton, Stephen	LAB	227
+Latif, Aisha N.	LAB	211
+Sutton South
+Shields, Tony A.	CON	1,170
+Butt, Nasser M.	LD	1,157
+Newman, Paul C.	CON	1,154
+Jarvis, Graham A.	CON	1,152
+Stears, Colin H.	LD	1,109
+Kuhn, Wolfgang	LD	1,074
+Harrison, Paul M.	LAB	191
+Simons, Patricia A.	LAB	186
+Honey, Simon J.	GRE	176
+Cooper, John P.S.	LAB	170
+Peglar, Maureen H.	GRE	136
+The Wrythe
+Stears, Susan M.	LD	1,176
+Siggins, Sheila C.	LD	1,142
+Thistle, Roger G.A.	LD	1,103
+Creece, Robert A.	CON	544
+Wortley, Christopher E.	CON	540
+Williams, Marion H.	CON	536
+Collier, Richard S.	LAB	377
+Thorpe, Anthony R.	LAB	365
+Wijeyesinghe, Bodipala S.	LAB	354
+Andrews, Karin C.	GRE	118
+Fuller, William E.	GRE	99
+Wallington North
+Dodwell, John F.	LD	1,128
+McMullen, Joan C.	LD	1,073
+Marvelly, Robert J.	LD	1,046
+Bowles, Desmond J.	CON	961
+Franks, Mark	CON	940
+Hyatt, Dee	CON	915
+Cooper, Margaret K.	LAB	333
+Joyce, John J.	LAB	305
+Turner, Peter J.	LAB	290
+Mouncey, Penelope	GRE	181
+Mouncey, Philip C.	GRE	139
+Worcester Park
+Freeman, Julian P.	LD	1,327
+Coman, Leslie D.	LD	1,274
+Overy, Peter J.	LD	1,212
+Moxon, Beryl R.	CON	725
+Longhurst, Glenys A.	CON	699
+Park, Julie P.	CON	678
+Evers, John K.	LAB	249
+Hutton, Graham	LAB	229
+Hosking, Hilary C.	LAB	226
+Holmes, Christopher M.	GRE	167
+Wallington South
+Bailey, Richard H.	LD	1,465
+Hall, Colin C.	LD	1,427
+Landeryou, Robert R.	LD	1,411
+Lewis, Daniel	CON	1,074
+Scully, Paul S.	CON	1,065
+Wootten, Peter C.	CON	1,004
+Ryan, Mary E.	LAB	232
+Poge, Clive S.	LAB	211
+Andrews, Malin C.	GRE	207
+Lewis, Amanda E.	GRE	185
+Wingrove, Paul A.	LAB	183
+Blue, Danny	MRL	89
+Wandle Valley
+Andrews, Sheila M.	LD	1,320
+Court, Margaret P.	LD	1,296
+Kane, Patrick B.	LD	1,271
+Lloyd, Stephen P.	LAB	743
+Weir, John A.S.	LAB	732
+Sriganeshakumar, Visvanathan	LAB	704
+Heale, Louise A.	CON	379
+Jaques, Patrick D.	CON	351
+Wortley, Hilary V.	CON	342
