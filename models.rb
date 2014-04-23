@@ -88,7 +88,7 @@ class Candidacy
   property  :postcode,          String
   property  :position,          Integer # Position of this candidate in this district. (1..n)
   property  :seats,             Integer # Number of seats won by this candidacy (0 or 1)
-  property  :labcoop,           Boolean # Candidacy is for joint Labour/Co-op party
+  property  :labcoop,           Boolean, :default => false # Candidacy is for joint Labour/Co-op party
 
   belongs_to  :election
   belongs_to  :candidate
