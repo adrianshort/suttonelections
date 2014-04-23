@@ -54,6 +54,11 @@ helpers do
     d.strftime("%e %B %Y")
   end
 
+  # Exception for Labour/Co-operative candidacies
+  def party_name(labcoop, party_name)
+    labcoop ? "Labour and Co-operative Party" : party_name
+  end
+
 end
 
 get '/' do

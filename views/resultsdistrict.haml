@@ -81,7 +81,7 @@
     %th &nbsp;
 
   - count = 0
-  - for candidacy in @candidacies
+  - @candidacies.each do |candidacy|
     - count += 1
     %tr.vcard
       %td= count
@@ -90,7 +90,7 @@
         %a{ :href => "/candidates/#{candidacy.candidate.id}" }
           = candidacy.candidate.short_name
       %td.org
-        = candidacy.party.name
+        = party_name(candidacy.labcoop, candidacy.party.name)
       
       %td.right= commify(candidacy.votes)
       
