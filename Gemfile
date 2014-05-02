@@ -7,6 +7,7 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'pg'
 gem 'unicorn'
+gem 'rack-flash3'
 
 group :development do
   gem 'shotgun'

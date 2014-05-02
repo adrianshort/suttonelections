@@ -61,6 +61,8 @@ GEM
     multi_json (1.7.3)
     pg (0.15.1)
     rack (1.5.2)
+    rack-flash3 (1.0.5)
+      rack
     raindrops (0.13.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -90,6 +92,7 @@ DEPENDENCIES
   dm-postgres-adapter
   haml
   pg
+  rack-flash3
   shotgun
   sinatra
   taps
