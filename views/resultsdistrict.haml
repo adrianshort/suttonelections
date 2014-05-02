@@ -33,6 +33,12 @@
 
 %h1= @district.name + " " + @district.body.district_name
 
+- @election_held = Candidacy.sum(:votes, :election => @election, :district => @district)
+
+- unless @election_held
+  .warning
+    We don't have the results for this election yet.
+
 %h2 Votes by party
 
 %table
@@ -53,16 +59,26 @@
         %td.right= count
         %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
         %td= row['party_name']
-        %td.right.highlight= row['num_seats']
+        - if @election_held
+          %td.right.highlight= row['num_seats']
+        - else
+          %td.right.highlight &mdash;
         %td.right= row['num_candidates']
-        %td.right= commify(row['total_votes'])
-        %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+        - if @election_held
+          %td.right= commify(row['total_votes'])
+          %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+        - else
+          %td.right &mdash;
+          %td.right &mdash;
   
   %tr.footer
     %td &nbsp;
     %td &nbsp;
     %td &nbsp;
-    %td.right.highlight= @total_seats
+    - if @election_held
+      %td.right.highlight= @total_seats
+    - else
+      %td.right.highlight &nbsp;
     %td.right= @total_candidates
     %td.right= commify(@total_votes)
     %td &nbsp;
@@ -91,15 +107,18 @@
           = candidacy.candidate.short_name
       %td.org
         = party_name(candidacy.labcoop, candidacy.party.name)
-      
-      %td.right= commify(candidacy.votes)
-      
-      %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
-        
-      - if candidacy.seats == 1
-        %td.elected="Elected"
+      - if @election_held
+        %td.right= commify(candidacy.votes)
+        %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
+          
+        - if candidacy.seats == 1
+          %td.elected="Elected"
+        - else
+          %td &nbsp;
       - else
-        %td &nbsp;
+        %td.right &mdash;
+        %td.right &mdash;
+        %td
 
   %tr.footer
     %td &nbsp;
