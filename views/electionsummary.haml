@@ -32,24 +32,36 @@
   = @election.kind
   %br
   = long_date(@election.d)
+
+-# Does this election have any recorded votes, i.e. has it been held?
+- @election_held = Candidacy.sum(:votes, :election => @election)
+
+- unless @election_held
+  .warning
+    We don't have the results for this election yet.
   
 %p= @election.reason
 
-- if @election.candidacies.count > 0
-  
-  %p
-    = @election.candidacies.count
-    = "candidate".pluralize(@election.candidacies.count)
+%p
+  = @election.candidacies.count
+  = "candidate".pluralize(@election.candidacies.count)
+  - if @election_held
     contested
+  - else 
+    will be contesting
+  -# We can't calculate the number of seats being contested if the election hasn't been held
+  - if @election_held
     = @total_seats
     = "seat".pluralize(@total_seats)
     in
-    = @total_districts
-    = @election.body.district_name.pluralize(@total_districts)
-    in Sutton.
-  
+  = @total_districts
+  = @election.body.district_name.pluralize(@total_districts)
+  in Sutton.
+
+- if @election_held
+
   %h2 Seats, votes and candidates by party
-  
+
   %table
     %tr.header
       %th &nbsp;
@@ -70,19 +82,21 @@
         %td.data_party= row.name
         %td.data_seats.right.highlight= row.seatz
         %td.data_votes.right= commify(row.votez)
-        %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
-        %td.right= format_percent(row.votez.to_f / @total_votes * 100)
-        %td.data_votes_per_seat.right
-          - if row.seatz > 0
-            = commify(row.votez / row.seatz)
-          - else
-            &mdash;
+        - if @election_held
+          %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
+          %td.right= format_percent(row.votez.to_f / @total_votes * 100)
+          %td.data_votes_per_seat.right
+            - if row.seatz > 0
+              = commify(row.votez / row.seatz)
+            - else
+              &mdash;
         %td.data_candidates.right= row.cands
-        %td.right= commify(row.votez / row.cands)
+        - if @election_held
+          %td.right= commify(row.votez / row.cands)
         -#
           %td.right= format_percent( ( row.votez.to_f / row.cands.to_f ) / @max_votes_per_candidate * 100)
-  
-  
+
+
     %tr.footer
       %td &nbsp;
       %td &nbsp;
@@ -97,7 +111,7 @@
   %h2
     = @election.body.district_name.capitalize.pluralize(2)
     contested in this election
-  
+
   %table
     %tr.header
       %th &nbsp;
@@ -118,5 +132,12 @@
       %td.right= @election.candidacies.count
       %td.right= commify(@total_votes)
 - else
-  %p Full details and results will be available on this page.
-  
+  %h2
+    = @election.body.district_name.capitalize.pluralize(2)
+    being contested at this election
+  %table
+    - @districts_in_this_election.each do |d|
+      %tr
+        %td
+          %a{ :href => "/bodies/#{@election.body.slug}/#{@election.body.districts_name}/#{d['slug']}"}
+            = d['name']
