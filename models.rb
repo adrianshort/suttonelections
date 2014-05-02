@@ -18,16 +18,24 @@ class Postcode
   include DataMapper::Resource
 
   # Postcode natural key, uppercase with space, eg. "SM1 1EA"
-  property :postcode,       String,   :key => true
-  property :created_at,     DateTime
-  property :updated_at,     DateTime
-  property :lat,            Float,    :required => true
-  property :lng,            Float,    :required => true
-  property :district_name,  String,   :required => true
-  property :district_code,  String,   :required => true
-  property :ward_name,      String,   :required => true
-  property :ward_code,      String,   :required => true
-  
+  # Column names derived from Ordnance Survey CodePoint Open
+  property :postcode,                     String,   :key => true
+  property :positional_quality_indicator, Integer
+  property :eastings,                     Integer,  :required => true
+  property :northings,                    Integer,  :required => true
+  property :country_code,                 String,   :required => true
+  property :nhs_regional_ha_code,         String,   :required => true
+  property :nhs_ha_code,                  String,   :required => true
+  property :admin_county_code,            String # NULL within Greater London
+  property :admin_district_code,          String,   :required => true # e.g. London Borough of Sutton
+  property :admin_ward_code,              String,   :required => true # e.g. Sutton Central
+  property :lat,                          Float,    :required => true
+  property :lng,                          Float,    :required => true
+  property :ward_id,                      Integer,  :required => true # Sutton Council
+  property :constituency_id,              Integer,  :required => false # UK Parliament
+
+  belongs_to :district, :child_key => [:ward_id]
+
   def self.finder(postcode)
     postcode = postcode.strip.upcase
     
@@ -126,8 +134,10 @@ class District
   property  :name,              String,   :length => 255, :required => true
   property  :slug,              String
   property  :seats,             Integer
-  
+  property  :ons_district_code, String
+
   belongs_to :body
+  has n,    :postcodes, :child_key => [:ward_id]
   
   def self.slugify(name)
     name.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-').downcase
