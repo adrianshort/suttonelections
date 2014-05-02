@@ -2,8 +2,11 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 require './models'
+require 'rack-flash'
 
 set :root, File.dirname(__FILE__)
+enable :sessions
+use Rack::Flash
 
 class String
   def pluralize(num)
@@ -62,24 +65,29 @@ helpers do
 end
 
 get '/' do
-#   if params[:postcode]
-#     @postcode = params[:postcode].strip.upcase
-# 
-#     unless result = Postcode.finder(@postcode)
-#       # Invalid postcode
-#       redirect '/error'
-#     end
-#   
-#     # Postcode valid but not in LB Sutton
-#     if result.district_code != "00BF"
-#       redirect '/aliens'
-#     end
-#     
-#     # Postcode in LB Sutton
-#     @ward = Ward.first( :ons_id => result.ward_code )
-#     redirect "/wards/#{@ward.slug}/postcode/#{@postcode}"
-#   end
+  if params[:postcode]
+    @postcode = params[:postcode].strip.upcase
+
+    if @p = Postcode.get(@postcode)
+      # Postcode is valid and in LB Sutton
+      @ward = Ward.get(@p.ward_id)
+      flash[:notice] = "Postcode <strong>#{@postcode}</strong> is in #{@ward.name} ward"
+      redirect "/bodies/sutton-council/wards/#{@ward.slug}"
+    else
+      flash.now[:error] = "<strong>#{@postcode}</strong> is not a postcode in Sutton"
+    end
+  end
   
+  # Display a random postcode as default search term
+  @random_pc = repository(:default).adapter.select("
+    SELECT postcode
+    FROM postcodes
+    ORDER BY RANDOM()
+    LIMIT 1
+  ")
+
+  @default_pc = @random_pc[0]
+
   @future_elections = Election.future
   @past_elections = Election.past
   haml :index

@@ -180,6 +180,17 @@ tr
   border: 0;
 }
 
+#lookup {
+  background-color: beige;
+  padding: 10px 25px;
+}
+
+#error {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+}
+
 /* Wardmap */
 
 .wardmap tr, .wardmap td.blank
