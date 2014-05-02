@@ -8,10 +8,35 @@
 
 %h1= "#{@district.name} #{@district.body.district_name}"
 
+-# Candidates for 22 May 2014 council election
+
+- @election = Election.get(8)
+
+%h2
+  = @district.name
+  ward candidates for the
+  %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}"}
+    = @election.body.name
+    election on
+    = long_date(@election.d)
+
+%table
+  - Candidacy.all(:election => @election, :district => @district).each do |c|
+    %tr.vcard
+      %td{ :style => "background-color: #{c.party.colour}" } &nbsp;
+      %td.candidate_name.fn
+        %a{ :href => "/candidates/#{c.candidate.id}" }
+          = c.candidate.short_name
+      %td.org
+        = party_name(c.labcoop, c.party.name)
+
 -# TODO % turnout plotted over time
 -# TODO map of district shown within Sutton boundary
 
-%h2 Candidates elected
+%h2
+  Candidates elected previously in
+  = @district.name
+  = @district.body.district_name
 
 - Election.all(:body => @district.body, :order => [:d.desc]).each do |election|
   - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :seats => 1, :order => [:votes.desc])
