@@ -8,6 +8,12 @@
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   %body
     #main
+      - if flash[:notice]
+        #notice
+          %p= flash[:notice]
+      - if flash[:error]
+        #error
+          %p= flash[:error]
       = yield
     #footer
       #footer_inner

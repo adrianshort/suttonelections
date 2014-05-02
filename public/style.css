@@ -185,6 +185,12 @@ tr
   padding: 10px 25px;
 }
 
+#notice {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+}
+
 #error {
   background-color: red;
   color: white;
