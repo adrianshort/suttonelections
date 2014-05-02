@@ -31,9 +31,21 @@
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}/#{ccy['districts_name']}/#{ccy['district_slug']}" }
           = ccy['district_name']
-      %td.right= commify(ccy['votes'])
-      %td.right= to_ordinal(ccy['position'])
-      %td= ccy['seats'] == 1 ? "Elected" : "Not elected"
+      - if ccy['votes'].nil? # election results not yet available
+        %td.right &mdash;
+        %td.right &mdash;
+        %td.right &mdash;
+      - else
+        %td.right= commify(ccy['votes'])
+        %td.right= to_ordinal(ccy['position'])
+        %td= ccy['seats'] == 1 ? "Elected" : "Not elected"
 
 .warning
-  This might not be the complete electoral history for this candidate. They might have stood in elections outside Sutton and / or in Sutton elections for which we don't have data.
+  %p
+    This might not be the complete electoral history for this candidate. They might have stood in elections outside Sutton and / or in Sutton elections for which we don't have data.
+
+  %p
+    Some candidates have more than one profile page due to them using slightly different names in different elections. See the full
+    %a{ :href => "/candidates/##{@candidate.surname[0]}" }<
+      candidates list
+    for details. 
