@@ -12,6 +12,9 @@ class Poll
   def turnout_percent
     @ballot_papers_issued.to_f / @electorate.to_f * 100.0
   end
+
+  belongs_to :election
+  belongs_to :district
 end
 
 class Postcode
@@ -114,6 +117,7 @@ class Election
   property  :kind,              String, :length => 255
   
   has n,      :candidacies
+  has n,      :polls
   belongs_to  :body
   
   def self.past
@@ -138,6 +142,7 @@ class District
 
   belongs_to :body
   has n,    :postcodes, :child_key => [:ward_id]
+  has n,    :polls
   
   def self.slugify(name)
     name.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-').downcase
