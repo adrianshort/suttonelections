@@ -107,6 +107,19 @@ class Candidacy
   belongs_to  :district
 end
 
+class Campaign
+  include DataMapper::Resource
+
+  property :party_id,           Integer, :key => true
+  property :election_id,        Integer, :key => true
+  property :party_url,          String, :length => 255
+  property :manifesto_html_url, String, :length => 255
+  property :manifesto_pdf_url,  String, :length => 255
+
+  belongs_to :party
+  belongs_to :election
+end
+
 class Election
   include DataMapper::Resource
 
@@ -119,7 +132,8 @@ class Election
   has n,      :candidacies
   has n,      :polls
   belongs_to  :body
-  
+  has n,      :campaigns
+
   def self.past
     self.all(:d.lt => Time.now.to_s, :order => [ :d.desc ])
   end
@@ -170,6 +184,7 @@ class Party
   property :colour,         String
   
   has n, :candidacies
+  has n, :campaigns
 end
 
 # These models are now redundant

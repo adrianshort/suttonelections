@@ -91,6 +91,17 @@ a:hover
   color:  #fff;
 }
 
+/*
+Show icon for external links
+https://stackoverflow.com/questions/18168286/how-can-i-style-external-links-like-wikipedia
+*/
+a[href^="//"]:after, 
+a[href^="http://"]:after, 
+a[href^="https://"]:after {
+  content: url(/external-link.png);
+  margin: 0 0 0 5px;
+}
+
 h1
 {
   margin-top: 20px;
@@ -272,4 +283,9 @@ tr
 
 .letter_index a {
   margin: 0 10px 0 0;
+}
+
+#candidate_bio img {
+  float: left;
+  margin: 0 15px 15px 0;
 }
