@@ -21,7 +21,7 @@
     = long_date(@election.d)
 
 %table
-  - Candidacy.all(:election => @election, :district => @district).each do |c|
+  - Candidacy.all(:election => @election, :district => @district, :order => [:party_id]).each do |c|
     - campaign = Campaign.first(:party => c.party, :election => @election)
     %tr.vcard
       %td{ :style => "background-color: #{c.party.colour}" } &nbsp;
