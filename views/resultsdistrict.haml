@@ -39,17 +39,50 @@
   .warning
     We don't have the results for this election yet.
 
-- if @poll
-  %table
-    %tr
-      %td Ballot papers issued
-      %td.right= commify(@poll.ballot_papers_issued)
-    %tr
-      %td Electorate
-      %td.right= commify(@poll.electorate)
-    %tr
-      %td Turnout
-      %td.right= sprintf("%.0f%%", @poll.turnout_percent)
+%h2 Votes by candidate
+  
+%table
+  %tr.header
+    %th &nbsp;
+    %th &nbsp;
+    %th &nbsp;
+    %th &nbsp;
+    %th.right votes
+    %th.right % votes
+    %th &nbsp;
+
+  - count = 0
+  - @candidacies.each do |candidacy|
+    - count += 1
+    %tr.vcard
+      %td= count
+      %td{ :style => "background-color: #{candidacy.party.colour}" } &nbsp;
+      %td.candidate_name.fn
+        %a{ :href => "/candidates/#{candidacy.candidate.id}" }
+          = candidacy.candidate.short_name
+      %td.org
+        = party_name(candidacy.labcoop, candidacy.party.name)
+      - if @election_held
+        %td.right= commify(candidacy.votes)
+        %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
+          
+        - if candidacy.seats == 1
+          %td.elected="Elected"
+        - else
+          %td &nbsp;
+      - else
+        %td.right &mdash;
+        %td.right &mdash;
+        %td
+
+  %tr.footer
+    %td &nbsp;
+    %td &nbsp;
+    %td &nbsp;
+    %td &nbsp;
+    %td.right= commify(@total_votes)
+    %td &nbsp;
+    %td &nbsp;
 
 %h2 Votes by party
 
@@ -95,49 +128,16 @@
     %td.right= commify(@total_votes)
     %td &nbsp;
 
-
-%h2 Votes by candidate
-  
-%table
-  %tr.header
-    %th &nbsp;
-    %th &nbsp;
-    %th &nbsp;
-    %th &nbsp;
-    %th.right votes
-    %th.right % votes
-    %th &nbsp;
-
-  - count = 0
-  - @candidacies.each do |candidacy|
-    - count += 1
-    %tr.vcard
-      %td= count
-      %td{ :style => "background-color: #{candidacy.party.colour}" } &nbsp;
-      %td.candidate_name.fn
-        %a{ :href => "/candidates/#{candidacy.candidate.id}" }
-          = candidacy.candidate.short_name
-      %td.org
-        = party_name(candidacy.labcoop, candidacy.party.name)
-      - if @election_held
-        %td.right= commify(candidacy.votes)
-        %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
-          
-        - if candidacy.seats == 1
-          %td.elected="Elected"
-        - else
-          %td &nbsp;
-      - else
-        %td.right &mdash;
-        %td.right &mdash;
-        %td
-
-  %tr.footer
-    %td &nbsp;
-    %td &nbsp;
-    %td &nbsp;
-    %td &nbsp;
-    %td.right= commify(@total_votes)
-    %td &nbsp;
-    %td &nbsp;
+- if @poll
+  %p
+  %table
+    %tr
+      %td Ballot papers issued
+      %td.right= commify(@poll.ballot_papers_issued)
+    %tr
+      %td Electorate
+      %td.right= commify(@poll.electorate)
+    %tr
+      %td Turnout
+      %td.right= sprintf("%.0f%%", @poll.turnout_percent)
 
