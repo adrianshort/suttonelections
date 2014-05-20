@@ -86,6 +86,13 @@ class Candidate
   end
 end
 
+class DeletedCandidate
+  include DataMapper::Resource
+
+  property  :old_candidate_id,  Integer, :key => true       # ID of candidate that has been merged/deleted
+  property  :candidate_id,      Integer, :required => true  # ID of candidate that has been kept
+end
+
 class Candidacy
   include DataMapper::Resource
 

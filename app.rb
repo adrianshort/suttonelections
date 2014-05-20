@@ -185,6 +185,10 @@ end
 # end
 
 get '/candidates/:id/?' do
+  if @deleted_candidate = DeletedCandidate.get(params[:id])
+    redirect "/candidates/#{@deleted_candidate.candidate_id}", 301 # HTTP 301 Moved Permanently
+  end
+
   if @candidate = Candidate.get(params[:id])
     @candidacies = repository(:default).adapter.select("
       SELECT
