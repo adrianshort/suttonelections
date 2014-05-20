@@ -39,6 +39,18 @@
   .warning
     We don't have the results for this election yet.
 
+- if @poll
+  %table
+    %tr
+      %td Ballot papers issued
+      %td.right= commify(@poll.ballot_papers_issued)
+    %tr
+      %td Electorate
+      %td.right= commify(@poll.electorate)
+    %tr
+      %td Turnout
+      %td.right= sprintf("%.0f%%", @poll.turnout_percent)
+
 %h2 Votes by party
 
 %table
@@ -128,3 +140,4 @@
     %td.right= commify(@total_votes)
     %td &nbsp;
     %td &nbsp;
+

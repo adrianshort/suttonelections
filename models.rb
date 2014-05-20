@@ -149,6 +149,14 @@ class Election
     self.all(:d.gte => Time.now.to_s, :order => [ :d.desc ])
   end
   
+  # electorate and ballot_papers_issued assume there's a Poll object for every district in this election
+  def electorate  
+    Poll.sum(:electorate, :election => self)
+  end
+
+  def ballot_papers_issued
+    Poll.sum(:ballot_papers_issued, :election => self)
+  end
 end
 
 class District

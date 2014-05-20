@@ -39,7 +39,7 @@
 - unless @election_held
   .warning
     We don't have the results for this election yet.
-  
+
 %p= @election.reason
 
 %p
@@ -107,6 +107,18 @@
       %td &nbsp;
       %td &nbsp;
       %td &nbsp;
+
+  - if @election.ballot_papers_issued
+    %table
+      %tr
+        %td Electorate
+        %td.right= commify(@election.electorate)
+      %tr
+        %td Ballot papers issued
+        %td.right= commify(@election.ballot_papers_issued)
+      %tr
+        %td Turnout
+        %td.right= sprintf("%.0f%%", @election.ballot_papers_issued / @election.electorate.to_f * 100)
         
   %h2
     = @election.body.district_name.capitalize.pluralize(2)

@@ -241,7 +241,8 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
   @total_candidates =  Candidacy.count(:district => @district, :election => @election)
   @total_seats =  Candidacy.sum(:seats, :district => @district, :election => @election)
   @districts_in_this_election = @election.candidacies.districts
-  
+  @poll =         Poll.get(@district.id, @election.id)
+
   # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
   @results_by_party = repository(:default).adapter.select("
     SELECT 
