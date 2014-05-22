@@ -1,3 +1,13 @@
+
+- if flash[:polling_station]
+  %p
+  #polling_station
+    %h2 Where to vote
+    %p
+      = flash[:polling_station]
+    %p Polling stations are open from 7AM to 10PM on Thursday 22 May 2014.
+    %p You don't need your poll card to vote. Just tell the staff your name and address.
+
 - @page_title = "#{@district.name} #{@district.body.district_name}, #{@district.body.name}"
 
 .nav

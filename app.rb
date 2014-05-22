@@ -72,6 +72,15 @@ get '/' do
       # Postcode is valid and in LB Sutton
       @ward = Ward.get(@p.ward_id)
       flash[:notice] = "Postcode <strong>#{@postcode}</strong> is in #{@ward.name} ward"
+
+      if @p.polling_station
+        @ps_postcode = Postcode.get(@p.polling_station.postcode)
+        flash[:polling_station] = "Your polling station is \
+          <a href=\"http://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=16\">%s, %s, %s</a>" \
+          % [ @ps_postcode.lat, @ps_postcode.lng, @p.polling_station.name, \
+            @p.polling_station.address, @p.polling_station.postcode]
+      end
+
       redirect "/bodies/sutton-council/wards/#{@ward.slug}"
     else
       flash.now[:error] = "<strong>#{@postcode}</strong> is not a postcode in Sutton"

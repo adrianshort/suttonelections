@@ -17,6 +17,21 @@ class Poll
   belongs_to :district
 end
 
+class PollingStation
+  include DataMapper::Resource
+
+  property :id,           String, :key => true, :length => 2 # e.g. "KA"
+  property :name,         String, :length => 255#, :required => true
+  property :address,      String, :length => 255#, :required => true
+  property :postcode,     String#, :required => true
+  property :easting,      Float,  :required => true
+  property :northing,     Float,  :required => true
+  property :lat,          Float,  :required => true
+  property :lng,          Float,  :required => true
+
+  has n, :postcodes
+end  
+
 class Postcode
   include DataMapper::Resource
 
@@ -36,8 +51,10 @@ class Postcode
   property :lng,                          Float,    :required => true
   property :ward_id,                      Integer,  :required => true # Sutton Council
   property :constituency_id,              Integer,  :required => false # UK Parliament
+  property :polling_station_id,           String,   :length => 2
 
   belongs_to :district, :child_key => [:ward_id]
+  belongs_to :polling_station
 
   def self.finder(postcode)
     postcode = postcode.strip.upcase
