@@ -307,6 +307,11 @@ end
 #   haml :aliens
 # end
 
+get '/polling-stations' do
+  @stations = PollingStation.all
+  haml :pollingstations
+end
+
 not_found do
   haml :not_found
 end

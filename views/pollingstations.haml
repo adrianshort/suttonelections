@@ -1,0 +1,18 @@
+%h1 Polling Stations
+
+.warning
+  %p If you've got a postal vote but haven't posted it yet, you can take it to ANY polling station before 10PM tonight (Thursday 22 May 2014).
+  %p
+    If you've got an ordinary vote (not postal) you MUST vote at the right polling station for your address. Use the 
+    %a{ :href => "/" }
+      postcode search box
+    on the home page to find your polling station and the candidates for your ward.
+
+%table
+  - @stations.each do |s|
+    %tr
+      %td
+        %a{ :href => "http://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=16" % [ s.lat, s.lng ]}
+          = s.name
+      %td= s.address
+      %td= s.postcode
