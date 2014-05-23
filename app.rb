@@ -81,7 +81,7 @@ get '/' do
             @p.polling_station.address, @p.polling_station.postcode]
       end
 
-      redirect "/bodies/sutton-council/wards/#{@ward.slug}"
+      redirect "/bodies/sutton-council/elections/2014-05-22/wards/#{@ward.slug}"
     else
       flash.now[:error] = "<strong>#{@postcode}</strong> is not a postcode in Sutton"
     end
