@@ -90,8 +90,7 @@ class Candidate
   property  :id,              Serial
   property  :forenames,       String,   :required => true
   property  :surname,         String,   :required => true, :index => true
-  property  :sex,             String
-  
+
   has n, :candidacies
   
   def short_name

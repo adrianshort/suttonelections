@@ -5,7 +5,7 @@ def show_candidate(id)
   
   template = "%6s\t%50s\t%20s\t%3s"
   
-  puts template % [ c.id, c.forenames, c.surname, c.sex ]
+  puts template % [ c.id, c.forenames, c.surname ]
   
   ccy_template = "%20s\t%15s\t%20s\t%20s"
   c.candidacies.each do |ccy|
