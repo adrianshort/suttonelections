@@ -95,6 +95,7 @@
     %th candidates
     %th.right votes
     %th.right % votes
+    %th.right votes per candidate
     
     - count = 0
     
@@ -112,7 +113,9 @@
         - if @election_held
           %td.right= commify(row['total_votes'])
           %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+          %td.right= commify(row['total_votes'] / row['num_candidates'])
         - else
+          %td.right &mdash;
           %td.right &mdash;
           %td.right &mdash;
   
@@ -126,6 +129,7 @@
       %td.right.highlight &nbsp;
     %td.right= @total_candidates
     %td.right= commify(@total_votes)
+    %td &nbsp;
     %td &nbsp;
 
 - if @poll
