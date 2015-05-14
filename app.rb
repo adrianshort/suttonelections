@@ -324,10 +324,6 @@ get '/error' do
   haml :error
 end
 
-get '/about' do
-  haml :about
-end
-
 # get '/aliens' do
 #   haml :aliens
 # end
