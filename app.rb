@@ -287,7 +287,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
     count = 0
     @candidacies.each do |c|
       count += 1
-      o += "| %2d | [[%-30s]] | [[%-40s]] |  %6s |  %3s | %-7s |\n" %
+      o += "|  %2d | [[%-30s]] | [[%-40s]] |  %6s |  %3s | %-7s |\n" %
         [ count,
           c.candidate.short_name,
           party_name(c.labcoop, c.party.name),
