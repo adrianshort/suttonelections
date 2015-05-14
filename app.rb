@@ -281,7 +281,25 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
     ORDER BY total_votes DESC
   ", @district.id, @election.id)
   
-  haml :resultsdistrict
+  if params[:wiki] == 'dokuwiki'
+    o = "^ #{@district.name} #{@district.body.district_name} results, #{@body.name} election #{short_date(@election.d)} ^^^^^^\n"
+    o += "^ Position ^ Candidate ^ Party ^ Votes ^ % Share ^ ^\n"
+    count = 0
+    @candidacies.each do |c|
+      count += 1
+      o += "| %2d | [[%-30s]] | [[%-40s]] |  %6s |  %3s | %-7s |\n" %
+        [ count,
+          c.candidate.short_name,
+          party_name(c.labcoop, c.party.name),
+          commify(c.votes),
+          format_percent(c.votes.to_f / @total_votes * 100),
+          c.seats == 1 ? 'Elected' : ''
+        ]
+    end
+    o
+  else
+    haml :resultsdistrict
+  end
 end
 
 get '/bodies/:body/:districts_name/:district' do
