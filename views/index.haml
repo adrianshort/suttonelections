@@ -2,7 +2,7 @@
 
 #lookup
   %h2
-    Sutton Council local election results 22 May 2014
+    = @election_title
   %form{ :method => 'get', :action => '/' }
     %label{ :for => "postcode" } My postcode is 
     %input{ :type => 'text', :name => 'postcode', :value => @default_pc, :size => 8, :maxlength => 8 }

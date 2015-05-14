@@ -65,23 +65,30 @@ helpers do
 end
 
 get '/' do
+  @election = Election.get(9) # FIXME magic number
+  @election_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
+  
   if params[:postcode]
-    @postcode = params[:postcode].strip.upcase
-
-    if @p = Postcode.get(@postcode)
+    if @p = Postcode.get(params[:postcode].strip.upcase)
       # Postcode is valid and in LB Sutton
-      @ward = Ward.get(@p.ward_id)
-      flash[:notice] = "Postcode <strong>#{@postcode}</strong> is in #{@ward.name} ward"
+      
+      if @election.body.district_name == 'constituency'
+        @district = District.get(@p.constituency_id)
+      else
+        @district = District.get(@p.ward_id)
+      end
+      
+      flash[:notice] = "Postcode <strong>#{@postcode}</strong> is in #{@district.name} #{@election.body.district_name}"
 
       if @p.polling_station
         @ps_postcode = Postcode.get(@p.polling_station.postcode)
-        flash[:polling_station] = "Your polling station is \
+        @polling_station = "Your polling station is \
           <a href=\"http://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=16\">%s, %s, %s</a>" \
           % [ @ps_postcode.lat, @ps_postcode.lng, @p.polling_station.name, \
             @p.polling_station.address, @p.polling_station.postcode]
       end
 
-      redirect "/bodies/sutton-council/elections/2014-05-22/wards/#{@ward.slug}"
+      redirect "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@district.slug}"
     else
       flash.now[:error] = "<strong>#{@postcode}</strong> is not a postcode in Sutton"
     end

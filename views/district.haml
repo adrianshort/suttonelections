@@ -8,9 +8,7 @@
 
 %h1= "#{@district.name} #{@district.body.district_name}"
 
--# Candidates for 22 May 2014 council election
-
-- @election = Election.get(8)
+- @election = Election.get(9) # FIXME magic number
 
 %h2
   = @district.name
