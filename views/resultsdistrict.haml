@@ -149,3 +149,23 @@
       %td Turnout
       %td.right= sprintf("%.0f%%", @poll.turnout_percent)
 
+  -# Show this table conditionally as sometimes we have electorate data but no
+  -# breakdown of rejected ballot papers
+  - if @poll.rejected_no_official_mark
+    %h2 Rejected ballot papers
+    %table
+      %tr
+        %td Want of official mark
+        %td.right= commify(@poll.rejected_no_official_mark)
+      %tr
+        %td Voting for too many candidates
+        %td.right= commify(@poll.rejected_too_many_candidates)
+      %tr
+        %td Writing or mark by which the voter could be identified
+        %td.right= commify(@poll.rejected_identifiable_voter)
+      %tr
+        %td Unmarked or void for uncertainty
+        %td.right= commify(@poll.rejected_blank_or_uncertain)
+      %tr.footer
+        %td &nbsp;
+        %td.right= commify(@poll.total_rejected_ballots)

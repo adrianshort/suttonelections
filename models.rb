@@ -8,9 +8,20 @@ class Poll
   property :electorate,           Integer                       # The number of people eligible to vote in this district in this election
   property :ballot_papers_issued, Integer                       # The number of ballot papers issued (includes spoiled ballots)
   property :seats,                Integer, :required => true    # The number of seats to be elected in this district in this election
-  
+  property :rejected_no_official_mark,    Integer
+  property :rejected_too_many_candidates, Integer
+  property :rejected_identifiable_voter,  Integer
+  property :rejected_blank_or_uncertain,  Integer
+
   def turnout_percent
     @ballot_papers_issued.to_f / @electorate.to_f * 100.0
+  end
+
+  def total_rejected_ballots
+    @rejected_no_official_mark + \
+    @rejected_too_many_candidates + \
+    @rejected_identifiable_voter + \
+    @rejected_blank_or_uncertain
   end
 
   belongs_to :election
