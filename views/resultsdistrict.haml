@@ -92,53 +92,54 @@
   %a{ :href => "?wiki=dokuwiki" }
     DokuWiki
 
-%h2 Votes by party
+- if @total_seats > 1
+  %h2 Votes by party
 
-%table
-  %tr.header
-    %th &nbsp;
-    %th &nbsp;
-    %th &nbsp;
-    %th.right.highlight seats won
-    %th candidates
-    %th.right votes
-    %th.right % votes
-    %th.right votes per candidate
+  %table
+    %tr.header
+      %th &nbsp;
+      %th &nbsp;
+      %th &nbsp;
+      %th.right.highlight seats won
+      %th candidates
+      %th.right votes
+      %th.right % votes
+      %th.right votes per candidate
+      
+      - count = 0
+      
+      - @results_by_party.each do |row|
+        - count += 1
+        %tr
+          %td.right= count
+          %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
+          %td= row['party_name']
+          - if @election_held
+            %td.right.highlight= row['num_seats']
+          - else
+            %td.right.highlight &mdash;
+          %td.right= row['num_candidates']
+          - if @election_held
+            %td.right= commify(row['total_votes'])
+            %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+            %td.right= commify(row['total_votes'] / row['num_candidates'])
+          - else
+            %td.right &mdash;
+            %td.right &mdash;
+            %td.right &mdash;
     
-    - count = 0
-    
-    - @results_by_party.each do |row|
-      - count += 1
-      %tr
-        %td.right= count
-        %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
-        %td= row['party_name']
-        - if @election_held
-          %td.right.highlight= row['num_seats']
-        - else
-          %td.right.highlight &mdash;
-        %td.right= row['num_candidates']
-        - if @election_held
-          %td.right= commify(row['total_votes'])
-          %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
-          %td.right= commify(row['total_votes'] / row['num_candidates'])
-        - else
-          %td.right &mdash;
-          %td.right &mdash;
-          %td.right &mdash;
-  
-  %tr.footer
-    %td &nbsp;
-    %td &nbsp;
-    %td &nbsp;
-    - if @election_held
-      %td.right.highlight= @total_seats
-    - else
-      %td.right.highlight &nbsp;
-    %td.right= @total_candidates
-    %td.right= commify(@total_votes)
-    %td &nbsp;
-    %td &nbsp;
+    %tr.footer
+      %td &nbsp;
+      %td &nbsp;
+      %td &nbsp;
+      - if @election_held
+        %td.right.highlight= @total_seats
+      - else
+        %td.right.highlight &nbsp;
+      %td.right= @total_candidates
+      %td.right= commify(@total_votes)
+      %td &nbsp;
+      %td &nbsp;
 
 - if @poll
   %p
