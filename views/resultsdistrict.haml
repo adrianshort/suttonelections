@@ -144,15 +144,18 @@
 - if @poll
   %p
   %table
-    %tr
-      %td Ballot papers issued
-      %td.right= commify(@poll.ballot_papers_issued)
-    %tr
-      %td Electorate
-      %td.right= commify(@poll.electorate)
-    %tr
-      %td Turnout
-      %td.right= sprintf("%.0f%%", @poll.turnout_percent)
+    - if @poll.ballot_papers_issued
+      %tr
+        %td Ballot papers issued
+        %td.right= commify(@poll.ballot_papers_issued)
+    - if @poll.electorate
+      %tr
+        %td Electorate
+        %td.right= commify(@poll.electorate)
+    - if @poll.turnout_percent > 0
+      %tr
+        %td Turnout
+        %td.right= sprintf("%.0f%%", @poll.turnout_percent)
 
   -# Show this table conditionally as sometimes we have electorate data but no
   -# breakdown of rejected ballot papers
