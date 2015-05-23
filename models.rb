@@ -18,10 +18,18 @@ class Poll
   end
 
   def total_rejected_ballots
-    @rejected_no_official_mark + \
-    @rejected_too_many_candidates + \
-    @rejected_identifiable_voter + \
-    @rejected_blank_or_uncertain
+    if @rejected_no_official_mark
+      @rejected_no_official_mark + \
+      @rejected_too_many_candidates + \
+      @rejected_identifiable_voter + \
+      @rejected_blank_or_uncertain
+    else
+      nil
+    end
+  end
+
+  def valid_ballot_papers
+    self.total_rejected_ballots ? @ballot_papers_issued - self.total_rejected_ballots : nil
   end
 
   belongs_to :election

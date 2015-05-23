@@ -259,6 +259,15 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
   @districts_in_this_election = @election.candidacies.districts
   @poll =         Poll.get(@district.id, @election.id)
 
+  if @total_seats == 1
+    @share_denominator = @total_votes
+  elsif @poll.valid_ballot_papers
+    @share_denominator = @poll.valid_ballot_papers
+  else
+    @share_denominator = @total_votes / @total_seats
+    @share_message = "The vote share calculations have been estimated as we do not have data for the number of valid ballot papers in this poll."
+  end
+
   # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
   @results_by_party = repository(:default).adapter.select("
     SELECT 
@@ -292,7 +301,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
           c.candidate.short_name,
           party_name(c.labcoop, c.party.name),
           commify(c.votes),
-          format_percent(c.votes.to_f / @total_votes * 100),
+          format_percent(c.votes.to_f / @share_denominator * 100),
           c.seats == 1 ? 'Elected' : ''
         ]
     end

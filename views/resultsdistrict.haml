@@ -64,7 +64,7 @@
         = party_name(candidacy.labcoop, candidacy.party.name)
       - if @election_held
         %td.right= commify(candidacy.votes)
-        %td.right= format_percent(candidacy.votes.to_f / @total_votes * 100)
+        %td.right= format_percent(candidacy.votes.to_f / @share_denominator * 100)
           
         - if candidacy.seats == 1
           %td.elected="Elected"
@@ -83,6 +83,10 @@
     %td.right= commify(@total_votes)
     %td &nbsp;
     %td &nbsp;
+
+- if @share_message
+  .warning
+    = @share_message
 
 %p
   %a{ :href => "?wiki=dokuwiki" }
