@@ -265,7 +265,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
     @share_denominator = @poll.valid_ballot_papers
   else
     @share_denominator = @total_votes / @total_seats
-    @share_message = "The vote share calculations have been estimated as we do not have data for the number of valid ballot papers in this poll."
+    @share_message = "The vote share calculations have been estimated as we don't have data for the number of valid ballot papers in this poll."
   end
 
   # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
