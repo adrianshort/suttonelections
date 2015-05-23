@@ -261,7 +261,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
 
   if @total_seats == 1
     @share_denominator = @total_votes
-  elsif @poll.valid_ballot_papers
+  elsif @poll && @poll.valid_ballot_papers
     @share_denominator = @poll.valid_ballot_papers
   else
     @share_denominator = @total_votes / @total_seats
