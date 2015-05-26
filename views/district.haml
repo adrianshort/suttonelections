@@ -8,15 +8,16 @@
 
 %h1= "#{@district.name} #{@district.body.district_name}"
 
-- @election = Election.get(9) # FIXME magic number
+-#
+  - @election = Election.get(9) # FIXME magic number
 
-%h2
-  = @district.name
-  ward candidates for the
-  %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}"}
-    = @election.body.name
-    election on
-    = long_date(@election.d)
+  %h2
+    = @district.name
+    ward candidates for the
+    %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}"}
+      = @election.body.name
+      election on
+      = long_date(@election.d)
 
 %table
   - Candidacy.all(:election => @election, :district => @district, :order => [:party_id]).each do |c|
