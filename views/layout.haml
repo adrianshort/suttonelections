@@ -18,8 +18,11 @@
         %h1 Sutton Elections
         %p
           %a{ :href => '/' } Home
-        %p
-          %a{ :href => '/bodies' } Bodies
+        - Body.each do |body|
+          %p
+            %a{ :href => "/bodies/#{body.slug}" }
+              = body.name
+              elections
         %p
           %a{ :href => '/candidates' } Candidates
         -#
