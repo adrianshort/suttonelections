@@ -4,6 +4,7 @@
     %title= @page_title ? @page_title + " - Sutton Elections" : "Sutton Elections - Your guide to voting and election results in the London Borough of Sutton"
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/print.css', :media => 'print' }
+    %meta{ :name => 'referrer', :content => 'no-referrer' }
   %body
     #main
       - if flash[:notice]
@@ -37,14 +38,13 @@
         %p
           %a{ :href => "https://github.com/adrianshort/suttonelections" }
             An independent website by Adrian Short
-        %p  
-          Powered by data from 
+        %p
+          Powered by data from
           %a{ :href => "http://www.sutton.gov.uk/" }<
             Sutton Council
-          , 
+          ,
           %a{ :href => "http://data.london.gov.uk/"}
             London Datastore
           and
           %a{ :href => "http://www.ordnancesurvey.co.uk/business-and-government/products/code-point-open.html" }<
             Ordnance Survey
-            
