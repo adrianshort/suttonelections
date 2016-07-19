@@ -341,6 +341,9 @@ end
 #   @stations = PollingStation.all
 #   haml :pollingstations
 # end
+get '/about' do
+  haml :about
+end
 
 not_found do
   haml :not_found
