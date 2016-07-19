@@ -13,11 +13,11 @@ class String
     if num == 1
       return self
     end
-    
+
     case self[-1]
       when 'y'
         self[0..-2] + 'ies'
-      when 's'    
+      when 's'
         self + "es"
       else
         self + "s"
@@ -31,7 +31,7 @@ helpers do
   def commify(num)
     num.to_s.reverse.gsub(/(\d\d\d)(?=\d)(?!\d*\.)/,'\1,').reverse
   end
-    
+
   # From http://snippets.dzone.com/posts/show/593
   def to_ordinal(num)
     num = num.to_i
@@ -67,17 +67,17 @@ end
 get '/' do
   @election = Election.get(9) # FIXME magic number
   @election_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
-  
+
   if params[:postcode]
     if @p = Postcode.get(params[:postcode].strip.upcase)
       # Postcode is valid and in LB Sutton
-      
+
       if @election.body.district_name == 'constituency'
         @district = District.get(@p.constituency_id)
       else
         @district = District.get(@p.ward_id)
       end
-      
+
       flash[:notice] = "Postcode <strong>#{@postcode}</strong> is in #{@district.name} #{@election.body.district_name}"
 
       if @p.polling_station
@@ -93,7 +93,7 @@ get '/' do
       flash.now[:error] = "<strong>#{@postcode}</strong> is not a postcode in Sutton"
     end
   end
-  
+
   # Display a random postcode as default search term
   @random_pc = repository(:default).adapter.select("
     SELECT postcode
@@ -151,7 +151,7 @@ get '/bodies/:body/elections/:date' do
       SUM(c.seats) AS seats,
       SUM(c.votes) AS votez,
       COUNT(c.id) AS num_candidates
-      
+
     FROM districts d, candidacies c
 
     WHERE
@@ -162,7 +162,7 @@ get '/bodies/:body/elections/:date' do
 
     ORDER BY d.name
   ", @election.id)
-  
+
   # For elections that haven't yet been held
   @districts_in_this_election = repository(:default).adapter.select("
     SELECT DISTINCT d.name, d.slug
@@ -217,26 +217,26 @@ get '/candidates/:id/?' do
         b.districts_name AS districts_name,
         d.name AS district_name,
         d.slug AS district_slug
-      
+
       FROM candidacies c
-      
+
       INNER JOIN elections e
       ON c.election_id = e.id
-      
+
       INNER JOIN parties p
       ON c.party_id = p.id
-      
+
       INNER JOIN bodies b
       ON e.body_id = b.id
-      
+
       INNER JOIN districts d
       ON c.district_id = d.id
-      
+
       WHERE c.candidate_id = ?
-      
+
       ORDER BY d
     ", @candidate.id)
-  
+
     haml :candidate
   else
     404
@@ -270,7 +270,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
 
   # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
   @results_by_party = repository(:default).adapter.select("
-    SELECT 
+    SELECT
       p.name AS party_name,
       p.colour AS party_colour,
       COUNT(c.id) AS num_candidates,
@@ -278,18 +278,18 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
       SUM(c.votes) AS total_votes
 
     FROM candidacies c
-    
+
     LEFT JOIN parties p
     ON c.party_id = p.id
-    
+
     WHERE c.district_id = ?
     AND c.election_id = ?
-    
+
     GROUP BY p.name, p.colour
-    
+
     ORDER BY total_votes DESC
   ", @district.id, @election.id)
-  
+
   if params[:wiki] == 'dokuwiki'
     o = "^ #{@district.name} #{@district.body.district_name} results, #{@body.name} election #{short_date(@election.d)} ^^^^^^\n"
     o += "^ Position ^ Candidate ^ Party ^ Votes ^ % Share ^ ^\n"
@@ -325,22 +325,10 @@ get '/how-the-parliament-election-works' do
   haml :parliament
 end
 
-# get '/voting' do
-#   haml :voting
-# end
-
 get '/error' do
   haml :error
 end
 
-# get '/aliens' do
-#   haml :aliens
-# end
-
-# get '/polling-stations' do
-#   @stations = PollingStation.all
-#   haml :pollingstations
-# end
 get '/about' do
   haml :about
 end
