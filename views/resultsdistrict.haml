@@ -7,7 +7,6 @@
     &nbsp;
     = long_date(@election.d)
     
-    
 .nav
   - if @districts_in_this_election.size > 1
     - @district_index = @districts_in_this_election.index(@district)
@@ -39,8 +38,6 @@
   .warning
     We don't have the results for this election yet.
 
-%h2 Votes by candidate
-  
 %table
   %tr.header
     %th &nbsp;
