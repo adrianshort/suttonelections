@@ -24,13 +24,9 @@
         = @next_district.name 
         &raquo;
 
-  %p
-    %a{ :href => "/bodies/#{@district.body.slug}/#{@district.body.district_name.pluralize(2)}/#{@district.slug}" }
-      All elections in
-      = @district.name
-      &raquo;
-
-%h1= @district.name + " " + @district.body.district_name
+%h1
+  %a{ :href => "/bodies/#{@district.body.slug}/#{@district.body.district_name.pluralize(2)}/#{@district.slug}" }
+    = @district.name + " " + @district.body.district_name
 
 - @election_held = Candidacy.sum(:votes, :election => @election, :district => @district)
 
