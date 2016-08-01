@@ -11,7 +11,7 @@
     %tr
       %td
         %a{ :href => "/bodies/#{@body.slug}/elections/#{election.d}" }<
-          = long_date(election.d)
+          = short_date(election.d)
       %td
         = election.kind
       
