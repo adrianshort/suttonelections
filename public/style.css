@@ -89,21 +89,9 @@ a:hover
   color:  #fff;
 }
 
-/*
-Show icon for external links
-https://stackoverflow.com/questions/18168286/how-can-i-style-external-links-like-wikipedia
-*/
-
-/*a[href^="//"]:after,
-a[href^="http://"]:after,
-a[href^="https://"]:after {
-  content: url(/external-link.png);
-  margin: 0 0 0 5px;
-}*/
-
 h1
 {
-  margin-top: 20px;
+  margin: 40px 0;
   line-height: 1.4em;
   font-weight: bold;
   color: #555;
@@ -111,7 +99,7 @@ h1
 
 h2
 {
-  margin-top: 40px;
+  margin-top: 20px;
   line-height: 1.5em;
   font-weight: bold;
   color: #555;
@@ -119,7 +107,7 @@ h2
 
 h3
 {
-  margin: 30px 0 10px 0;
+  margin: 30px 0 0 0;
   line-height: 1.5em;
   font-weight: bold;
   color: #555;
@@ -155,7 +143,7 @@ strong
 table
 {
   border-collapse: collapse;
-  margin: 60px 0;
+  margin: 20px 0 60px 0;
 }
 
 td, th
