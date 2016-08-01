@@ -38,7 +38,7 @@
       - else
         %td.right= commify(ccy['votes'])
         %td.right= to_ordinal(ccy['position'])
-        %td= ccy['seats'] == 1 ? "Elected" : "Not elected"
+        %td.elected_text= ccy['seats'] == 1 ? "Elected" : "Not elected"
 
 .warning
   %p
@@ -48,4 +48,4 @@
     Some candidates have more than one profile page due to them using slightly different names in different elections. See the full
     %a{ :href => "/candidates/##{@candidate.surname[0]}" }<
       candidates list
-    for details. 
+    for details.
