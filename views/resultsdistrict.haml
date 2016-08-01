@@ -67,7 +67,7 @@
         %td.right= format_percent(candidacy.votes.to_f / @share_denominator * 100)
           
         - if candidacy.seats == 1
-          %td.elected="Elected"
+          %td.elected.elected_text="Elected"
         - else
           %td &nbsp;
       - else
