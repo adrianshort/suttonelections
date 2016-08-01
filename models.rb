@@ -237,18 +237,5 @@ class Party
   has n, :campaigns
 end
 
-class Ward
-  include DataMapper::Resource
-
-  property :id, Serial
-  property :slug, String, :required => true
-  property :ons_id, String, :required => true
-  property :name, String, :required => true
-
-  def self.slugify(name)
-    name.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-').downcase
-  end
-end
-
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/suttonelections")
 DataMapper.auto_upgrade!
