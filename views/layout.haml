@@ -2,10 +2,30 @@
 %html
   %head
     %title= @page_title ? @page_title + " - Sutton Elections" : "Sutton Elections - Your guide to voting and election results in the London Borough of Sutton"
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => 'http://yui.yahooapis.com/pure/0.6.0/pure-min.css' }
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/print.css', :media => 'print' }
     %meta{ :name => 'referrer', :content => 'no-referrer' }
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1' }
   %body
+
+    #header.noprint
+      #header_inner
+        %h1 Sutton Elections
+        .pure-menu.pure-menu-horizontal
+          %ul.pure-menu-list
+            %li.pure-menu-item
+              %a{ :href => '/' } Home
+            - Body.each do |body|
+              %li.pure-menu-item
+                %a{ :href => "/bodies/#{body.slug}" }
+                  = body.name
+                  elections
+            %li.pure-menu-item
+              %a{ :href => '/candidates' } Candidates
+            %li.pure-menu-item
+              %a{ :href => '/about' } About
+
     #main
       - if flash[:notice]
         #notice
@@ -14,37 +34,3 @@
         #error
           %p= flash[:error]
       = yield
-    #footer
-      #footer_inner
-        %h1 Sutton Elections
-        %p
-          %a{ :href => '/' } Home
-        - Body.each do |body|
-          %p
-            %a{ :href => "/bodies/#{body.slug}" }
-              = body.name
-              elections
-        %p
-          %a{ :href => '/candidates' } Candidates
-        -#
-          %p
-            %a{ :href => '/polling-stations' } Polling stations
-        %p
-          %a{ :href => '/how-the-parliament-election-works' } How parliamentary elections work
-        %p
-          %a{ :href => '/how-the-council-election-works' } How council elections work
-        %p
-          &nbsp;
-        %p
-          %a{ :href => "https://github.com/adrianshort/suttonelections" }
-            An independent website by Adrian Short
-        %p
-          Powered by data from
-          %a{ :href => "http://www.sutton.gov.uk/" }<
-            Sutton Council
-          ,
-          %a{ :href => "http://data.london.gov.uk/"}
-            London Datastore
-          and
-          %a{ :href => "http://www.ordnancesurvey.co.uk/business-and-government/products/code-point-open.html" }<
-            Ordnance Survey
