@@ -12,19 +12,19 @@
       
       - unless @election_index == 0
         - @previous_election = @elections_for_this_body[@election_index - 1]
-        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "Previous #{@election.body.name} election" }<
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "#{@previous_election.kind} #{short_date(@previous_election.d)}" }<
           &laquo;
-          = @previous_election.kind
-          &nbsp;
-          = short_date(@previous_election.d)
+          Previous
+          = @election.body.name
+          election
         &nbsp;&nbsp;&nbsp;
     
       - unless @election_index == @elections_for_this_body.size - 1
         - @next_election = @elections_for_this_body[@election_index + 1]
-        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "Next #{@election.body.name} election" }<
-          = @next_election.kind 
-          &nbsp;
-          = short_date(@next_election.d)
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "#{@next_election.kind} #{short_date(@next_election.d)}" }<
+          Next
+          = @election.body.name
+          election
           &raquo;
 
 %h1
