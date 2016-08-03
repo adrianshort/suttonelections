@@ -41,6 +41,7 @@ repository(:default).adapter.select("
 ")
 
 # Delete the loser candidate
+DeletedCandidate.create(:old_candidate_id => loser, :candidate_id => winner)
 Candidate.get(loser).destroy
 
 puts "Merge completed. Here is the merged candidate:"
