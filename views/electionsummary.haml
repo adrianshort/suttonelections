@@ -1,10 +1,9 @@
 - @page_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
 
-.nav
-  %p
-    %a{ :href => "/bodies/#{@election.body.slug}" }
-      &laquo; 
-      = @election.body.name
+%nav
+  %a{ :href => "/bodies/#{@election.body.slug}" }
+    &laquo; 
+    = @election.body.name
     
   - if @elections_for_this_body.size > 1
     %p
@@ -69,8 +68,8 @@
       %th &nbsp;
       %th.highlight seats won
       %th votes
-      %th % seats
       %th % votes
+      %th % seats
       %th votes per seat
       %th candidates
       %th votes per candidate
@@ -84,8 +83,8 @@
         %td.data_seats.right.highlight= row.seatz
         %td.data_votes.right= commify(row.votez)
         - if @election_held
-          %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
           %td.right= format_percent(row.votez.to_f / @total_votes * 100)
+          %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
           %td.data_votes_per_seat.right
             - if row.seatz > 0
               = commify(row.votez / row.seatz)
