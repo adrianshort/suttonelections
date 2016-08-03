@@ -40,10 +40,7 @@
           &nbsp;
 
 
-%h2
-  Candidates elected previously in
-  = @district.name
-  = @district.body.district_name
+%h2 Candidates elected
 
 - Election.all(:body => @district.body, :order => [:d.desc]).each do |election|
   - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :seats => 1, :order => [:votes.desc])
