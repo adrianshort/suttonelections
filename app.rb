@@ -182,11 +182,6 @@ end
 #   Not written yet. Show how this party did at this election.
 # end
 
-get '/bodies/?' do
-  @bodies = Body.all
-  haml :bodies
-end
-
 get '/bodies/:body/?' do
   @body = Body.first(:slug => params[:body])
   @districts = District.all(:body => @body, :order => [:name])
