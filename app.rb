@@ -202,7 +202,7 @@ end
 
 get '/candidates/:id/?' do
   if @deleted_candidate = DeletedCandidate.get(params[:id])
-    redirect "/candidates/#{@deleted_candidate.candidate_id}", 301 # HTTP 301 Moved Permanently
+    redirect "/candidates/#{@deleted_candidate.candidate_id}", 302 # HTTP 302 Moved Temporarily
   end
 
   if @candidate = Candidate.get(params[:id])
