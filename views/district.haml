@@ -1,10 +1,9 @@
 - @page_title = "#{@district.name} #{@district.body.district_name}, #{@district.body.name}"
 
-.nav
-  %p
-    %a{ :href => "/bodies/#{@district.body.slug}" }
-      &laquo;&nbsp;
-      = @district.body.name
+%nav
+  %a{ :href => "/bodies/#{@district.body.slug}" }
+    &laquo;&nbsp;
+    = @district.body.name
 
 %h1= "#{@district.name} #{@district.body.district_name}"
 
