@@ -7,6 +7,11 @@
 %h2 Elections
 
 %table
+  %thead
+    %tr
+      %th
+      %th
+      %th turnout
   - @elections.each do |election|
     %tr
       %td
@@ -14,6 +19,9 @@
           = short_date(election.d)
       %td
         = election.kind
+      %td.right
+        - if election.turnout_percent
+          = format_percent(election.turnout_percent)
       
 %h2
   = @body.districts_name.capitalize

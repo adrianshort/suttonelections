@@ -189,8 +189,26 @@ end
 
 get '/bodies/:body/?' do
   @body = Body.first(:slug => params[:body])
-  @elections = Election.all(:body => @body, :order => [:d.desc])
   @districts = District.all(:body => @body, :order => [:name])
+  
+  @elections = repository(:default).adapter.select("
+    SELECT
+      e.id,
+      e.kind,
+      e.d,
+      SUM(p.ballot_papers_issued)::float / SUM(p.electorate) * 100 AS turnout_percent
+    
+    FROM elections e
+    
+    LEFT JOIN polls p
+    ON e.id = p.election_id 
+
+    WHERE e.body_id = ?
+
+    GROUP BY p.election_id, e.id
+    ORDER BY e.d DESC
+  ", @body.id)
+  
   haml :body
 end
 
