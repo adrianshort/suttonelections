@@ -18,26 +18,26 @@
       election on
       = long_date(@election.d)
 
-%table
-  - Candidacy.all(:election => @election, :district => @district, :order => [:party_id]).each do |c|
-    - campaign = Campaign.first(:party => c.party, :election => @election)
-    %tr.vcard
-      %td{ :style => "background-color: #{c.party.colour}" } &nbsp;
-      %td.candidate_name.fn
-        %a{ :href => "/candidates/#{c.candidate.id}" }
-          = c.candidate.short_name
-      %td.org
-        - if campaign && campaign.party_url
-          %a{ :href => campaign.party_url }
+  %table
+    - Candidacy.all(:election => @election, :district => @district, :order => [:party_id]).each do |c|
+      - campaign = Campaign.first(:party => c.party, :election => @election)
+      %tr.vcard
+        %td{ :style => "background-color: #{c.party.colour}" } &nbsp;
+        %td.candidate_name.fn
+          %a{ :href => "/candidates/#{c.candidate.id}" }
+            = c.candidate.short_name
+        %td.org
+          - if campaign && campaign.party_url
+            %a{ :href => campaign.party_url }
+              = party_name(c.labcoop, c.party.name)
+          - else
             = party_name(c.labcoop, c.party.name)
-        - else
-          = party_name(c.labcoop, c.party.name)
-      %td
-        - if campaign && campaign.manifesto_html_url
-          %a{ :href => campaign.manifesto_html_url }
-            manifesto
-        - else
-          &nbsp;
+        %td
+          - if campaign && campaign.manifesto_html_url
+            %a{ :href => campaign.manifesto_html_url }
+              manifesto
+          - else
+            &nbsp;
 
 
 %h2 Candidates elected
