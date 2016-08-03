@@ -1,13 +1,6 @@
 - @page_title = "#{@district.name} #{@district.body.district_name} results, #{@body.name} election #{short_date(@election.d)}"
 
-%p
-  %a{ :href => "/bodies/#{@district.body.slug}/elections/#{@election.d}" }<
-    = @body.name
-    election
-    &nbsp;
-    = long_date(@election.d)
-    
-.nav
+%nav
   - if @districts_in_this_election.size > 1
     - @district_index = @districts_in_this_election.index(@district)
     
@@ -24,6 +17,13 @@
         = @next_district.name 
         &raquo;
 
+%p
+  %a{ :href => "/bodies/#{@district.body.slug}/elections/#{@election.d}" }<
+    = @body.name
+    = @election.kind
+    &nbsp;
+    = long_date(@election.d)
+    
 %h1
   %a{ :href => "/bodies/#{@district.body.slug}/#{@district.body.district_name.pluralize(2)}/#{@district.slug}" }
     = @district.name + " " + @district.body.district_name
