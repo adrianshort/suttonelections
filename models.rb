@@ -31,6 +31,10 @@ class Poll
   def valid_ballot_papers
     self.total_rejected_ballots ? @ballot_papers_issued - self.total_rejected_ballots : nil
   end
+  
+  def successful_candidacies # Candidacies where the candidate was elected
+    Candidacy.all(:election => @election, :district => @district, :order => [:position], :limit => @seats)
+  end
 
   belongs_to :election
   belongs_to :district
@@ -118,6 +122,10 @@ class Candidate
   
   def name
     @forenames + ' ' + @surname
+  end
+  
+  def url
+    "/candidates/" + @id.to_s
   end
 end
 

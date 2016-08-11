@@ -144,37 +144,18 @@ get '/bodies/:body/elections/:date' do
     ORDER BY seatz DESC, votez DESC
   ", @election.id)
 
-  @results_by_district = repository(:default).adapter.select("
-    SELECT
-      d.name,
-      d.slug AS district_slug,
-      SUM(c.seats) AS seats,
-      SUM(c.votes) AS votez,
-      COUNT(c.id) AS num_candidates
-
-    FROM districts d, candidacies c
-
-    WHERE
-      c.district_id = d.id
-      AND c.election_id = ?
-
-    GROUP BY c.district_id, d.name, d.slug
-
-    ORDER BY d.name
-  ", @election.id)
-
   # For elections that haven't yet been held
-  @districts_in_this_election = repository(:default).adapter.select("
-    SELECT DISTINCT d.name, d.slug
-
-    FROM candidacies c
-    LEFT JOIN districts d
-    ON c.district_id = d.id
-
-    WHERE c.election_id = ?
-
-    ORDER BY d.name
-  ", @election.id)
+  # @districts_in_this_election = repository(:default).adapter.select("
+  #   SELECT DISTINCT d.name, d.slug
+  # 
+  #   FROM candidacies c
+  #   LEFT JOIN districts d
+  #   ON c.district_id = d.id
+  # 
+  #   WHERE c.election_id = ?
+  # 
+  #   ORDER BY d.name
+  # ", @election.id)
   haml :electionsummary
 end
 

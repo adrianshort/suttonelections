@@ -119,37 +119,18 @@
       %tr
         %td Turnout
         %td.right= sprintf("%.0f%%", @election.ballot_papers_issued / @election.electorate.to_f * 100)
-        
-  %h2
-    = @election.body.district_name.capitalize.pluralize(2)
-    contested in this election
 
-  %table
-    %tr.header
-      %th &nbsp;
-      %th seats
-      %th candidates
-      %th votes
-    - @results_by_district.each do |row|
-      %tr
-        %td
-          %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{row.district_slug}"}
-            = row.name
-        %td.right= row.seats
-        %td.right= row.num_candidates
-        %td.right= commify(row.votez)
-    %tr.footer
-      %td &nbsp;
-      %td.right= @total_seats
-      %td.right= @election.candidacies.count
-      %td.right= commify(@total_votes)
-- else
   %h2
-    = @election.body.district_name.capitalize.pluralize(2)
-    being contested at this election
+    = "Candidate".pluralize(@total_seats)
+    elected
+  
   %table
-    - @districts_in_this_election.each do |d|
+    - @election.polls.each do |p|
       %tr
         %td
-          %a{ :href => "/bodies/#{@election.body.slug}/#{@election.body.districts_name}/#{d['slug']}"}
-            = d['name']
+          %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{p.district.slug}"}
+            = p.district.name
+        - p.successful_candidacies.each do |sc|
+          %td{ :style => "background-color: #{sc.party.colour};" }
+            -# %a{ :href => sc.candidate.url }
+            = sc.candidate.short_name
