@@ -293,16 +293,20 @@ get '/bodies/:body/:districts_name/:district' do
   haml :district
 end
 
-get '/how-the-council-election-works' do
+get '/guides/how-the-council-election-works' do
   haml :election
 end
 
-get '/how-the-parliament-election-works' do
+get '/guides/how-the-parliament-election-works' do
   haml :parliament
 end
 
 get '/error' do
   haml :error
+end
+
+get '/guides' do
+  haml :guides
 end
 
 get '/about' do
