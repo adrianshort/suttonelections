@@ -69,13 +69,14 @@
       %th.highlight seats won
       %th votes
       %th % votes
-      %th % seats
-      %th votes per seat
-      %th candidates
-      %th votes per candidate
-      -#
-        %th relative popularity
-        - @max_votes_per_candidate = @results_by_party.first.votez.to_f / @results_by_party.first.cands.to_f # We really need to scan the array for the max value
+      - if @total_seats > 1
+        %th % seats
+        %th votes per seat
+        %th candidates
+        %th votes per candidate
+        -#
+          %th relative popularity
+          - @max_votes_per_candidate = @results_by_party.first.votez.to_f / @results_by_party.first.cands.to_f # We really need to scan the array for the max value
     - @results_by_party.each do |row|
       %tr
         %td{ :style => "background-color: #{row.colour}" } &nbsp;
@@ -84,14 +85,15 @@
         %td.data_votes.right= commify(row.votez)
         - if @election_held
           %td.right= format_percent(row.votez.to_f / @total_votes * 100)
-          %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
-          %td.data_votes_per_seat.right
-            - if row.seatz > 0
-              = commify(row.votez / row.seatz)
-            - else
-              &mdash;
-        %td.data_candidates.right= row.cands
-        - if @election_held
+          - if @total_seats > 1
+            %td.right= format_percent(row.seatz.to_f / @total_seats * 100)
+            %td.data_votes_per_seat.right
+              - if row.seatz > 0
+                = commify(row.votez / row.seatz)
+              - else
+                &mdash;
+              %td.data_candidates.right= row.cands
+        - if @election_held && @total_seats > 1
           %td.right= commify(row.votez / row.cands)
         -#
           %td.right= format_percent( ( row.votez.to_f / row.cands.to_f ) / @max_votes_per_candidate * 100)
@@ -103,10 +105,11 @@
       %td.right.highlight= @total_seats
       %td.right= commify(@total_votes)
       %td &nbsp;
-      %td &nbsp;
-      %td &nbsp;
-      %td.right= commify(@election.candidacies.count)
-      %td &nbsp;
+      - if @total_seats > 1
+        %td &nbsp;
+        %td &nbsp;
+        %td.right= commify(@election.candidacies.count)
+        %td &nbsp;
 
   - if @election.ballot_papers_issued
     %table
