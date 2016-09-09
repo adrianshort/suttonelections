@@ -35,6 +35,29 @@ class Poll
   def successful_candidacies # Candidacies where the candidate was elected
     Candidacy.all(:election => @election, :district => @district, :order => [:position], :limit => @seats)
   end
+  
+  # Set candidacy.position for every candidacy in this poll
+  # Returns array of candidacies, or false if we don't have results for this poll
+  def set_positions
+    # Check that every candidacy for this poll has its votes recorded (ie that the election results are known)
+    if Candidacy.count(:conditions => { :district_id => @district_id, :election_id => @election_id, :votes => nil }) == 0
+      return false
+    end
+
+    # Get the candidacies for this poll
+    ccys = Candidacy.all(:conditions => { :district_id => @district_id, :election_id => @election_id }, :order => [:votes.desc])
+
+    puts "Found no candidacies for this poll" if ccys.size == 0
+
+    position = 1
+    ccys.each do |ccy|
+      position <= @seats ? ccy.seats = 1 : ccy.seats = 0
+      ccy.position = position
+      ccy.save
+      position += 1
+    end
+    ccys
+  end
 
   belongs_to :election
   belongs_to :district
@@ -200,6 +223,10 @@ class Election
   def ballot_papers_issued
     Poll.sum(:ballot_papers_issued, :election => self)
   end
+  
+  def set_positions
+    polls.each { |p| p.set_positions }
+  end
 end
 
 class District
@@ -209,7 +236,6 @@ class District
   property  :body_id,           Integer,  :required => true
   property  :name,              String,   :length => 255, :required => true
   property  :slug,              String
-  property  :seats,             Integer
   property  :ons_district_code, String
 
   belongs_to :body
