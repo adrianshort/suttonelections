@@ -1,5 +1,5 @@
 source "https://rubygems.org/"
-ruby "1.9.3"
+ruby "2.3.1"
 
 gem 'sinatra'
 gem 'haml'
@@ -11,7 +11,6 @@ gem 'rack-flash3'
 
 group :development do
   gem 'shotgun'
-  gem 'taps'
 end
 
 group :production do
