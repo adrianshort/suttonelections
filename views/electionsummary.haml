@@ -11,7 +11,7 @@
       
       - unless @election_index == 0
         - @previous_election = @elections_for_this_body[@election_index - 1]
-        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "#{@previous_election.kind} #{short_date(@previous_election.d)}" }<
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@previous_election.d}", :title => "#{@previous_election.kind} #{short_date(@previous_election.d)}" }
           &laquo;
           Previous
           = @election.body.name
@@ -20,7 +20,7 @@
     
       - unless @election_index == @elections_for_this_body.size - 1
         - @next_election = @elections_for_this_body[@election_index + 1]
-        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "#{@next_election.kind} #{short_date(@next_election.d)}" }<
+        %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@next_election.d}", :title => "#{@next_election.kind} #{short_date(@next_election.d)}" }
           Next
           = @election.body.name
           election
