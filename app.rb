@@ -65,7 +65,7 @@ helpers do
 end
 
 get '/' do
-  @election = Election.get(9) # FIXME magic number
+  @election = Election.get(12) # FIXME magic number
   @election_title = "#{@election.body.name} #{@election.kind} #{long_date(@election.d)}"
 
   if params[:postcode]
