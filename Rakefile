@@ -1,5 +1,16 @@
 require './models'
 
+task default: :elections
+
+desc "List elections"
+task :elections do
+  puts "%3s %-10s %-20s %6s" % %w( ID Date Body Candidacies)
+  #puts "ID  Date       Body            Candidacies"
+  Election.each do |e|
+    puts "%3d %s %-20s %6d" % [ e.id, e.d, e.body.name, e.candidacies.size ]
+  end
+end
+
 desc "Set the candidate positions for an election (will prompt you for election ID)."
 task :set_positions do
     Election.all.each do |e|
