@@ -1,0 +1,250 @@
+# Worcester Park
+## 9341
+Jenny Louise Batt,Liberal Democrats,1759,1
+Tom Drummond,Conservative Party,1539,1
+John Kenneth Evers,Labour Party,711,0
+Drew Lee Heffernan,Liberal Democrats,1489,1
+Liz Martin,Labour Party,714,0
+Sam Martin,Liberal Democrats,1461,0
+Bob Miah,Conservative Party,1459,0
+Ann Morrison,Labour Party,552,0
+Paul Charles Newman,Conservative Party,1421,0
+# Nonsuch
+## 8245
+Martina Bernadette Allen,Conservative Party,1681,1
+Kirsty Rebekah Archer,Labour Party,542,0
+Samantha Jean Bourne,Liberal Democrats,14050
+Richard Franklin Broadbent,Liberal Democrats,12870
+Howard William Cowley,UK Independence Party (UKIP),189,0
+Peter Hugh Geiringer,Conservative Party,1466,1
+Bill Goddard,UK Independence Party (UKIP),138,0
+Richard Derek Johnson,Independent,848,0
+Cliff Mason,Liberal Democrats,1243,0
+James Daniel McDermott-Hill,Conservative Party,1405,1
+Kerrie Sara Peek,Labour Party,370,0
+David Paul Taffurelli,UK Independence Party (UKIP),126,0
+Karon Edna Whitham,Labour Party,334,0
+# Stonecot
+## 8402
+Jed Dwight,Conservative Party,1505,1
+Nick Emmerson,Liberal Democrats,1087,0
+Ray Eveleigh,Labour Party,699,0
+Claire Elizabeth Jackson-Prior,Green Party,262,0
+Miguel Luc Javelot,Liberal Democrats,969,0
+Peter Okenla,Liberal Democrats,921,0
+Param Nandha,Conservative Party,1414,1
+Paul Dean Prior,Labour Party,663,0
+Glen Paul Roberts,UK Independence Party (UKIP),147,0
+Cumar Saha,Green Party,254,0
+Nicholas Simon Smith,UK Independence Party (UKIP),106,0
+Ryan Connor Stoneman,Conservative Party,1374,1
+Simon Roger Stuart,UK Independence Party (UKIP),121,0
+Gerald Douglas Tasker,Labour Party,558,0
+# Cheam
+## 8335
+Eric John Allen,Conservative Party,2066,1
+Victoria Elizabeth Barlow,Labour Party,315,0
+Mary Burstow,Liberal Democrats,1711,0
+Anisha Callaghan,Liberal Democrats,1292,0
+Elliot Hadyn George Colburn,Conservative Party,1900,1
+Helen Martin,Labour Party,287,0
+Holly Alice Ramsey,Conservative Party,2202,1
+Jane Claire Rodger,Labour Party,288,0
+Monica Tyler,Liberal Democrats,1253,0
+# Sutton North
+## 8096
+Julie Ann Beach,UK Independence Party (UKIP),140,0
+Andrew David Beadle,UK Independence Party (UKIP),155,0
+Emily Andrea Melanie Brothers,Labour Party,742,0
+Ruth Carole Dombey,Liberal Democrats,1350,1
+Ernest James Ford,UK Independence Party (UKIP),140,0
+Marlene Sylvia Heron,Liberal Democrats,1263,1
+Teresa Anne O'Brien,Labour Party,754,0
+Steve Penneck,Liberal Democrats,1222,1
+Victoria Jane Richer,Labour Party,681,0
+Emma Pauline Scully,Conservative Party,1134,0
+Vikki Shields,Conservative Party,1032,0
+Terry Woods,Conservative Party,1021,0
+# Sutton West
+## 8447
+Lily Psverukai Bande,Conservative Party,1326,1
+Kevin Michael Burke,Liberal Democrats,1288,1
+Andy Cook,Labour Party,806,0
+Catherine Jane Gray,Conservative Party,1334,1
+Peter Harry Hickson,Green Party,300,0
+Wendy Grace Laurie Mathys,Liberal Democrats,1206,0
+Laura Joanne Mullaney,Labour Party,713,0
+Mukesh Rao,Conservative Party,1227,0
+Simon David Wales,Liberal Democrats,1190,0
+Christopher Malcolm Woolmer,Labour Party,672,0
+# Sutton Central
+## 9296
+Steve Adams,Labour Party,1082,0
+David Dario Bartolucci,Liberal Democrats,1259,1
+Jess Beadle,UK Independence Party (UKIP),154,0
+Rich Clare,Liberal Democrats,1236,1,0
+Nigel Barry Cornwell,Conservative Party,789,0
+Bonnie Elizabeth Craven,Labour Party,961,0
+Peter Friel,Green Party,293,0
+Marie Josephine Grant,Conservative Party,756,0
+Ali Mirhashem,Liberal Democrats,1114,1
+Vic Paulino,Labour Party,905,0
+Alan Robert Plant,Conservative Party,727,0
+Charlie Wood,UK Independence Party (UKIP),112,0
+# Sutton South
+## 8016
+Kathryn Theresa Anne Brennan,Labour Party,554,0
+Richard Francis Clifton,Liberal Democrats,1347,1
+Tessa Louise Cornell,Labour Party,566,0
+Trish Fivey,Liberal Democrats,1303,1
+Ed Parsley,Liberal Democrats,1187,0
+Ron Phillips,Labour Party,475,0
+Tony Alfred Shields,Conservative Party,1383,1
+David Alexander Slaughter,Conservative Party,1285,0
+Vanessa Marguerite Udall,Conservative Party,1295,0
+# Belmont
+## 7940
+Gale Anne Laura Blears,Labour Party,595,0
+David Albert Hicks,Conservative Party,2001,1
+Dean Richard Juster,Liberal Democrats,956,0
+Patrick Ryan McManus,Conservative Party,1900,1
+Abdullah Okuyucu,Liberal Democrats,748,0
+Jane Pascoe,Conservative Party,1836,1
+Margaret Sinclair,Labour Party,524,0
+Alex Vicente-Machado,Liberal Democrats,786,0
+Marian Helen Wingrove,Labour Party,503,0
+# St Helier
+## 8726
+Steven James Ayres,Conservative Party,583,0
+John Alan Brereton,UK Independence Party (UKIP),255,0
+Jean Edwina Crossby,Liberal Democrats,1063,1
+Simon Nicholson Densley,Conservative Party,513,0
+Nick Diamantis,Labour Party,876,0
+Richard Edmonds,National Front,49,0
+Martin Alonso Gonzales,Liberal Democrats,977,1
+Simon John Higgs,Conservative Party,497,0
+Maggie Hughes,Labour Party,800,0
+Annie Moral,Liberal Democrats,922,1
+Ian Ebrahim Rawat,UK Independence Party (UKIP),178,0
+Patrick Giles Sim,Labour Party,745,0
+Eleanor Margaret Smith,UK Independence Party (UKIP),180,0
+# Wandle Valley
+## 8723
+Peter Robert Alfrey,Green Party,229,0
+Benjamin Edwards Andrew,Liberal Democrats,1128,1
+Vincent Galligan,Liberal Democrats,1057,1
+David Grant,Labour Party,883,0
+Barry John Greening,UK Independence Party (UKIP),245,0
+Helen Ruth Heathfield,Green Party,206,0
+David Paul Jeffreys,Conservative Party,475,0
+Gina Mudge,Green Party,166,0
+Mark Alan Nicholson,UK Independence Party (UKIP),180,0
+Julia Melanie Russell,Conservative Party,451,0
+Ross Paul Taylor,Conservative Party,461,0
+Margaret Anne Thomas,Labour Party,826,0
+Ahmad Nawaz Wattoo,Labour Party,723,0
+Stewart Wood,UK Independence Party (UKIP),174,0
+Hanna Aleksandra Zuchowska,Liberal Democrats,950,1
+# The Wrythe
+## 8297
+John Thomas Bannon,UK Independence Party (UKIP),196,0
+Sheila Anne Berry,Labour Party,533,0
+Michael Christopher Boulton,Green Party,187,0
+Will Curley,Conservative Party,760,0
+Carlos Miguel Candon Placido De Sousa,Labour Party,498,0
+Bill Main-Ian,UK Independence Party (UKIP),177,0
+Gino Mario Marotta,UK Independence Party (UKIP),129,0
+Paul Gabriel McCarthy,Labour Party,476,0
+Penny Mouncey,Green Party,204,0
+Phil Mouncey,Green Party,121,0
+Nali Patel,Liberal Democrats,1224,1
+Millie Joanna Shields,Conservative Party,747,0
+Colin Henry Stears,Liberal Democrats,1324,1
+Sam Weatherlake,Liberal Democrats,1249,1
+Sebastian Leon Wopinski,Conservative Party,659,0
+# Carshalton Central
+## 8165
+Karin Andrews,Green Party,334,0
+Marilynne Bridget Burbage,Labour Party,459,0
+Ashley Keith Dickenson,Christian Peoples Alliance Party,69,0
+Matthew David Drew,Conservative Party,1302,0
+Lynne Jane Fletcher,Conservative Party,1384,0
+Gay McDonagh,Green Party,238,0
+Margaret Onians,Labour Party,441,0
+Jake Michael Short,Liberal Democrats,1576,1
+Ethan James Smith,Conservative Party,1289,0
+Bob Steel,Green Party,255,0
+Tony Thorpe,Labour Party,430,0
+Jill Leonie Whitehead,Liberal Democrats,1673,1
+Chris Williams,Liberal Democrats,1646,1
+# Carshalton South and Clockhouse
+## 7819
+Moira Jane Butt,Conservative Party,1767,1
+John Ashton Clay,Labour Party,376,0
+Tim Crowley,Conservative Party,1747,1
+Amy Beth Haldane,Liberal Democrats,1809,1
+Ross Hemingway,Green Party,295,0
+Anas Ahmad Khan,Labour Party,343,0
+Melissa Pearce,Conservative Party,1596,0
+Jason Andrew Patrick Reynolds,Liberal Democrats,1524,0
+Gordon Allan Roxburgh,Liberal Democrats,1544,0
+Christine Savignani,Labour Party,340,0
+# Wallington North
+## 8669
+Sunita Gordon,Liberal Democrats,1637,1
+Malcolm Charles Horne,UK Independence Party (UKIP),119,0
+Marian James,Liberal Democrats,1587,1
+Charlotte Anne Leonard,Conservative Party,912,0
+Michael John McLoughlin,Labour Party,594,0
+Joyce Helen Melican,Liberal Democrats,1505,1
+Angela Teresa North,UK Independence Party (UKIP),104,0
+Lynn Andrea Robertson,Conservative Party,888,0
+Verity Jane Thomson,Green Party,300,0
+David Towler,Labour Party,516,0
+Mary Eleanor Towler,Labour Party,526,0
+Mark Edmund Webb,Green Party,222,0
+Viven Jacqueline Worsfold,UK Independence Party (UKIP),72,0
+Chris Wortley,Conservative Party,827,0
+# Wallington South
+## 8115
+Daryl Sherrard Brisley,Conservative Party,1233,0
+Steve Cook,Liberal Democrats,1793,1
+Omoniyi Giwa,Conservative Party,978,0
+Bobbie Lambert,Labour Party,413,0
+Jayne Louise McCoy,Liberal Democrats,1704,1
+David Norton Murray,Labour Party,506,0
+Callum William Roper,Labour Party,373,0
+Muhammad Izhar Sadiq,Liberal Democrats,1588,1
+Maeve Margaret Tomlinson,Green Party,404,0
+Hilary Vaughan Wortley,Conservative Party,1089,0
+# Beddington North
+## 8079
+Pat Ali,Liberal Democrats,837,0
+Malcolm Brown,Conservative Party,911,0
+Tim Foster,Independent,1047,1
+Jillian Ann Green,Independent,948,1
+Sarah Anne Gwynn,Labour Party,829,0
+Hannah Marie Hamilton,UK Independence Party (UKIP),106,0
+Kingsley Julian Duncan Hamilton,UK Independence Party (UKIP),94,0
+Brendan Hudson,Liberal Democrats,713,0
+Alison Margaret Huneke,Conservative Party,815,0
+John Keys,Labour Party,725,0
+Shasha Khan,Green Party,208,0
+Charlie Mansell,Labour Party,663,0
+Nick Mattey,Independent,1285,1
+Nighat Piracha,Liberal Democrats,660,0
+Andy Williams,Conservative Party,784,0
+# Beddington South
+## 8453
+Manuel Abellan,Liberal Democrats,1445,1
+Christine Irene Florence Cullen,Labour Party,492,0
+Neil Robert Garratt,Conservative Party,1334,0
+Edward Timothy Joyce,Liberal Democrats,1450,1
+Ann Maria Page,Conservative Party,1239,0
+Mo Saqib,Liberal Democrats,1403,1
+Arnaldo Edoardo Severino Savignani,Labour Party,421,0
+Jim Simms,Conservative Party,1226,0
+Peter Terence Smith,UK Independence Party (UKIP),134,0
+Terence James Smith,UK Independence Party (UKIP),105,0
+Alan Tate,Labour Party,380,0
+David Michael Usher,UK Independence Party (UKIP),107,0
