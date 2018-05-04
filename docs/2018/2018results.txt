@@ -82,7 +82,7 @@ Christopher Malcolm Woolmer,Labour Party,672,0
 Steve Adams,Labour Party,1082,0
 David Dario Bartolucci,Liberal Democrats,1259,1
 Jess Beadle,UK Independence Party (UKIP),154,0
-Rich Clare,Liberal Democrats,1236,1,0
+Rich Clare,Liberal Democrats,1236,1
 Nigel Barry Cornwell,Conservative Party,789,0
 Bonnie Elizabeth Craven,Labour Party,961,0
 Peter Friel,Green Party,293,0
