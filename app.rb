@@ -246,7 +246,7 @@ get '/bodies/:body/elections/:date/:districts_name/:district' do
   @district =     District.first(:slug => params[:district])
   @body =         Body.first(:slug => params[:body])
   @election =     Election.first(:body => @body, :d => params[:date])
-  @candidacies =  Candidacy.all(:district => @district, :election => @election, :order => [:votes.desc])
+  @candidacies =  Candidacy.all(:district => @district, :election => @election, :order => [:position])
   @total_votes =  Candidacy.sum(:votes, :district => @district, :election => @election)
   @total_candidates =  Candidacy.count(:district => @district, :election => @election)
   @total_seats =  Candidacy.sum(:seats, :district => @district, :election => @election)
