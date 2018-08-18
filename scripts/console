@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+# https://mutelight.org/bin-console
+
+require 'irb'
+require 'irb/completion' # autocomplete
+require 'bundler/setup'
+Bundler.require
+require_relative '../models'
+set :run, false # Don't run Sinatra just because we've required it
+IRB.start
