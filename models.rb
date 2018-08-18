@@ -40,9 +40,7 @@ class Poll
   # Returns array of candidacies, or false if we don't have results for this poll
   def set_positions
     # Check that every candidacy for this poll has its votes recorded (ie that the election results are known)
-    if Candidacy.count(:conditions => { :district_id => @district_id, :election_id => @election_id, :votes => nil }) == 0
-      return false
-    end
+    return false if Candidacy.count(:conditions => { :district_id => @district_id, :election_id => @election_id, :votes => nil }) > 0
 
     # Get the candidacies for this poll
     ccys = Candidacy.all(:conditions => { :district_id => @district_id, :election_id => @election_id }, :order => [:votes.desc])
