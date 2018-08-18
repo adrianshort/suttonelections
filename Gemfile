@@ -11,6 +11,7 @@ gem 'rack-flash3'
 
 group :development do
   gem 'shotgun'
+  gem 'nokogiri'
 end
 
 group :production do
