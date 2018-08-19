@@ -81,12 +81,11 @@ def write_page(path_items, template, locals = {})
   # https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190
 end
 
-test_dir = File.join(Dir.pwd, OUTPUT_DIR)
-# FIXME - clear output directory at the start of every run
-# FileUtils.rm_rf(test_dir)
-
-Dir.mkdir(test_dir) unless File.directory?(test_dir)
-Dir.chdir(test_dir)
+working_dir = File.join(Dir.pwd, OUTPUT_DIR)
+# Recursively delete working directory to ensure no redundant files are left behind from previous builds.
+FileUtils.rm_rf(working_dir)
+Dir.mkdir(working_dir) unless File.directory?(working_dir)
+Dir.chdir(working_dir)
 
 # Copy `public` dir to output dir
 FileUtils.copy_entry(File.join('..', 'public'), '.')
