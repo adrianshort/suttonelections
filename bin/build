@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 # Generate a static site
+
+# https://blog.dnsimple.com/2018/03/elapsed-time-with-ruby-the-right-way/
+t_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+
 require 'logger'
 require 'haml'
 require_relative '../models'
@@ -12,6 +16,8 @@ LAYOUT_FN = File.join(VIEWS_DIR, 'layout.haml')
 @log.level = Logger::INFO
 @log.info "Build starts."
 @log.info "Output directory is: #{OUTPUT_DIR}"
+
+@pages = 0
 
 class String
   def pluralize(num)
@@ -77,6 +83,7 @@ def write_page(path_items, template, locals = {})
 
   File.write(fn, html)
   @log.info fn
+  @pages += 1
   # TODO - add page to sitemap.xml or sitemap.txt
   # https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190
 end
@@ -288,4 +295,4 @@ write_page('guides', 'guides')
 write_page(%w(guides how-the-parliament-election-works), 'parliament')
 write_page(%w(guides how-the-council-election-works), 'election')
 
-@log.info "Build complete."
+@log.info "Build complete. %d pages generated in %0.2f seconds." % [ @pages, Process.clock_gettime(Process::CLOCK_MONOTONIC) - t_start ]
