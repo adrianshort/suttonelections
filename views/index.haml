@@ -1,16 +1,17 @@
-#lookup
-  %h2= @election_title
-  %form{ :method => 'get', :action => '/' }
-    %label{ :for => "postcode" } My postcode is
-    %input{ :type => 'text', :name => 'postcode', :value => @default_pc, :size => 8, :maxlength => 8 }
-    %input{ :type => 'submit', :value => "Find my results" }
+-#
+  #lookup
+    %h2= @election_title
+    %form{ :method => 'get', :action => '/' }
+      %label{ :for => "postcode" } My postcode is
+      %input{ :type => 'text', :name => 'postcode', :value => @default_pc, :size => 8, :maxlength => 8 }
+      %input{ :type => 'submit', :value => "Find my results" }
 
-- if @future_elections.size > 0
+- if future_elections.size > 0
 
   %h2 Upcoming elections
 
   %table
-    - @future_elections.each do |election|
+    - future_elections.each do |election|
       %tr
         %td
           %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }
@@ -20,12 +21,12 @@
         %td
           = election.kind
 
-- if @past_elections.size > 0
+- if past_elections.size > 0
 
   %h2 Past elections
 
   %table
-    - @past_elections.each do |election|
+    - past_elections.each do |election|
       %tr
         %td
           %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}" }

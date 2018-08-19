@@ -1,21 +1,21 @@
-%h1= @page_title = "Candidates"
+%h1= page_title = "Candidates"
 
 %nav.letter_index
   - ("A".."Z").each do |letter|
     %a{ :href => "##{letter}" }<
       = letter
 
-- @first_letter = ''
+- first_letter = ''
 
 %table
-  - @candidates.each do |c|
-    - if c.surname[0] != @first_letter
-      - @first_letter = c.surname[0]
+  - candidates.each do |c|
+    - if c.surname[0] != first_letter
+      - first_letter = c.surname[0]
       %tr.noborder
         %td &nbsp;
         %td 
-      %tr.noborder{ :name => @first_letter, :id => @first_letter }
-        %td.strong{ :style => "font-size: 300%;" }= @first_letter.upcase
+      %tr.noborder{ :name => first_letter, :id => first_letter }
+        %td.strong{ :style => "font-size: 300%;" }= first_letter.upcase
         %td 
       %tr
         %td

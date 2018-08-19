@@ -1,35 +1,35 @@
-- @page_title = "#{@district.name} #{@district.body.district_name} results, #{@body.name} election #{short_date(@election.d)}"
+- page_title = "#{district.name} #{district.body.district_name} results, #{body.name} election #{short_date(election.d)}"
 
 %nav
-  - if @districts_in_this_election.size > 1
-    - @district_index = @districts_in_this_election.index(@district)
+  - if districts_in_this_election.size > 1
+    - district_index = districts_in_this_election.index(district)
     
-    - unless @district_index == 0 # Don't show the previous link if this is the first district for this election
-      - @previous_district = @districts_in_this_election[@district_index - 1]
-      %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@previous_district.slug}" }
+    - unless district_index == 0 # Don't show the previous link if this is the first district for this election
+      - previous_district = districts_in_this_election[district_index - 1]
+      %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}/#{election.body.districts_name}/#{previous_district.slug}" }
         &laquo;&nbsp;
-        = @previous_district.name
+        = previous_district.name
       &nbsp;&nbsp;&nbsp;
   
-    - unless @district_index == @districts_in_this_election.size - 1 # Don't show the next link if this is the last district for this election
-      - @next_district = @districts_in_this_election[@district_index + 1]
-      %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}/#{@election.body.districts_name}/#{@next_district.slug}" }
-        = @next_district.name 
+    - unless district_index == districts_in_this_election.size - 1 # Don't show the next link if this is the last district for this election
+      - next_district = districts_in_this_election[district_index + 1]
+      %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}/#{election.body.districts_name}/#{next_district.slug}" }
+        = next_district.name 
         &raquo;
 
 %p
-  %a{ :href => "/bodies/#{@district.body.slug}/elections/#{@election.d}" }
-    = @body.name
-    = @election.kind
-    = long_date(@election.d)
+  %a{ :href => "/bodies/#{district.body.slug}/elections/#{election.d}" }
+    = body.name
+    = election.kind
+    = long_date(election.d)
     
 %h1
-  %a{ :href => "/bodies/#{@district.body.slug}/#{@district.body.district_name.pluralize(2)}/#{@district.slug}" }
-    = @district.name + " " + @district.body.district_name
+  %a{ :href => "/bodies/#{district.body.slug}/#{district.body.district_name.pluralize(2)}/#{district.slug}" }
+    = district.name + " " + district.body.district_name
 
-- @election_held = Candidacy.sum(:votes, :election => @election, :district => @district)
+- election_held = Candidacy.sum(:votes, :election => election, :district => district)
 
-- unless @election_held
+- unless election_held
   .warning
     We don't have the results for this election yet.
 
@@ -44,7 +44,7 @@
     %th &nbsp;
 
   - count = 0
-  - @candidacies.each do |candidacy|
+  - candidacies.each do |candidacy|
     - count += 1
     %tr.vcard
       %td= count
@@ -54,9 +54,9 @@
           = candidacy.candidate.short_name
       %td.org
         = party_name(candidacy.labcoop, candidacy.party.name)
-      - if @election_held
+      - if election_held
         %td.right= commify(candidacy.votes)
-        %td.right= format_percent(candidacy.votes.to_f / @share_denominator * 100)
+        %td.right= format_percent(candidacy.votes.to_f / share_denominator * 100)
           
         - if candidacy.seats == 1
           %td.elected.elected_text="Elected"
@@ -72,15 +72,15 @@
     %td &nbsp;
     %td &nbsp;
     %td &nbsp;
-    %td.right= commify(@total_votes)
+    %td.right= commify(total_votes)
     %td &nbsp;
     %td &nbsp;
 
-- if @share_message
+- if share_message
   .warning
-    = @share_message
+    = share_message
 
-- if @total_seats > 1
+- if total_seats > 1
   %h2 Votes by party
 
   %table
@@ -96,20 +96,20 @@
       
       - count = 0
       
-      - @results_by_party.each do |row|
+      - results_by_party.each do |row|
         - count += 1
         %tr
           %td.right= count
           %td{ :style => "background-color: #{row['party_colour'] }" } &nbsp;
           %td= row['party_name']
-          - if @election_held
+          - if election_held
             %td.right.highlight= row['num_seats']
           - else
             %td.right.highlight &mdash;
           %td.right= row['num_candidates']
-          - if @election_held
+          - if election_held
             %td.right= commify(row['total_votes'])
-            %td.right= format_percent(row['total_votes'].to_f / @total_votes * 100)
+            %td.right= format_percent(row['total_votes'].to_f / total_votes * 100)
             %td.right= commify(row['total_votes'] / row['num_candidates'])
           - else
             %td.right &mdash;
@@ -120,48 +120,48 @@
       %td &nbsp;
       %td &nbsp;
       %td &nbsp;
-      - if @election_held
-        %td.right.highlight= @total_seats
+      - if election_held
+        %td.right.highlight= total_seats
       - else
         %td.right.highlight &nbsp;
-      %td.right= @total_candidates
-      %td.right= commify(@total_votes)
+      %td.right= total_candidates
+      %td.right= commify(total_votes)
       %td &nbsp;
       %td &nbsp;
 
-- if @poll
+- if poll
   %p
   %table
-    - if @poll.ballot_papers_issued
+    - if poll.ballot_papers_issued
       %tr
         %td Ballot papers issued
-        %td.right= commify(@poll.ballot_papers_issued)
-    - if @poll.electorate
+        %td.right= commify(poll.ballot_papers_issued)
+    - if poll.electorate
       %tr
         %td Electorate
-        %td.right= commify(@poll.electorate)
-    - if @poll.turnout_percent > 0
+        %td.right= commify(poll.electorate)
+    - if poll.turnout_percent > 0
       %tr
         %td Turnout
-        %td.right= sprintf("%.0f%%", @poll.turnout_percent)
+        %td.right= sprintf("%.0f%%", poll.turnout_percent)
 
   -# Show this table conditionally as sometimes we have electorate data but no
   -# breakdown of rejected ballot papers
-  - if @poll.rejected_no_official_mark
+  - if poll.rejected_no_official_mark
     %h2 Rejected ballot papers
     %table
       %tr
         %td No official mark on the ballot paper
-        %td.right= commify(@poll.rejected_no_official_mark)
+        %td.right= commify(poll.rejected_no_official_mark)
       %tr
         %td Voting for too many candidates
-        %td.right= commify(@poll.rejected_too_many_candidates)
+        %td.right= commify(poll.rejected_too_many_candidates)
       %tr
         %td Voter could be identified by writing or a mark on the ballot paper
-        %td.right= commify(@poll.rejected_identifiable_voter)
+        %td.right= commify(poll.rejected_identifiable_voter)
       %tr
         %td Ballot paper unmarked or voter's intention uncertain
-        %td.right= commify(@poll.rejected_blank_or_uncertain)
+        %td.right= commify(poll.rejected_blank_or_uncertain)
       %tr.footer
         %td &nbsp;
-        %td.right= commify(@poll.total_rejected_ballots)
+        %td.right= commify(poll.total_rejected_ballots)

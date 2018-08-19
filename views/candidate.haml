@@ -2,7 +2,7 @@
   %a{ :href => "/candidates" }
     &laquo; All candidates
 
-%h1= @page_title = @candidate.name
+%h1= page_title = candidate.name
 
 %h2 Elections contested
 
@@ -17,7 +17,7 @@
     %th position
     %th &nbsp;
     
-  - @candidacies.each do |ccy|
+  - candidacies.each do |ccy|
     %tr
       %td{ :style => "background-color: #{ccy['party_colour']}" } &nbsp;
       %td
@@ -46,6 +46,6 @@
 
   %p
     Some candidates have more than one profile page due to them using slightly different names in different elections. See the full
-    %a{ :href => "/candidates/##{@candidate.surname[0]}" }<
+    %a{ :href => "/candidates/##{candidate.surname[0]}" }<
       candidates list
     for details.

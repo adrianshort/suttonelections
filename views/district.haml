@@ -1,26 +1,26 @@
-- @page_title = "#{@district.name} #{@district.body.district_name}, #{@district.body.name}"
+- page_title = "#{district.name} #{district.body.district_name}, #{district.body.name}"
 
 %nav
-  %a{ :href => "/bodies/#{@district.body.slug}" }
+  %a{ :href => "/bodies/#{district.body.slug}" }
     &laquo;&nbsp;
-    = @district.body.name
+    = district.body.name
 
-%h1= "#{@district.name} #{@district.body.district_name}"
+%h1= "#{district.name} #{district.body.district_name}"
 
 -#
-  - @election = Election.get(9) # FIXME magic number
+  - election = Election.get(9) # FIXME magic number
 
   %h2
-    = @district.name
+    = district.name
     ward candidates for the
-    %a{ :href => "/bodies/#{@election.body.slug}/elections/#{@election.d}"}
-      = @election.body.name
+    %a{ :href => "/bodies/#{election.body.slug}/elections/#{election.d}"}
+      = election.body.name
       election on
-      = long_date(@election.d)
+      = long_date(election.d)
 
   %table
-    - Candidacy.all(:election => @election, :district => @district, :order => [:party_id]).each do |c|
-      - campaign = Campaign.first(:party => c.party, :election => @election)
+    - Candidacy.all(:election => election, :district => district, :order => [:party_id]).each do |c|
+      - campaign = Campaign.first(:party => c.party, :election => election)
       %tr.vcard
         %td{ :style => "background-color: #{c.party.colour}" } &nbsp;
         %td.candidate_name.fn
@@ -42,12 +42,12 @@
 
 %h2 Candidates elected
 
-- Election.all(:body => @district.body, :order => [:d.desc]).each do |election|
-  - ccys = Candidacy.all(:election_id => election.id, :district_id => @district.id, :seats => 1, :order => [:votes.desc])
+- Election.all(:body => district.body, :order => [:d.desc]).each do |election|
+  - ccys = Candidacy.all(:election_id => election.id, :district_id => district.id, :seats => 1, :order => [:votes.desc])
   
   - unless ccys == []  
     %h3
-      %a{ :href => "/bodies/#{@district.body.slug}/elections/#{election.d}/#{election.body.districts_name}/#{@district.slug}"}
+      %a{ :href => "/bodies/#{district.body.slug}/elections/#{election.d}/#{election.body.districts_name}/#{district.slug}"}
         = long_date election.d
         = election.kind
   

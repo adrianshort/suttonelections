@@ -4,3 +4,4 @@
 .bundle/config
 /.ruby-gemset
 /tmp/
+_*

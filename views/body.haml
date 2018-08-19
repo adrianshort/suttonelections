@@ -1,4 +1,4 @@
-%h1= @page_title = @body.name
+%h1= page_title = body.name
   
 %h2 Elections
 
@@ -8,10 +8,10 @@
       %th
       %th
       %th turnout
-  - @elections.each do |election|
+  - elections.each do |election|
     %tr
       %td
-        %a{ :href => "/bodies/#{@body.slug}/elections/#{election.d}" }<
+        %a{ :href => "/bodies/#{body.slug}/elections/#{election.d}" }<
           = short_date(election.d)
       %td
         = election.kind
@@ -20,9 +20,9 @@
           = format_percent(election.turnout_percent)
       
 %h2
-  = @body.districts_name.capitalize
+  = body.districts_name.capitalize
   
-- @districts.each do |district|
+- districts.each do |district|
   %p
-    %a{ :href => "/bodies/#{@body.slug}/#{@body.districts_name}/#{district.slug}" }
+    %a{ :href => "/bodies/#{body.slug}/#{body.districts_name}/#{district.slug}" }
       = district.name
