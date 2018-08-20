@@ -13,13 +13,6 @@ OUTPUT_DIR = '_site'
 VIEWS_DIR = File.join('..', 'views')
 LAYOUT_FN = File.join(VIEWS_DIR, 'layout.haml')
 
-@log = Logger.new($stdout)
-@log.level = Logger::INFO
-@log.info "Build starts."
-@log.info "Output directory is: #{OUTPUT_DIR}"
-
-@pages = 0
-
 def write_page(path_items, template, locals = {})
   dir = File.join(path_items)
   FileUtils.mkdir_p(dir)
@@ -38,211 +31,237 @@ def write_page(path_items, template, locals = {})
   # https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190
 end
 
-working_dir = File.join(Dir.pwd, OUTPUT_DIR)
-# Recursively delete working directory to ensure no redundant files are left behind from previous builds.
-FileUtils.rm_rf(working_dir)
-Dir.mkdir(working_dir) unless File.directory?(working_dir)
-Dir.chdir(working_dir)
+def gen_info_pages
+  write_page('about', 'about')
+  write_page('guides', 'guides')
+  write_page(%w(guides how-the-parliament-election-works), 'parliament')
+  write_page(%w(guides how-the-council-election-works), 'election')
+end
 
-# Copy `public` dir to output dir
-FileUtils.copy_entry(File.join('..', 'public'), '.')
+def gen_bodies_pages
+  # Bodies index
+  dir = 'bodies'
+  FileUtils.mkdir_p(dir)
+  @log.debug dir
+  fn = File.join(dir, 'index.html')
+  FileUtils.touch(fn) # empty file
+  @log.info fn
 
-# Home page
-locals = {
-  future_elections: Election.future,
-  past_elections: Election.past
-}
-write_page('.', 'index', locals)
-
-# Election pages
-Election.each do |e|
-  locals = {
-    body: Body.first(:slug => e.body.slug),
-    election: Election.first(:body => e.body, :d => e.d),
-    elections_for_this_body: Election.all(:body => e.body, :order => [:d]),
-    total_seats: Candidacy.sum(:seats, :election => e),
-    total_votes: Candidacy.sum(:votes, :election => e)
-  }
-
-  # There's got to be a better way to do this, either with SQL or Datamapper
-  locals['total_districts'] = repository(:default).adapter.select("
-    SELECT district_id
-    FROM candidacies
-    WHERE election_id = ?
-    GROUP BY district_id
-    ORDER BY district_id
-  ", e.id).count
-
-  locals['results_by_party'] = repository(:default).adapter.select("
-    SELECT
-      p.colour,
-      p.name,
-      SUM(c.votes) AS votez,
-      SUM(c.seats) AS seatz,
-      COUNT(*) AS cands
-
-    FROM candidacies c
-
-    LEFT JOIN parties p ON p.id = c.party_id
-
-    WHERE c.election_id = ?
-
-    GROUP BY c.party_id, p.colour, p.name
-
-    ORDER BY seatz DESC, votez DESC
-  ", e.id)
-
-  write_page(['bodies', e.body.slug, 'elections', e.d.to_s],  'electionsummary', locals)
-
-
-  # District results for this election (resultsdistrict)
-  # Loop through all districts in this election
-    e.candidacies.districts.each do |d|
-    total_seats = Candidacy.sum(:seats, :district => d, :election => e)
-    total_votes = Candidacy.sum(:votes, :district => d, :election => e)
-    poll = Poll.get(d.id, e.id)
-    
+  # Body detail pages
+  Body.each do |b|
     locals = {
-      district: d,
-      body:  d.body,
-      election: e,
-      candidacies: Candidacy.all(:district => d, :election => e, :order => [:position]),
-      total_votes: total_votes,
-      total_candidates: Candidacy.count(:district => d, :election => e),
-      total_seats: total_seats,
-      districts_in_this_election: e.candidacies.districts,
-      poll: poll
+      body: b,
+      districts: District.all(:body => b, :order => [:name])
+    }
+    
+    locals['elections'] = repository(:default).adapter.select("
+      SELECT
+        e.id,
+        e.kind,
+        e.d,
+        SUM(p.ballot_papers_issued)::float / SUM(p.electorate) * 100 AS turnout_percent
+      
+      FROM elections e
+      
+      LEFT JOIN polls p
+      ON e.id = p.election_id 
+
+      WHERE e.body_id = ?
+
+      GROUP BY p.election_id, e.id
+      ORDER BY e.d DESC
+    ", b.id)
+
+    write_page(['bodies', b.slug], 'body', locals)
+
+    # Districts for this body
+    b.districts.each do |d|
+      locals = {
+        district: d,
+        body: b
+      }
+      write_page(['bodies', b.slug, b.districts_name, d.slug], 'district', locals)
+    end
+  end
+end
+
+def gen_candidates_pages
+  # Candidate index
+  locals = { candidates: Candidate.all(:order => [ :surname, :forenames ]) }
+  write_page('candidates', 'candidates', locals)
+
+  # Candidate pages
+  # FIXME: What do we do about deleted candidates/redirects?
+  Candidate.each do |c|
+    locals = {
+      candidate: c
     }
 
-    locals['share_message'] = nil
-    if total_seats == 1
-      locals['share_denominator'] = total_votes
-    elsif poll && poll.valid_ballot_papers
-      locals['share_denominator'] = poll.valid_ballot_papers
-    else
-      locals['share_denominator'] = total_votes / total_seats
-      locals['share_message'] = "The vote share percentages have been estimated as we don't have data for the number of valid ballot papers in this poll."
-    end
-
-    # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
-    locals['results_by_party'] = repository(:default).adapter.select("
+    locals['candidacies'] = repository(:default).adapter.select("
       SELECT
+        e.d,
+        c.*,
         p.name AS party_name,
         p.colour AS party_colour,
-        COUNT(c.id) AS num_candidates,
-        SUM(c.seats) AS num_seats,
-        SUM(c.votes) AS total_votes
+        b.name AS body_name,
+        b.slug AS body_slug,
+        b.districts_name AS districts_name,
+        d.name AS district_name,
+        d.slug AS district_slug
 
       FROM candidacies c
 
-      LEFT JOIN parties p
+      INNER JOIN elections e
+      ON c.election_id = e.id
+
+      INNER JOIN parties p
       ON c.party_id = p.id
 
-      WHERE c.district_id = ?
-      AND c.election_id = ?
+      INNER JOIN bodies b
+      ON e.body_id = b.id
 
-      GROUP BY p.name, p.colour
+      INNER JOIN districts d
+      ON c.district_id = d.id
 
-      ORDER BY total_votes DESC
-    ", d.id, e.id)
+      WHERE c.candidate_id = ?
 
-    write_page(['bodies', e.body.slug, 'elections', e.d.to_s, e.body.districts_name, d.slug], 'resultsdistrict', locals)
+      ORDER BY d
+    ", c.id)
+
+    write_page(['candidates', c.id.to_s], 'candidate', locals)
   end
 end
 
-# Candidate index
-locals = { candidates: Candidate.all(:order => [ :surname, :forenames ]) }
-write_page('candidates', 'candidates', locals)
-
-# Candidate pages
-# FIXME: What do we do about deleted candidates/redirects?
-Candidate.each do |c|
-  locals = {
-    candidate: c
-  }
-
-  locals['candidacies'] = repository(:default).adapter.select("
-    SELECT
-      e.d,
-      c.*,
-      p.name AS party_name,
-      p.colour AS party_colour,
-      b.name AS body_name,
-      b.slug AS body_slug,
-      b.districts_name AS districts_name,
-      d.name AS district_name,
-      d.slug AS district_slug
-
-    FROM candidacies c
-
-    INNER JOIN elections e
-    ON c.election_id = e.id
-
-    INNER JOIN parties p
-    ON c.party_id = p.id
-
-    INNER JOIN bodies b
-    ON e.body_id = b.id
-
-    INNER JOIN districts d
-    ON c.district_id = d.id
-
-    WHERE c.candidate_id = ?
-
-    ORDER BY d
-  ", c.id)
-
-  write_page(['candidates', c.id.to_s], 'candidate', locals)
-end
-
-# Bodies index
-dir = 'bodies'
-FileUtils.mkdir_p(dir)
-@log.debug dir
-fn = File.join(dir, 'index.html')
-FileUtils.touch(fn) # empty file
-@log.info fn
-
-# Body detail pages
-Body.each do |b|
-  locals = {
-    body: b,
-    districts: District.all(:body => b, :order => [:name])
-  }
-  
-  locals['elections'] = repository(:default).adapter.select("
-    SELECT
-      e.id,
-      e.kind,
-      e.d,
-      SUM(p.ballot_papers_issued)::float / SUM(p.electorate) * 100 AS turnout_percent
-    
-    FROM elections e
-    
-    LEFT JOIN polls p
-    ON e.id = p.election_id 
-
-    WHERE e.body_id = ?
-
-    GROUP BY p.election_id, e.id
-    ORDER BY e.d DESC
-  ", b.id)
-
-  write_page(['bodies', b.slug], 'body', locals)
-
-  # Districts for this body
-  b.districts.each do |d|
+def gen_elections_pages
+  # Election pages
+  Election.each do |e|
     locals = {
-      district: d,
-      body: b
+      body: Body.first(:slug => e.body.slug),
+      election: Election.first(:body => e.body, :d => e.d),
+      elections_for_this_body: Election.all(:body => e.body, :order => [:d]),
+      total_seats: Candidacy.sum(:seats, :election => e),
+      total_votes: Candidacy.sum(:votes, :election => e)
     }
-    write_page(['bodies', b.slug, b.districts_name, d.slug], 'district', locals)
+
+    # There's got to be a better way to do this, either with SQL or Datamapper
+    locals['total_districts'] = repository(:default).adapter.select("
+      SELECT district_id
+      FROM candidacies
+      WHERE election_id = ?
+      GROUP BY district_id
+      ORDER BY district_id
+    ", e.id).count
+
+    locals['results_by_party'] = repository(:default).adapter.select("
+      SELECT
+        p.colour,
+        p.name,
+        SUM(c.votes) AS votez,
+        SUM(c.seats) AS seatz,
+        COUNT(*) AS cands
+
+      FROM candidacies c
+
+      LEFT JOIN parties p ON p.id = c.party_id
+
+      WHERE c.election_id = ?
+
+      GROUP BY c.party_id, p.colour, p.name
+
+      ORDER BY seatz DESC, votez DESC
+    ", e.id)
+
+    write_page(['bodies', e.body.slug, 'elections', e.d.to_s],  'electionsummary', locals)
+
+
+    # District results for this election (resultsdistrict)
+    # Loop through all districts in this election
+      e.candidacies.districts.each do |d|
+      total_seats = Candidacy.sum(:seats, :district => d, :election => e)
+      total_votes = Candidacy.sum(:votes, :district => d, :election => e)
+      poll = Poll.get(d.id, e.id)
+      
+      locals = {
+        district: d,
+        body:  d.body,
+        election: e,
+        candidacies: Candidacy.all(:district => d, :election => e, :order => [:position]),
+        total_votes: total_votes,
+        total_candidates: Candidacy.count(:district => d, :election => e),
+        total_seats: total_seats,
+        districts_in_this_election: e.candidacies.districts,
+        poll: poll
+      }
+
+      locals['share_message'] = nil
+      if total_seats == 1
+        locals['share_denominator'] = total_votes
+      elsif poll && poll.valid_ballot_papers
+        locals['share_denominator'] = poll.valid_ballot_papers
+      else
+        locals['share_denominator'] = total_votes / total_seats
+        locals['share_message'] = "The vote share percentages have been estimated as we don't have data for the number of valid ballot papers in this poll."
+      end
+
+      # Postgres: All the columns selected when using GROUP BY must either be aggregate functions or appear in the GROUP BY clause
+      locals['results_by_party'] = repository(:default).adapter.select("
+        SELECT
+          p.name AS party_name,
+          p.colour AS party_colour,
+          COUNT(c.id) AS num_candidates,
+          SUM(c.seats) AS num_seats,
+          SUM(c.votes) AS total_votes
+
+        FROM candidacies c
+
+        LEFT JOIN parties p
+        ON c.party_id = p.id
+
+        WHERE c.district_id = ?
+        AND c.election_id = ?
+
+        GROUP BY p.name, p.colour
+
+        ORDER BY total_votes DESC
+      ", d.id, e.id)
+
+      write_page(['bodies', e.body.slug, 'elections', e.d.to_s, e.body.districts_name, d.slug], 'resultsdistrict', locals)
+    end
   end
 end
 
-write_page('about', 'about')
-write_page('guides', 'guides')
-write_page(%w(guides how-the-parliament-election-works), 'parliament')
-write_page(%w(guides how-the-council-election-works), 'election')
+def gen_homepage
+  locals = {
+    future_elections: Election.future,
+    past_elections: Election.past
+  }
+  write_page('.', 'index', locals)
+end
+
+def create_output_dir
+  working_dir = File.join(Dir.pwd, OUTPUT_DIR)
+  # Recursively delete working directory to ensure no redundant files are left behind from previous builds.
+  FileUtils.rm_rf(working_dir)
+  Dir.mkdir(working_dir) unless File.directory?(working_dir)
+  Dir.chdir(working_dir)
+
+  # Copy `public` dir to output dir
+  FileUtils.copy_entry(File.join('..', 'public'), '.')
+end
+
+@log = Logger.new($stdout)
+@log.level = Logger::INFO
+@log.info "Build starts."
+@log.info "Output directory is: #{OUTPUT_DIR}"
+
+@pages = 0 # count the number of pages generated
+
+create_output_dir
+
+gen_homepage
+gen_elections_pages
+gen_bodies_pages
+gen_info_pages
+gen_candidates_pages
 
 @log.info "Build complete. %d pages generated in %0.2f seconds." % [ @pages, Process.clock_gettime(Process::CLOCK_MONOTONIC) - t_start ]
