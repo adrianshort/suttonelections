@@ -294,6 +294,18 @@ nav
   padding: 20px 20px;
 }
 
+.menu {
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  list-style-type: none;
+  display: inline;
+  margin: 20px 0;
+  padding: 0 10px 0 0;
+}
+
 @media print {
   .noprint, #footer, .nav, nav
   {

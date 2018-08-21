@@ -2,7 +2,6 @@
 %html
   %head
     %title= @page_title ? @page_title + " - Sutton Elections" : "Sutton Elections - Your guide to voting and election results in the London Borough of Sutton"
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }
     %meta{ :name => 'referrer', :content => 'no-referrer' }
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1' }
@@ -11,20 +10,19 @@
     #header.noprint
       #header_inner
         %h1 Sutton Elections
-        .pure-menu.pure-menu-horizontal
-          %ul.pure-menu-list
-            %li.pure-menu-item
-              %a{ :href => '/' } Home
-            - Body.each do |body|
-              %li.pure-menu-item
-                %a{ :href => "/bodies/#{body.slug}" }
-                  = body.name
-            %li.pure-menu-item
-              %a{ :href => '/candidates' } Candidates
-            %li.pure-menu-item
-              %a{ :href => '/guides' } Guides
-            %li.pure-menu-item
-              %a{ :href => '/about' } About
+        %ul.menu
+          %li
+            %a{ :href => '/' } Home
+          - Body.each do |body|
+            %li
+              %a{ :href => "/bodies/#{body.slug}" }<
+                = body.name
+          %li
+            %a{ :href => '/candidates' } Candidates
+          %li
+            %a{ :href => '/guides' } Guides
+          %li
+            %a{ :href => '/about' } About
 
     #main
     
