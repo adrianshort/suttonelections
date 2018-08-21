@@ -315,6 +315,7 @@ nav
   body
   {
     margin: 0 auto;
+    color: black;
   }
 
   a, a:visited {
