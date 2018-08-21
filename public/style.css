@@ -293,3 +293,19 @@ nav
   border: 1px solid green;
   padding: 20px 20px;
 }
+
+@media print {
+  .noprint, #footer, .nav, nav
+  {
+    display: none;
+  }
+
+  body
+  {
+    margin: 0 auto;
+  }
+
+  a, a:visited {
+    background-color: #fff;
+  }
+}
