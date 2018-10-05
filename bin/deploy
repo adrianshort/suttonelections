@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+bundle exec bin/build
+cd _site
+git commit -am "Update content"
+git push origin master
+cd -
