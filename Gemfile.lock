@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/adrianshort/petrify/
+  revision: b1b04d7c3a7463e295d55703d5e2fa3288fa650a
+  specs:
+    petrify (0.2.0)
+      haml
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,6 +82,7 @@ DEPENDENCIES
   data_mapper
   dm-postgres-adapter
   haml
+  petrify!
   pg
 
 RUBY VERSION
