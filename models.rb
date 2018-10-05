@@ -1,4 +1,5 @@
 require 'data_mapper'
+load '_config.rb'
 
 class Poll
   include DataMapper::Resource
@@ -269,5 +270,5 @@ class Party
   has n, :campaigns
 end
 
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://postgres@localhost:5432/suttonelections")
+DataMapper.setup(:default, ENV['DATABASE_URL'])
 DataMapper.auto_upgrade!
