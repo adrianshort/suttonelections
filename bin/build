@@ -1,52 +1,16 @@
 #!/usr/bin/env ruby
-# Generate a static site
-
-# https://blog.dnsimple.com/2018/03/elapsed-time-with-ruby-the-right-way/
-t_start = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-
-require 'logger'
-require 'haml'
+require 'petrify'
 require_relative '../models'
 require_relative '../lib/helpers'
 
-OUTPUT_DIR = '_site'
-VIEWS_DIR = File.join('..', 'views')
-LAYOUT_FN = File.join(VIEWS_DIR, 'layout.haml')
-
-def write_page(path_items, template, locals = {})
-  dir = File.join(path_items)
-  FileUtils.mkdir_p(dir)
-  @log.debug dir
-  fn = File.join(dir, 'index.html')
-  
-  # https://stackoverflow.com/questions/6125265/using-layouts-in-haml-files-independently-of-rails
-  html = Haml::Engine.new(File.read(LAYOUT_FN)).render do
-    Haml::Engine.new(File.read(File.join(VIEWS_DIR, "#{template}.haml"))).render(Object.new, locals)
-  end
-
-  File.write(fn, html)
-  @log.info fn
-  @pages += 1
-  # TODO - add page to sitemap.xml or sitemap.txt
-  # https://support.google.com/webmasters/answer/183668?hl=en&ref_topic=4581190
-end
-
 def gen_info_pages
-  write_page('about', 'about')
-  write_page('guides', 'guides')
-  write_page(%w(guides how-the-parliament-election-works), 'parliament')
-  write_page(%w(guides how-the-council-election-works), 'election')
+  Petrify.page('about', 'about')
+  Petrify.page('guides', 'guides')
+  Petrify.page(%w(guides how-the-parliament-election-works), 'parliament')
+  Petrify.page(%w(guides how-the-council-election-works), 'election')
 end
 
 def gen_bodies_pages
-  # Bodies index
-  dir = 'bodies'
-  FileUtils.mkdir_p(dir)
-  @log.debug dir
-  fn = File.join(dir, 'index.html')
-  FileUtils.touch(fn) # empty file
-  @log.info fn
-
   # Body detail pages
   Body.each do |b|
     locals = {
@@ -72,7 +36,7 @@ def gen_bodies_pages
       ORDER BY e.d DESC
     ", b.id)
 
-    write_page(['bodies', b.slug], 'body', locals)
+    Petrify.page(['bodies', b.slug], 'body', locals)
 
     # Districts for this body
     b.districts.each do |d|
@@ -80,7 +44,7 @@ def gen_bodies_pages
         district: d,
         body: b
       }
-      write_page(['bodies', b.slug, b.districts_name, d.slug], 'district', locals)
+      Petrify.page(['bodies', b.slug, b.districts_name, d.slug], 'district', locals)
     end
   end
 end
@@ -88,7 +52,7 @@ end
 def gen_candidates_pages
   # Candidate index
   locals = { candidates: Candidate.all(:order => [ :surname, :forenames ]) }
-  write_page('candidates', 'candidates', locals)
+  Petrify.page('candidates', 'candidates', locals)
 
   # Candidate pages
   # FIXME: What do we do about deleted candidates/redirects?
@@ -128,7 +92,7 @@ def gen_candidates_pages
       ORDER BY d
     ", c.id)
 
-    write_page(['candidates', c.id.to_s], 'candidate', locals)
+    Petrify.page(['candidates', c.id.to_s], 'candidate', locals)
   end
 end
 
@@ -171,8 +135,7 @@ def gen_elections_pages
       ORDER BY seatz DESC, votez DESC
     ", e.id)
 
-    write_page(['bodies', e.body.slug, 'elections', e.d.to_s],  'electionsummary', locals)
-
+    Petrify.page(['bodies', e.body.slug, 'elections', e.d.to_s],  'electionsummary', locals)
 
     # District results for this election (resultsdistrict)
     # Loop through all districts in this election
@@ -225,7 +188,7 @@ def gen_elections_pages
         ORDER BY total_votes DESC
       ", d.id, e.id)
 
-      write_page(['bodies', e.body.slug, 'elections', e.d.to_s, e.body.districts_name, d.slug], 'resultsdistrict', locals)
+      Petrify.page(['bodies', e.body.slug, 'elections', e.d.to_s, e.body.districts_name, d.slug], 'resultsdistrict', locals)
     end
   end
 end
@@ -235,33 +198,12 @@ def gen_homepage
     future_elections: Election.future,
     past_elections: Election.past
   }
-  write_page('.', 'index', locals)
+  Petrify.page('.', 'index', locals)
 end
 
-def create_output_dir
-  working_dir = File.join(Dir.pwd, OUTPUT_DIR)
-  # Recursively delete working directory to ensure no redundant files are left behind from previous builds.
-  FileUtils.rm_rf(working_dir)
-  Dir.mkdir(working_dir) unless File.directory?(working_dir)
-  Dir.chdir(working_dir)
-
-  # Copy `public` dir to output dir
-  FileUtils.copy_entry(File.join('..', 'public'), '.')
-end
-
-@log = Logger.new($stdout)
-@log.level = Logger::INFO
-@log.info "Build starts."
-@log.info "Output directory is: #{OUTPUT_DIR}"
-
-@pages = 0 # count the number of pages generated
-
-create_output_dir
-
+Petrify.setup
 gen_homepage
 gen_elections_pages
 gen_bodies_pages
 gen_info_pages
 gen_candidates_pages
-
-@log.info "Build complete. %d pages generated in %0.2f seconds." % [ @pages, Process.clock_gettime(Process::CLOCK_MONOTONIC) - t_start ]
