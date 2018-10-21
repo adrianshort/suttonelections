@@ -1,7 +1,7 @@
 !!!5
 %html
   %head
-    %title= page_title ? page_title + " &middot; Sutton Elections" : "Sutton Elections &middot; Your guide to voting and election results in the London Borough of Sutton"
+    %title= page_title > ""? page_title + " &middot; Sutton Elections" : "Sutton Elections &middot; Your guide to voting and election results in the London Borough of Sutton"
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/style.css' }
     %meta{ :name => 'referrer', :content => 'no-referrer' }
     %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1' }
