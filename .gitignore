@@ -1,7 +1,9 @@
 *.db
+*.sqlite
 .DS_Store
 .rvmrc
 .bundle/config
 /.ruby-gemset
 /tmp/
-_*
+_site
+_config.rb
