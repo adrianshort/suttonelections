@@ -1,8 +1,6 @@
 source "https://rubygems.org/"
 ruby "2.3.1"
 
-gem 'haml'
 gem 'data_mapper'
-gem 'dm-postgres-adapter'
-gem 'pg'
-gem 'petrify', git: 'https://github.com/adrianshort/petrify/'
+gem 'dm-sqlite-adapter'
+gem 'petrify', git: 'https://github.com/adrianshort/petrify/', ref: '04aa25b'

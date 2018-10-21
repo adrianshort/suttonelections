@@ -1,8 +1,9 @@
 GIT
   remote: https://github.com/adrianshort/petrify/
-  revision: b1b04d7c3a7463e295d55703d5e2fa3288fa650a
+  revision: 04aa25b008188086ed1f4c79ebebfc9f6cbbd75d
+  ref: 04aa25b
   specs:
-    petrify (0.2.0)
+    petrify (0.3.0)
       haml
 
 GEM
