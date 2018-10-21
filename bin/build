@@ -2,6 +2,7 @@
 require 'petrify'
 require_relative '../models'
 require_relative '../lib/helpers'
+require 'pp'
 
 def gen_info_pages
   Petrify.page('about', 'about')
@@ -23,7 +24,7 @@ def gen_bodies_pages
         e.id,
         e.kind,
         e.d,
-        SUM(p.ballot_papers_issued)::float / SUM(p.electorate) * 100 AS turnout_percent
+        (SUM(p.ballot_papers_issued) * 1.0) / SUM(p.electorate) * 100 AS turnout_percent
       
       FROM elections e
       

@@ -62,73 +62,6 @@ class Poll
   belongs_to :district
 end
 
-class PollingStation
-  include DataMapper::Resource
-
-  property :id,           String, :key => true, :length => 2 # e.g. "KA"
-  property :name,         String, :length => 255#, :required => true
-  property :address,      String, :length => 255#, :required => true
-  property :postcode,     String#, :required => true
-  property :easting,      Float,  :required => true
-  property :northing,     Float,  :required => true
-  property :lat,          Float,  :required => true
-  property :lng,          Float,  :required => true
-
-  has n, :postcodes
-end  
-
-class Postcode
-  include DataMapper::Resource
-
-  # Postcode natural key, uppercase with space, eg. "SM1 1EA"
-  # Column names derived from Ordnance Survey CodePoint Open
-  property :postcode,                     String,   :key => true
-  property :positional_quality_indicator, Integer
-  property :eastings,                     Integer,  :required => true
-  property :northings,                    Integer,  :required => true
-  property :country_code,                 String,   :required => true
-  property :nhs_regional_ha_code,         String,   :required => true
-  property :nhs_ha_code,                  String,   :required => true
-  property :admin_county_code,            String # NULL within Greater London
-  property :admin_district_code,          String,   :required => true # e.g. London Borough of Sutton
-  property :admin_ward_code,              String,   :required => true # e.g. Sutton Central
-  property :lat,                          Float,    :required => true
-  property :lng,                          Float,    :required => true
-  property :ward_id,                      Integer,  :required => true # Sutton Council
-  property :constituency_id,              Integer,  :required => false # UK Parliament
-  property :polling_station_id,           String,   :length => 2
-
-  belongs_to :district, :child_key => [:ward_id]
-  belongs_to :polling_station
-
-  def self.finder(postcode)
-    postcode = postcode.strip.upcase
-    
-    if o = self.get(postcode)
-      return o
-    end
-
-    result = Pat.get(postcode)
-
-    unless result.code == 404
-      # cache API result
-      self.create(
-        :postcode => postcode,
-        :lat => result['geo']['lat'],
-        :lng => result['geo']['lng'],
-        :district_name => result['administrative']['district']['title'],
-        :district_code => result['administrative']['district']['uri'].match(/.+\/(.+)$/)[1],
-        :ward_name => result['administrative']['ward']['title'],
-        :ward_code => result['administrative']['ward']['uri'].match(/.+\/(.+)$/)[1]
-      )
-    else
-      # invalid postcode
-      nil
-    end
-    
-  end
-end
-
 class Candidate
   include DataMapper::Resource
 
@@ -136,7 +69,7 @@ class Candidate
   property  :forenames,       String,   :required => true
   property  :surname,         String,   :required => true, :index => true
 
-  has n, :candidacies
+  has n, :candidacies#, 'Candidacy'
   
   def short_name
     @forenames.split(' ')[0] + ' ' + @surname
@@ -171,25 +104,12 @@ class Candidacy
   property  :postcode,          String
   property  :position,          Integer # Position of this candidate in this district. (1..n)
   property  :seats,             Integer # Number of seats won by this candidacy (0 or 1)
-  property  :labcoop,           Boolean, :default => false # Candidacy is for joint Labour/Co-op party
+  property  :labcoop,           String, :default => '0' # Candidacy is for joint Labour/Co-op party
 
   belongs_to  :election
   belongs_to  :candidate
   belongs_to  :party
   belongs_to  :district
-end
-
-class Campaign
-  include DataMapper::Resource
-
-  property :party_id,           Integer, :key => true
-  property :election_id,        Integer, :key => true
-  property :party_url,          String, :length => 255
-  property :manifesto_html_url, String, :length => 255
-  property :manifesto_pdf_url,  String, :length => 255
-
-  belongs_to :party
-  belongs_to :election
 end
 
 class Election
@@ -204,7 +124,6 @@ class Election
   has n,      :candidacies
   has n,      :polls
   belongs_to  :body
-  has n,      :campaigns
 
   def self.past
     self.all(:d.lt => Time.now.to_s, :order => [ :d.desc ])
@@ -238,7 +157,6 @@ class District
   property  :ons_district_code, String
 
   belongs_to :body
-  has n,    :postcodes, :child_key => [:ward_id]
   has n,    :polls
   
   def self.slugify(name)
@@ -267,8 +185,9 @@ class Party
   property :colour,         String
   
   has n, :candidacies
-  has n, :campaigns
+  # has n, :campaigns
 end
 
 DataMapper.setup(:default, ENV['DATABASE_URL'])
+DataMapper.repository(:default).adapter.resource_naming_convention = DataMapper::NamingConventions::Resource::UnderscoredAndPluralized
 DataMapper.auto_upgrade!

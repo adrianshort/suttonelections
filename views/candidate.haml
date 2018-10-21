@@ -23,7 +23,7 @@
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}/elections/#{ccy['d']}" }
           -# Postgres returns ccy['d'] as a Date and sqlite returns it as a String
-          = long_date(ccy['d'].to_time)
+          = long_date(ccy['d'])
       %td= party_name(ccy['labcoop'], ccy['party_name'])
       %td
         %a{ :href => "/bodies/#{ccy['body_slug']}" }

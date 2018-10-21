@@ -37,14 +37,19 @@ def format_percent(num)
 end
 
 def short_date(d)
+  # FIXME wtf - because sometimes we're doing raw sql queries and sometimes it's coming through the DataMapper::Resource class
+  d = Date.parse(d) unless d.class == Date
   d.strftime("%e %b %Y")
 end
 
 def long_date(d)
+  # FIXME wtf - because sometimes we're doing raw sql queries and sometimes it's coming through the DataMapper::Resource class
+  d = Date.parse(d) unless d.class == Date
   d.strftime("%e %B %Y")
 end
 
 # Exception for Labour/Co-operative candidacies
 def party_name(labcoop, party_name)
-  labcoop ? "Labour and Co-operative Party" : party_name
+  # puts labcoop.class # FIXME wtf - because sometimes we're doing raw sql queries and sometimes it's coming through the DataMapper::Resource class
+  labcoop == 1 || labcoop == '1' ? "Labour and Co-operative Party" : party_name
 end
