@@ -5,10 +5,16 @@ require_relative '../lib/helpers'
 require 'pp'
 
 def gen_info_pages
-  Petrify.page('about', 'about')
-  Petrify.page('guides', 'guides')
-  Petrify.page(%w(guides how-the-parliament-election-works), 'parliament')
-  Petrify.page(%w(guides how-the-council-election-works), 'election')
+  Petrify.page('about', 'about', { page_title: "About this website" })
+  Petrify.page('guides', 'guides', { page_title: "Guides"} )
+  Petrify.page(
+    %w(guides how-the-parliament-election-works),
+    'parliament',
+    { page_title: "How parliamentary elections work"})
+  Petrify.page(
+    %w(guides how-the-council-election-works),
+    'election',
+    { page_title: "How council elections work" })
 end
 
 def gen_bodies_pages
@@ -16,7 +22,8 @@ def gen_bodies_pages
   Body.each do |b|
     locals = {
       body: b,
-      districts: District.all(:body => b, :order => [:name])
+      districts: District.all(:body => b, :order => [:name]),
+      page_title: b.name
     }
     
     locals['elections'] = repository(:default).adapter.select("
@@ -43,7 +50,8 @@ def gen_bodies_pages
     b.districts.each do |d|
       locals = {
         district: d,
-        body: b
+        body: b,
+        page_title: "#{d.name} #{d.body.district_name}, #{d.body.name}"
       }
       Petrify.page(['bodies', b.slug, b.districts_name, d.slug], 'district', locals)
     end
@@ -52,14 +60,17 @@ end
 
 def gen_candidates_pages
   # Candidate index
-  locals = { candidates: Candidate.all(:order => [ :surname, :forenames ]) }
+  locals = {
+    candidates: Candidate.all(:order => [ :surname, :forenames ]),
+    page_title: "Candidates" }
   Petrify.page('candidates', 'candidates', locals)
 
   # Candidate pages
   # FIXME: What do we do about deleted candidates/redirects?
   Candidate.each do |c|
     locals = {
-      candidate: c
+      candidate: c,
+      page_title: c.name
     }
 
     locals['candidacies'] = repository(:default).adapter.select("
@@ -105,7 +116,8 @@ def gen_elections_pages
       election: Election.first(:body => e.body, :d => e.d),
       elections_for_this_body: Election.all(:body => e.body, :order => [:d]),
       total_seats: Candidacy.sum(:seats, :election => e),
-      total_votes: Candidacy.sum(:votes, :election => e)
+      total_votes: Candidacy.sum(:votes, :election => e),
+      page_title: "#{e.body.name} #{e.kind} #{long_date(e.d)}"
     }
 
     # There's got to be a better way to do this, either with SQL or Datamapper
@@ -154,7 +166,8 @@ def gen_elections_pages
         total_candidates: Candidacy.count(:district => d, :election => e),
         total_seats: total_seats,
         districts_in_this_election: e.candidacies.districts,
-        poll: poll
+        poll: poll,
+        page_title: "#{d.name} #{d.body.district_name} results, #{d.body.name} election #{short_date(e.d)}"
       }
 
       locals['share_message'] = nil
@@ -197,7 +210,8 @@ end
 def gen_homepage
   locals = {
     future_elections: Election.future,
-    past_elections: Election.past
+    past_elections: Election.past,
+    page_title: ""
   }
   Petrify.page('.', 'index', locals)
 end
