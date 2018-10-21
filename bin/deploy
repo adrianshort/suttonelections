@@ -2,6 +2,7 @@
 
 bundle exec bin/build
 cd _site
+git add .
 git commit -am "Update content"
 git push origin master
 cd -
