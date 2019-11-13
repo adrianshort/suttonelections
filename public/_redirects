@@ -1,5 +1,0 @@
-# Redirect domain aliases to primary domain
-https://elections.opensutton.org/* https://elections.adrianshort.org/:splat 301!
-
-# Optional: Redirect default Netlify subdomain to primary domain
-https://suttonelections.netlify.com/* https://elections.adrianshort.org/:splat 301!
