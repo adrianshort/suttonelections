@@ -1,17 +1,9 @@
-GIT
-  remote: https://github.com/adrianshort/petrify/
-  revision: 04aa25b008188086ed1f4c79ebebfc9f6cbbd75d
-  ref: 04aa25b
-  specs:
-    petrify (0.3.0)
-      haml
-
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
-    bcrypt (3.1.12)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.13)
     bcrypt-ruby (3.1.5)
       bcrypt (>= 3.1.3)
     data_mapper (1.2.0)
@@ -63,16 +55,18 @@ GEM
     do_sqlite3 (0.10.17)
       data_objects (= 0.10.17)
     fastercsv (1.5.5)
-    haml (5.0.4)
+    haml (5.1.2)
       temple (>= 0.8.0)
       tilt
     json (1.8.6)
     json_pure (1.8.6)
-    multi_json (1.13.1)
-    public_suffix (3.0.3)
+    multi_json (1.14.1)
+    petrify (0.4.1)
+      haml (~> 5.0)
+    public_suffix (4.0.1)
     stringex (1.5.1)
-    temple (0.8.0)
-    tilt (2.0.8)
+    temple (0.8.2)
+    tilt (2.0.10)
     uuidtools (2.1.5)
 
 PLATFORMS
@@ -81,7 +75,7 @@ PLATFORMS
 DEPENDENCIES
   data_mapper
   dm-sqlite-adapter
-  petrify!
+  petrify
 
 RUBY VERSION
    ruby 2.3.1p112
