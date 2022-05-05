@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.13)
     bcrypt-ruby (3.1.5)
@@ -63,7 +63,7 @@ GEM
     multi_json (1.14.1)
     petrify (0.4.1)
       haml (~> 5.0)
-    public_suffix (4.0.1)
+    public_suffix (4.0.6)
     stringex (1.5.1)
     temple (0.8.2)
     tilt (2.0.10)
