@@ -1,5 +1,4 @@
 require 'data_mapper'
-load '_config.rb'
 
 class Poll
   include DataMapper::Resource

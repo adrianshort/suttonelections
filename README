@@ -1,0 +1,40 @@
+Sutton Elections
+================
+
+An election results website for the London Borough of Sutton.
+
+
+Dependencies
+------------
+
+Ruby 3.1.2
+sqlite3
+http://harpjs.com/ is useful to preview the local site.
+
+
+Installation
+------------
+
+$ export DATABASE_URL=sqlite:///path/to/scraperwiki.sqlite
+
+
+Build the static site
+---------------------
+
+$ ./bin/build
+
+The static site is now in the _site directory and can be deployed to any
+static host.
+
+
+Repositories
+------------
+
+https://github.com/adrianshort/suttonelections (primary)
+https://git.adrianshort.org/adrianshort/suttonelections (mirror)
+
+
+Maintainer
+----------
+
+Adrian Short <adrian@adrianshort.org>
